@@ -26,55 +26,12 @@
     <style>
         /* Custom styles for academic professionalism and responsiveness */
         .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
-        html { 
-            scroll-behavior: smooth; 
-            overflow-x: hidden;
-        }
-        body { 
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            width: 100%;
-            position: relative;
-        }
-        
-        /* Ensure all containers don't overflow */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
         
         /* FIX: Hide Horizontal Scrollbar Globally (especially on modal content) */
         body, #manuscriptFormModal > div {
             overflow-x: hidden;
-        }
-        
-        /* Ensure main container doesn't overflow */
-        main {
-            overflow-x: hidden;
-            width: 100%;
-        }
-        
-        /* Mobile specific fixes */
-        @media (max-width: 768px) {
-            .section-padding { 
-                padding-top: 3rem; 
-                padding-bottom: 3rem; 
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-            
-            /* Ensure no element exceeds viewport width */
-            .max-w-7xl {
-                max-width: 100% !important;
-                padding-left: 1rem !important;
-                padding-right: 1rem !important;
-            }
-            
-            /* Force text to wrap */
-            h1, h2, h3, p {
-                word-wrap: break-word;
-                overflow-wrap: break-word;
-                hyphens: auto;
-            }
         }
         
         /* Direct CSS for custom colors and hover effects */
@@ -314,8 +271,8 @@
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex space-x-6 items-center">
                     <a href="#hero" class="text-white hover:text-accent transition duration-300">Home</a>
-                   <!--  <a href="#about" class="text-white hover:text-accent transition duration-300">About</a> -->
-                    <button onclick="openModal('collegeInfoModal')" class="text-white hover:text-accent transition duration-300 font-semibold">About us</button> <!-- NEW NAV ITEM -->
+                    <a href="#about" class="text-white hover:text-accent transition duration-300">About</a>
+                    <button onclick="openModal('collegeInfoModal')" class="text-white hover:text-accent transition duration-300 font-semibold">About College</button> <!-- NEW NAV ITEM -->
                     <a href="#publications" class="text-white hover:text-accent transition duration-300">Publications</a>
                     <a href="#editorial" class="text-white hover:text-accent transition duration-300">Editorial Board</a>
                     <a href="#announcements" class="text-white hover:text-accent transition duration-300">News</a>
@@ -356,16 +313,16 @@
 
     <main>
         <!-- Hero Section (Simple Design with Enhanced Download Card) -->
-        <section id="hero" class="hero-section-bg section-padding pt-24 pb-24 text-white overflow-hidden">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-10 hero-content w-full">
+        <section id="hero" class="hero-section-bg section-padding pt-24 pb-24 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-10 hero-content">
                 
                 <!-- COLUMN 1: Journal Information (Simple Design) -->
-                <div class="md:w-3/5 text-center md:text-left w-full">
-                    <p class="text-lg sm:text-xl font-bold text-teal-300 mb-2">Volume 1, December 2025</p>
-                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-white break-words">
+                <div class="md:w-3/5 text-center md:text-left">
+                    <p class="text-xl font-bold text-teal-300 mb-2">Volume 1, December 2025</p>
+                    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-4 text-white">
                         SIES Journal of <span class="text-accent">Multidisciplinary</span> Research & Innovation
                     </h1>
-                    <p class="text-lg sm:text-xl text-teal-300 mb-6 font-semibold break-words">
+                    <p class="text-xl text-teal-300 mb-6 font-semibold">
                         A Peer-Reviewed Double-Blind Multi-Disciplinary Online Research Journal (SIES JMRI)
                     </p>
                     <div class="space-y-3 mb-8 text-white/80">
@@ -422,7 +379,7 @@
                                 <button class="w-full bg-gradient-to-r from-accent to-primary text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] group-hover:from-primary group-hover:to-accent">
                                     <i data-lucide="download" class="inline-block w-5 h-5 mr-2 group-hover:animate-bounce"></i> 
                                     Download PDF
-                                    <span class="block text-sm font-normal opacity-80"></span>
+                                    <span class="block text-sm font-normal opacity-80">Free Access</span>
                                 </button>
                             </a>
 
@@ -761,7 +718,7 @@
                         <div class="testimonial-card-container">
                             <div class="p-6 rounded-xl bg-white text-gray-800 shadow-xl border-t-4 border-accent h-full">
                                 <i data-lucide="quote" class="w-8 h-8 text-accent mb-4"></i>
-                                <p class="italic mb-4">"The SIES Journal provides an excellent platform for multidisciplinary research. The double-blind peer-review process ensures the quality and credibility of the articles."</p>
+                                <p class="italic mb-4">"The SIES Journal of Humanities provides an excellent platform for multidisciplinary research. The double-blind peer-review process ensures the quality and credibility of the articles."</p>
                                 <div class="font-semibold text-secondary">Name 1</div>
                                 <p class="text-sm text-gray-500">Research Scholar</p>
                             </div>
@@ -864,7 +821,7 @@
     <footer class="header-bg py-8 mt-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white text-sm">
             <p>&copy; 2025 SIES College Nerul. All Rights Reserved. | ISSN: 3048-9768 (Online)</p>
-            <p class="mt-2 text-accent">Designed By Bishal Saini.</p>
+            <p class="mt-2 text-accent">Designed for a modern academic experience.</p>
         </div>
     </footer>
 
@@ -1001,6 +958,33 @@
                     </p>
                 </div>
 
+                <!-- Accreditation & Recognition -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-primary/5 p-6 rounded-lg border border-primary/20">
+                        <h4 class="font-bold text-accent mb-3 flex items-center">
+                            <i data-lucide="award" class="w-5 h-5 mr-2"></i>
+                            Accreditation & Recognition
+                        </h4>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
+                            <li><strong>NAAC 'A' Grade</strong> (3rd Cycle) with CGPA 3.01/4.00</li>
+                            <li><strong>UGC Autonomous Status</strong> (2023-2024)</li>
+                            <li>Affiliated with <strong>University of Mumbai</strong></li>
+                            <li>Member of <strong>The South Indian Education Society</strong></li>
+                        </ul>
+                    </div>
+                    <div class="bg-accent/5 p-6 rounded-lg border border-accent/20">
+                        <h4 class="font-bold text-accent mb-3 flex items-center">
+                            <i data-lucide="graduation-cap" class="w-5 h-5 mr-2"></i>
+                            Academic Excellence
+                        </h4>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
+                            <li>Diverse <strong>Undergraduate</strong> and <strong>Postgraduate</strong> programs</li>
+                            <li>Research-oriented academic environment</li>
+                            <li>Industry-relevant curriculum design</li>
+                            <li>Experienced faculty with advanced qualifications</li>
+                        </ul>
+                    </div>
+                </div>
 
                 <!-- Principal & Leadership -->
                 <div class="bg-white border border-gray-200 p-6 rounded-lg shadow-sm">
