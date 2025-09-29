@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIES Journal</title>
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="./scripts/main.js" defer></script>
+    <script>
+        // Define custom colors for easy use with Tailwind classes (e.g., bg-primary)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#003366', // Deep Navy
+                        'accent': '#008080', // Academic Teal
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for academic professionalism and responsiveness */
+        .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Direct CSS for custom colors and hover effects */
+        .header-bg { background-color: var(--primary-color, #003366); }
+        .bg-accent { background-color: var(--accent-color, #008080); }
+        .hover-accent:hover { background-color: #006666; } 
+        .text-primary { color: var(--primary-color, #003366); }
+
+        /* Custom animation for the metrics section */
+        @keyframes pulse-card {
+            0% { transform: scale(1); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
+            50% { transform: scale(1.01); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); }
+            100% { transform: scale(1); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
+        }
+        .metric-card:hover {
+            animation: pulse-card 0.5s ease-in-out;
+        }
+        
+        /* Animation for FAQ accordion */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .faq-open .faq-content {
+            max-height: 500px; /* Sufficiently large value for smooth transition */
+            transition: max-height 0.5s ease-in;
+        }
+
+        /* Modal specific styles for smooth fade */
+        .modal {
+            transition: opacity 0.3s ease-out;
+        }
+         
+        /* Chatbot Styles */
+        .chatbot-container {
+            max-height: 400px;
+            overflow-y: auto;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+        }
+
+        /* Chat bubble styles */
+        .chat-bubble {
+            max-width: 80%;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.75rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        .user-message {
+            background-color: #003366; /* primary */
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 0;
+        }
+        .bot-message {
+            background-color: #d1fae5; /* light teal */
+            color: #003366;
+            margin-right: auto;
+            border-bottom-left-radius: 0;
+        }
+        .loader-dot {
+            animation: bounce 0.6s infinite alternate;
+        }
+        .loader-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .loader-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
+        }
+        
+        /* Removed Floating Chat Window Specific Styles */
+        
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="header-bg sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- LOGO SECTION -->
+                <a href="#" class="flex items-center text-white transition duration-300">
+                    <img 
+                        src="https://siesascn.edu.in/images/sies_ascn_logo.jpg" 
+                        alt="SIES College of Arts, Science & Commerce (Autonomous) Logo" 
+                        class="h-10 sm:h-12 w-auto " 
+                        onerror="this.onerror=null; this.style.display='none';"
+                    >
+                    <!-- Fallback/Journal Title if image fails or for accessibility -->
+                    <span class="ml-3 text-2xl font-extrabold tracking-wider hidden sm:inline">SIES Journal</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-6 items-center">
+                    <a href="#hero" class="text-white hover:text-teal-300 transition duration-300">Home</a>
+                    <a href="#about" class="text-white hover:text-teal-300 transition duration-300">About</a>
+                    <a href="#guidelines" class="text-white hover:text-teal-300 transition duration-300">Guidelines</a>
+                    <a href="#publications" class="text-white hover:text-teal-300 transition duration-300">Publications</a>
+                    <a href="#faqs" class="text-white hover:text-teal-300 transition duration-300">FAQs</a>
+                    <a href="#contact" class="text-white hover:text-teal-300 transition duration-300">Contact</a>
+                    <button onclick="openModal('submissionModal');" class="bg-accent text-white px-5 py-2 rounded-full font-semibold shadow-md hover-accent transition duration-300">
+                        Submit Paper
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-button" class="md:hidden text-white focus:outline-none" aria-label="Toggle Menu">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full header-bg shadow-xl">
+            <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
+                <a href="#hero" class="text-white hover:bg-indigo-700 w-full text-center py-2 rounded-md transition duration-300">Home</a>
+                <a href="#about" class="text-white hover:bg-indigo-700 w-full text-center py-2 rounded-md transition duration-300">About</a>
+                <a href="#guidelines" class="text-white hover:bg-indigo-700 w-full text-center py-2 rounded-md transition duration-300">Guidelines</a>
+                <a href="#publications" class="text-white hover:bg-indigo-700 w-full text-center py-2 rounded-md transition duration-300">Publications</a>
+                <a href="#faqs" class="text-white hover:bg-indigo-700 w-full text-center py-2 rounded-md transition duration-300">FAQs</a>
+                <a href="#contact" class="text-white hover:bg-indigo-700 w-full text-center py-2 rounded-md transition duration-300">Contact</a>
+                <button onclick="openModal('submissionModal');" class="bg-accent text-white px-5 py-2 mt-2 w-11/12 rounded-full font-semibold shadow-md hover-accent transition duration-300">
+                    Submit Paper
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section (RESTRUCTURED) -->
+        <section id="hero" class="bg-primary section-padding pt-24 pb-24 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
+                
+                <!-- COLUMN 1: Journal Information & Main CTA -->
+                <div class="text-center md:text-left space-y-8">
+                    
+                    <div class="space-y-4">
+                        <h1 class="text-5xl md:text-6xl font-extrabold leading-tight">
+                            SIES Journal of Humanities
+                        </h1>
+                        <p class="text-xl text-teal-300">
+                            A peer-reviewed multidisciplinary annual research journal fostering interdisciplinary perspectives in social sciences.
+                        </p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <p class="flex items-center justify-center md:justify-start text-lg font-medium">
+                            <i data-lucide="barcode" class="w-5 h-5 mr-3 text-teal-300"></i> ISSN: 3048-9768 (Online)
+                        </p>
+                        <p class="flex items-center justify-center md:justify-start text-lg font-medium">
+                            <i data-lucide="clock" class="w-5 h-5 mr-3 text-teal-300"></i> Frequency: Annual
+                        </p>
+                    </div>
+
+                    <button onclick="openModal('submissionModal');" class="bg-accent text-white px-8 py-4 rounded-lg font-bold text-lg shadow-xl hover-accent transition duration-300 transform hover:scale-105">
+                        <i data-lucide="file-text" class="inline-block w-5 h-5 mr-2"></i> Submit Your Paper
+                    </button>
+                </div>
+
+                <!-- COLUMN 2: Visual Element and AI Feature -->
+                <div class="space-y-8">
+                    <!-- Visual Element: Academic Focus (IMAGE) -->
+                    <div class="w-full">
+                        <img 
+                            src="https://siesascn.edu.in/home_banners/SIES-1.jpg" 
+                            alt="Stylized image representing academic research" 
+                            class="w-full h-auto rounded-xl shadow-2xl border-4 border-white object-cover transform transition duration-500 hover:rotate-1 hover:scale-[1.03]"
+                            onerror="this.onerror=null; this.src='https://placehold.co/800x450/008080/ffffff?text=Academic+Research+Focus';"
+                        >
+                    </div>
+
+                    <!-- Gemini Feature 1: Title Suggestion -->
+                    <div class="bg-primary/80 p-6 rounded-xl shadow-xl space-y-4 border border-teal-300">
+                        <h3 class="text-2xl font-bold text-teal-300 flex items-center justify-center md:justify-start">
+                            <i data-lucide="sparkles" class="w-6 h-6 mr-2 text-yellow-300"></i> Optimize Your Title
+                        </h3>
+                        <p class="text-sm text-gray-200">Enter a working title for your manuscript and get 3 professionally optimized alternatives.</p>
+                        <input type="text" id="title-input" placeholder="E.g., The effects of social media" class="w-full p-3 rounded-lg text-gray-800 focus:ring-accent focus:border-accent border-none" required>
+                        <button id="title-suggest-btn" class="w-full bg-teal-300 text-primary py-3 rounded-lg font-bold shadow-lg hover:bg-teal-100 transition duration-300 transform hover:scale-[1.01] flex items-center justify-center">
+                            <i data-lucide="brain" class="w-5 h-5 mr-2"></i> ✨ Suggest Titles
+                        </button>
+                        <div id="title-suggestion-output" class="text-left pt-2 text-sm">
+                            <!-- LLM suggestions appear here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About & Journal Details -->
+        <section id="about" class="section-padding bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-4 text-primary">About the Journal</h2>
+                <p class="text-center text-gray-500 mb-12 max-w-3xl mx-auto">Discover the journal's mission, scope, and commitment to academic excellence and sustainable development.</p>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Mission Card (UPDATED CONTENT) -->
+                    <div class="p-6 rounded-xl shadow-lg border-t-4 border-accent bg-white transform hover:translate-y-[-5px] transition duration-300">
+                        <i data-lucide="target" class="text-accent w-8 h-8 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3 text-primary">Our Mission</h3>
+                        <p class="text-gray-600">In alignment with the college's dedication to creating a better society, our mission is to foster a research culture, ensure academic rigor, and publish world-class, interdisciplinary articles.</p>
+                    </div>
+                    <!-- Details Card -->
+                    <div class="p-6 rounded-xl shadow-lg border-t-4 border-accent bg-white transform hover:translate-y-[-5px] transition duration-300">
+                        <i data-lucide="layers" class="text-accent w-8 h-8 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3 text-primary">Scope & Specifications</h3>
+                        <ul class="text-gray-600 space-y-1">
+                            <li><span class="font-semibold">Subject:</span> Multidisciplinary</li>
+                            <li><span class="font-semibold">Language:</span> English</li>
+                            <li><span class="font-semibold">Format:</span> Online</li>
+                            <li><span class="font-semibold">Review:</span> Double-blind Peer Review</li>
+                        </ul>
+                    </div>
+                    <!-- Publisher Card (UPDATED CONTENT) -->
+                    <div class="p-6 rounded-xl shadow-lg border-t-4 border-accent bg-white transform hover:translate-y-[-5px] transition duration-300">
+                        <i data-lucide="building" class="text-accent w-8 h-8 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3 text-primary">Publisher & Affiliation</h3>
+                        <p class="text-gray-600">SIES College of Arts, Science & Commerce (Autonomous). Publisher is SIES College, which holds NAAC 'A' Grade (3rd Cycle) accreditation and UGC Autonomous status (2023-2024).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Publish With Us Section -->
+        <section class="section-padding bg-primary text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-4">Why Publish With SIES Journal?</h2>
+                <p class="text-center text-teal-300 mb-12 max-w-3xl mx-auto">Commitment to quality, rigorous review, and global exposure for your research.</p>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Benefit 1 -->
+                    <div class="p-6 rounded-xl border-2 border-teal-500/50 bg-primary/90 hover:bg-primary/70 transition duration-300">
+                        <i data-lucide="shield-check" class="text-accent w-8 h-8 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3">Rigorous Double-Blind Review</h3>
+                        <p class="text-gray-200">Our commitment to integrity ensures fair, high-quality, and constructive feedback from peer reviewers.</p>
+                    </div>
+                    <!-- Benefit 2 -->
+                    <div class="p-6 rounded-xl border-2 border-teal-500/50 bg-primary/90 hover:bg-primary/70 transition duration-300">
+                        <i data-lucide="star" class="text-accent w-8 h-8 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3">Multidisciplinary Impact</h3>
+                        <p class="text-gray-200">Reach a diverse global audience across various social science disciplines, maximizing your research visibility.</p>
+                    </div>
+                    <!-- Benefit 3 -->
+                    <div class="p-6 rounded-xl border-2 border-teal-500/50 bg-primary/90 hover:bg-primary/70 transition duration-300">
+                        <i data-lucide="trending-up" class="text-accent w-8 h-8 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3">Indexed and ISSN Certified</h3>
+                        <p class="text-gray-200">The journal is ISSN certified (3048-9768), ensuring your publication contributes meaningfully to your academic career.</p>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                     <button onclick="openModal('submissionModal');" class="bg-teal-300 text-primary px-8 py-3 rounded-full font-bold shadow-xl hover:bg-teal-100 transition duration-300 transform hover:scale-105">
+                        Start Your Submission Journey
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Author Guidelines Section (NEW) -->
+        <section id="guidelines" class="section-padding bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-4 text-primary">Detailed Author Guidelines</h2>
+                <p class="text-center text-gray-500 mb-12 max-w-3xl mx-auto">Understand the requirements for manuscript preparation, ethical standards, and review timelines.</p>
+
+                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- Guidelines Card 1: Formatting -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-primary">
+                        <i data-lucide="edit" class="w-8 h-8 text-primary mb-3"></i>
+                        <h3 class="text-xl font-bold mb-2 text-primary">Manuscript Preparation</h3>
+                        <p class="text-gray-600">All submissions must be in MS Word, use Times New Roman, font size 12, with 1.5 spacing. The article length should be between 3000 and 6000 words (excluding abstract and references).</p>
+                    </div>
+                    <!-- Guidelines Card 2: Citation -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-primary">
+                        <i data-lucide="book" class="w-8 h-8 text-primary mb-3"></i>
+                        <h3 class="text-xl font-bold mb-2 text-primary">Referencing Style</h3>
+                        <p class="text-gray-600">The journal exclusively follows the latest edition of the **MLA** (Modern Language Association) citation and referencing style for all submissions.</p>
+                    </div>
+                    <!-- Guidelines Card 3: Ethics (UPDATED CONTENT) -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-primary">
+                        <i data-lucide="gavel" class="w-8 h-8 text-primary mb-3"></i>
+                        <h3 class="text-xl font-bold mb-2 text-primary">Research Ethics</h3>
+                        <p class="text-gray-600">All research must comply with the SIESASCN Research Ethics Policy. Articles must be original, plagiarism-free, and authors must declare no conflict of interest.</p>
+                    </div>
+                    <!-- Guidelines Card 4: Review Time -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-primary">
+                        <i data-lucide="hourglass" class="w-8 h-8 text-primary mb-3"></i>
+                        <h3 class="text-xl font-bold mb-2 text-primary">Review Timeline</h3>
+                        <p class="text-gray-600">The initial review decision is typically communicated within 6 to 8 weeks. Review is double-blind peer-reviewed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section (Latest Articles / Downloads) -->
+        <section id="publications" class="section-padding bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-4 text-primary">College Publications & Latest Articles</h2>
+                <p class="text-center text-gray-500 mb-12 max-w-3xl mx-auto">Explore current and past volumes of the Journal, along with other key institutional publications like Pulse and Tech Byte.</p>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    <!-- Publication Item 1: Journal Article -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-teal-600">
+                        <div class="p-5">
+                            <span class="inline-block text-xs font-semibold uppercase tracking-wider text-teal-600 bg-teal-100 px-3 py-1 rounded-full mb-2">Journal</span>
+                            <h3 class="text-lg font-bold mb-1 line-clamp-2">The Interplay of Digitalization and Social Policy in India</h3>
+                            <p class="text-sm text-gray-500 mb-3">Volume 1, Issue 1, Article 4</p>
+                            <a href="#" class="text-sm font-semibold text-accent hover:text-primary">Read Abstract <i data-lucide="arrow-right" class="inline-block w-4 h-4 ml-1"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Publication Item 2: Pulse Newsletter -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-indigo-600">
+                        <div class="p-5">
+                            <span class="inline-block text-xs font-semibold uppercase tracking-wider text-indigo-600 bg-indigo-100 px-3 py-1 rounded-full mb-2">Newsletter</span>
+                            <h3 class="text-lg font-bold mb-1 line-clamp-2">Pulse (College News Letter)</h3>
+                            <p class="text-sm text-gray-500 mb-3">Volume 2 (Latest Edition)</p>
+                            <a href="#" class="text-sm font-semibold text-accent hover:text-primary">Download PDF <i data-lucide="download" class="inline-block w-4 h-4 ml-1"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Publication Item 3: Tech Byte -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-purple-600">
+                        <div class="p-5">
+                            <span class="inline-block text-xs font-semibold uppercase tracking-wider text-purple-600 bg-purple-100 px-3 py-1 rounded-full mb-2">Magazine</span>
+                            <h3 class="text-lg font-bold mb-1 line-clamp-2">Tech Byte - IT Magazine</h3>
+                            <p class="text-sm text-gray-500 mb-3">Latest Edition 2024</p>
+                            <a href="#" class="text-sm font-semibold text-accent hover:text-primary">View Online <i data-lucide="external-link" class="inline-block w-4 h-4 ml-1"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Publication Item 4: Journal Article -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-teal-600">
+                        <div class="p-5">
+                            <span class="inline-block text-xs font-semibold uppercase tracking-wider text-teal-600 bg-teal-100 px-3 py-1 rounded-full mb-2">Journal</span>
+                            <h3 class="text-lg font-bold mb-1 line-clamp-2">Historical Narratives and Post-Colonial Literature</h3>
+                            <p class="text-sm text-gray-500 mb-3">Volume 1, Issue 1, Article 1</p>
+                            <a href="#" class="text-sm font-semibold text-accent hover:text-primary">Read Abstract <i data-lucide="arrow-right" class="inline-block w-4 h-4 ml-1"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Editorial Board Section (UPDATED CONTENT) -->
+        <section id="editorial" class="section-padding bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-4 text-primary">Meet Our Editorial Board</h2>
+                <p class="text-center text-gray-500 mb-12 max-w-3xl mx-auto">A team of renowned academicians committed to maintaining the highest standards of peer review and publication quality. Names will be updated soon.</p>
+                
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Member 1: Chief Editor -->
+                    <div class="text-center p-6 bg-gray-100 rounded-xl shadow-md border-t-4 border-accent transform hover:scale-[1.03] transition duration-300">
+                        <div class="w-28 h-28 mx-auto rounded-full bg-accent/20 mb-4 flex items-center justify-center overflow-hidden">
+                            <img src="https://placehold.co/120x120/003366/ffffff?text=Chief+Editor" alt="Chief Editor Photo" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-bold text-primary">Chief Editor</h3>
+                        <p class="text-accent font-semibold mb-2">Designated Head, Editorial Board</p>
+                        <p class="text-sm text-gray-600">Oversees the entire publication process, strategy, and quality assurance.</p>
+                    </div>
+                    <!-- Member 2: Principal Nominee -->
+                    <div class="text-center p-6 bg-gray-100 rounded-xl shadow-md border-t-4 border-accent transform hover:scale-[1.03] transition duration-300">
+                        <div class="w-28 h-28 mx-auto rounded-full bg-accent/20 mb-4 flex items-center justify-center overflow-hidden">
+                             <img src="https://placehold.co/120x120/003366/ffffff?text=Principal's+Nominee" alt="Editorial Member Photo" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-bold text-primary">Principal's Nominee</h3>
+                        <p class="text-accent font-semibold mb-2">Editorial Member (Administration)</p>
+                        <p class="text-sm text-gray-600">Ensures compliance with institutional policy and academic integrity standards.</p>
+                    </div>
+                    <!-- Member 3: Administration Nominee -->
+                    <div class="text-center p-6 bg-gray-100 rounded-xl shadow-md border-t-4 border-accent transform hover:scale-[1.03] transition duration-300">
+                        <div class="w-28 h-28 mx-auto rounded-full bg-accent/20 mb-4 flex items-center justify-center overflow-hidden">
+                             <img src="https://placehold.co/120x120/003366/ffffff?text=College+Admin" alt="Vice-Principal Photo" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-bold text-primary">College Administration Nominee</h3>
+                        <p class="text-accent font-semibold mb-2">Editorial Member</p>
+                        <p class="text-sm text-gray-600">Provides liaison between the Editorial Board and College Management.</p>
+                    </div>
+                    <!-- Member 4: Senior Faculty -->
+                    <div class="text-center p-6 bg-gray-100 rounded-xl shadow-md border-t-4 border-accent transform hover:scale-[1.03] transition duration-300">
+                        <div class="w-28 h-28 mx-auto rounded-full bg-accent/20 mb-4 flex items-center justify-center overflow-hidden">
+                             <img src="https://placehold.co/120x120/003366/ffffff?text=Senior+Faculty" alt="Editorial Member Photo" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-bold text-primary">Senior Faculty Member</h3>
+                        <p class="text-accent font-semibold mb-2">Editorial Member (Research)</p>
+                        <p class="text-sm text-gray-600">Drives content acquisition and maintains research rigor in selected disciplines.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Journal Metrics Section (New) -->
+        <section class="section-padding bg-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-4 text-primary">Journal Impact and Reach</h2>
+                <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">Our growing community of scholars and commitment to high-quality publications.</p>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Metric 1: Articles -->
+                    <div class="text-center p-8 bg-white rounded-xl shadow-lg border-b-4 border-accent metric-card">
+                        <i data-lucide="book-open-check" class="w-10 h-10 mx-auto text-accent mb-3"></i>
+                        <p class="text-5xl font-extrabold text-primary">15+</p>
+                        <p class="text-lg font-semibold text-gray-600 mt-2">Published Articles</p>
+                    </div>
+                     <!-- Metric 2: Years -->
+                    <div class="text-center p-8 bg-white rounded-xl shadow-lg border-b-4 border-accent metric-card">
+                        <i data-lucide="calendar-check" class="w-10 h-10 mx-auto text-accent mb-3"></i>
+                        <p class="text-5xl font-extrabold text-primary">1+</p>
+                        <p class="text-lg font-semibold text-gray-600 mt-2">Years of Publication</p>
+                    </div>
+                    <!-- Metric 3: Authors -->
+                    <div class="text-center p-8 bg-white rounded-xl shadow-lg border-b-4 border-accent metric-card">
+                        <i data-lucide="users" class="w-10 h-10 mx-auto text-accent mb-3"></i>
+                        <p class="text-5xl font-extrabold text-primary">30+</p>
+                        <p class="text-lg font-semibold text-gray-600 mt-2">Contributing Authors</p>
+                    </div>
+                    <!-- Metric 4: Reviewers -->
+                    <div class="text-center p-8 bg-white rounded-xl shadow-lg border-b-4 border-accent metric-card">
+                        <i data-lucide="gavel" class="w-10 h-10 mx-auto text-accent mb-3"></i>
+                        <p class="text-5xl font-extrabold text-primary">10+</p>
+                        <p class="text-lg font-semibold text-gray-600 mt-2">Peer Reviewers</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQs Section (MOVED BOT HERE AND FIXED ACCORDION) -->
+        <section id="faqs" class="section-padding bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-4 text-primary">Frequently Asked Questions</h2>
+                <p class="text-center text-gray-500 mb-12 max-w-3xl mx-auto">Quick answers to the most common questions about submission and publication.</p>
+                
+                <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                    <!-- Column 1: Standard FAQs (ACCORDION) -->
+                    <div id="faq-accordion" class="space-y-4">
+                        
+                        <!-- FAQ Item 1 -->
+                        <div class="faq-item bg-gray-50 rounded-xl shadow-md overflow-hidden border border-gray-200">
+                            <button class="faq-toggle w-full flex justify-between items-center p-5 text-lg font-semibold text-primary hover:bg-gray-100 transition duration-200" aria-expanded="false" aria-controls="faq-1">
+                                Is there any publication fee for the journal?
+                                <i data-lucide="chevron-down" class="w-6 h-6 transform transition duration-300"></i>
+                            </button>
+                            <div id="faq-1" class="faq-content">
+                                <div class="p-5 pt-0 text-gray-700 border-t border-gray-200">
+                                    <p>No, the SIES Journal of Humanities does not charge any submission or publication fees. We are committed to open access academic publishing.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 2 -->
+                        <div class="faq-item bg-gray-50 rounded-xl shadow-md overflow-hidden border border-gray-200">
+                            <button class="faq-toggle w-full flex justify-between items-center p-5 text-lg font-semibold text-primary hover:bg-gray-100 transition duration-200" aria-expanded="false" aria-controls="faq-2">
+                                What is the typical time frame for the peer review process?
+                                <i data-lucide="chevron-down" class="w-6 h-6 transform transition duration-300"></i>
+                            </button>
+                            <div id="faq-2" class="faq-content">
+                                <div class="p-5 pt-0 text-gray-700 border-t border-gray-200">
+                                    <p>Authors can typically expect to receive the initial review decision within **6 to 8 weeks** of the submission deadline. This may vary based on reviewer availability.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 3 -->
+                        <div class="faq-item bg-gray-50 rounded-xl shadow-md overflow-hidden border border-gray-200">
+                            <button class="faq-toggle w-full flex justify-between items-center p-5 text-lg font-semibold text-primary hover:bg-gray-100 transition duration-200" aria-expanded="false" aria-controls="faq-3">
+                                Which citation style should I use for my manuscript?
+                                <i data-lucide="chevron-down" class="w-6 h-6 transform transition duration-300"></i>
+                            </button>
+                            <div id="faq-3" class="faq-content">
+                                <div class="p-5 pt-0 text-gray-700 border-t border-gray-200">
+                                    <p>We require all authors to strictly follow the latest edition of the **MLA (Modern Language Association)** referencing style.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Gemini Feature 2: Policy Clarification Bot (STATIC) -->
+                    <div class="bg-gray-100 p-6 rounded-xl shadow-lg border-t-4 border-accent">
+                        <h3 class="text-2xl font-bold mb-4 text-primary flex items-center">
+                            <i data-lucide="bot" class="w-6 h-6 mr-2 text-accent"></i> Policy Clarifier Bot
+                        </h3>
+                        <p class="text-sm text-gray-600 mb-4">Ask specific questions about our guidelines, formatting, or ethics policy.</p>
+                        
+                        <!-- Chat Window -->
+                        <!-- Reusing original IDs for LLM logic -->
+                        <div id="clarifier-chat-window" class="chatbot-container h-80 mb-4">
+                            <div class="bot-message chat-bubble">Hello! I can answer questions about the journal's policies. For example, try asking: "What are the rules about plagiarism?"</div>
+                        </div>
+
+                        <!-- Chat Input -->
+                        <div class="flex">
+                            <input type="text" id="clarifier-input" placeholder="Ask your policy question..." class="w-full p-3 border border-gray-300 rounded-l-lg text-gray-800 focus:ring-accent focus:border-accent" onkeydown="if(event.key === 'Enter') document.getElementById('clarifier-send-btn').click();">
+                            <button id="clarifier-send-btn" class="bg-primary text-white p-3 rounded-r-lg hover:bg-indigo-900 transition duration-300" aria-label="Send message">
+                                <i data-lucide="send" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Announcements Section -->
+        <section id="announcements" class="section-padding bg-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-4 text-primary">Latest Announcements</h2>
+                <p class="text-center text-gray-500 mb-12 max-w-3xl mx-auto">Stay up-to-date with our Call for Papers, publication schedules, and editorial news.</p>
+
+                <div class="space-y-6 max-w-4xl mx-auto">
+                    
+                    <!-- Announcement 1 -->
+                    <div class="flex flex-col sm:flex-row bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500 hover:shadow-xl transition duration-300">
+                        <div class="sm:w-1/4 flex-shrink-0 text-center sm:border-r sm:pr-4 mb-4 sm:mb-0">
+                            <p class="text-3xl font-bold text-red-500">15</p>
+                            <p class="text-lg font-medium text-gray-600">Oct 2025</p>
+                        </div>
+                        <div class="sm:pl-6">
+                            <h3 class="text-xl font-bold text-primary mb-1">Call for Papers - Volume 2</h3>
+                            <p class="text-gray-600">We are pleased to announce the call for papers for the second volume of SIES Journal of Humanities. <span class="font-semibold">Submission deadline: January 31, 2024.</span></p>
+                            <a href="#" class="text-sm font-semibold text-red-500 mt-2 inline-block hover:underline">View Guidelines</a>
+                        </div>
+                    </div>
+
+                    <!-- Announcement 2 -->
+                    <div class="flex flex-col sm:flex-row bg-white p-6 rounded-xl shadow-lg border-l-4 border-teal-500 hover:shadow-xl transition duration-300">
+                        <div class="sm:w-1/4 flex-shrink-0 text-center sm:border-r sm:pr-4 mb-4 sm:mb-0">
+                            <p class="text-3xl font-bold text-teal-500">20</p>
+                            <p class="text-lg font-medium text-gray-600">Aug 2025</p>
+                        </div>
+                        <div class="sm:pl-6">
+                            <h3 class="text-xl font-bold text-primary mb-1">First Volume Successfully Published</h3>
+                            <p class="text-gray-600">The inaugural volume of SIES Journal of Humanities has been successfully published with 15 research articles across various disciplines. Access the volume now!</p>
+                            <a href="#" class="text-sm font-semibold text-teal-500 mt-2 inline-block hover:underline">Download Volume 1</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section (UPDATED TO SLIDER) -->
+        <section id="testimonials" class="section-padding bg-primary/95 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-4">What Our Contributors Say</h2>
+                <p class="text-center text-teal-300 mb-12 max-w-3xl mx-auto">Hear from authors and reviewers about their experience with the SIES Journal of Humanities.</p>
+                
+                <div class="max-w-3xl mx-auto relative">
+                    <!-- Slider Wrapper -->
+                    <div class="overflow-hidden rounded-xl shadow-2xl">
+                        <div id="testimonial-slider" class="flex transition-transform duration-500 ease-in-out">
+                            <!-- Testimonial 1 -->
+                            <div class="p-8 md:p-10 bg-white text-gray-800 border-t-4 border-accent flex-shrink-0 w-full">
+                                <i data-lucide="quote" class="w-8 h-8 text-accent mb-4"></i>
+                                <p class="italic mb-4 text-lg">"The SIES Journal of Humanities provides an excellent platform for multidisciplinary research. The double-blind peer-review process ensures the quality and credibility of the articles and delivers constructive feedback."</p>
+                                <div class="font-semibold text-primary text-lg">Dr. Name 1</div>
+                                <p class="text-sm text-gray-500">Research Scholar, Mumbai University</p>
+                            </div>
+                            <!-- Testimonial 2 -->
+                            <div class="p-8 md:p-10 bg-white text-gray-800 border-t-4 border-accent flex-shrink-0 w-full">
+                                <i data-lucide="quote" class="w-8 h-8 text-accent mb-4"></i>
+                                <p class="italic mb-4 text-lg">"Publishing here was a seamless experience. The editorial team was supportive, and the feedback from reviewers was constructive and incredibly insightful. Highly recommend for emerging scholars."</p>
+                                <div class="font-semibold text-primary text-lg">Prof. Name 2</div>
+                                <p class="text-sm text-gray-500">Assistant Professor, Commerce Department</p>
+                            </div>
+                            <!-- Testimonial 3 -->
+                            <div class="p-8 md:p-10 bg-white text-gray-800 border-t-4 border-accent flex-shrink-0 w-full">
+                                <i data-lucide="quote" class="w-8 h-8 text-accent mb-4"></i>
+                                <p class="italic mb-4 text-lg">"The journal's commitment to fostering interdisciplinary perspectives is commendable. It has been a valuable resource for my research and teaching activities, spanning Literature and Data Science."</p>
+                                <div class="font-semibold text-primary text-lg">Ms. Name 3</div>
+                                <p class="text-sm text-gray-500">Academic Researcher, SIES Institute</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Buttons -->
+                    <button id="prev-btn" class="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-black/30 hover:bg-accent/80 text-white rounded-full transition duration-300 z-10 ml-2" aria-label="Previous testimonial">
+                         <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                    </button>
+                    <button id="next-btn" class="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-black/30 hover:bg-accent/80 text-white rounded-full transition duration-300 z-10 mr-2" aria-label="Next testimonial">
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                
+                <!-- Dots Container -->
+                <div id="slider-dots" class="flex justify-center mt-6 space-x-2">
+                    <!-- Dots will be generated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact & Submission Form -->
+        <section id="contact" class="section-padding bg-primary/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-4 text-primary">Contact & General Inquiry</h2>
+                <p class="text-center text-gray-500 mb-12 max-w-3xl mx-auto">We are here to assist you with any general queries. For paper submissions, please use the "Submit Paper" button.</p>
+
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Contact Information (UPDATED CONTENT) -->
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4 text-accent">Reach Out Directly</h3>
+                        <div class="space-y-4">
+                             <!-- Journal Submission Email (Kept) -->
+                            <div class="flex items-start">
+                                <i data-lucide="mail" class="w-6 h-6 mr-4 text-primary mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-lg text-primary">Submission Email (ONLY for final articles)</p>
+                                    <p class="text-gray-600 font-bold">siesjournalofhumanities@gmail.com</p>
+                                </div>
+                            </div>
+                            <!-- General College Email (NEW) -->
+                            <div class="flex items-start">
+                                <i data-lucide="mail" class="w-6 h-6 mr-4 text-primary mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-lg text-primary">General College Inquiry Email</p>
+                                    <p class="text-gray-600 font-bold">ascnsies@sies.edu.in</p>
+                                </div>
+                            </div>
+                            <!-- Phone Support (UPDATED NUMBER) -->
+                            <div class="flex items-start">
+                                <i data-lucide="phone" class="w-6 h-6 mr-4 text-primary mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-lg text-primary">Phone Support</p>
+                                    <p class="text-gray-600 font-bold">(022) 61196414/15 (General College Inquiry)</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i data-lucide="map-pin" class="w-6 h-6 mr-4 text-primary mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-lg text-primary">Journal Office Address</p>
+                                    <p class="text-gray-600">SIES College of Arts, Science & Commerce, Nerul, Navi Mumbai</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Simplified Contact Form -->
+                    <form id="submission-form" class="bg-white p-8 rounded-xl shadow-xl">
+                        <h3 class="text-2xl font-bold mb-6 text-primary">Send Us a Quick Message</h3>
+                        <div class="space-y-4">
+                            <input type="text" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                            <input type="email" placeholder="Your Email Address" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                            <textarea placeholder="Your Query or Message" rows="4" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required></textarea>
+                            <button type="submit" class="w-full bg-accent text-white py-3 rounded-lg font-bold shadow-lg hover-accent transition duration-300 transform hover:scale-[1.01]">
+                                Send Message Now
+                            </button>
+                            <p id="form-message" class="text-sm text-center text-green-600 hidden mt-3">Message sent successfully!</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="header-bg py-8 mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white text-sm">
+            <p>&copy; 2025 SIES College Nerul. All Rights Reserved. | ISSN: 3048-9768 (Online)</p>
+            <p class="mt-2 text-teal-300">Designed by Bishal Saini</p>
+        </div>
+    </footer>
+
+    <!-- Submission Modal (NEW) -->
+    <div id="submissionModal" class="modal fixed inset-0 bg-black bg-opacity-70 z-[100] flex items-center justify-center opacity-0 pointer-events-none">
+        <div class="bg-white rounded-xl shadow-2xl max-w-lg w-11/12 mx-auto p-6 md:p-8 transform translate-y-4 transition duration-300">
+            
+            <div class="flex justify-between items-start border-b pb-3 mb-4">
+                <h2 class="text-2xl font-bold text-primary flex items-center">
+                    <i data-lucide="send" class="w-6 h-6 mr-2 text-accent"></i> Paper Submission Steps
+                </h2>
+                <button onclick="closeModal('submissionModal')" class="text-gray-400 hover:text-gray-700 transition duration-150 p-1 rounded-full hover:bg-gray-100" aria-label="Close modal">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <div class="space-y-6 text-gray-700">
+                <!-- Step 1 -->
+                <div class="flex items-start">
+                    <div class="flex items-center justify-center w-8 h-8 bg-accent text-white rounded-full mr-4 flex-shrink-0 font-bold">1</div>
+                    <div>
+                        <h3 class="font-bold text-lg text-primary">Prepare Manuscript</h3>
+                        <p class="text-sm">Ensure your article strictly follows the **MLA citation style** and our detailed formatting guidelines (refer to the **Author Guidelines** section).</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flex items-start">
+                    <div class="flex items-center justify-center w-8 h-8 bg-accent text-white rounded-full mr-4 flex-shrink-0 font-bold">2</div>
+                    <div>
+                        <h3 class="font-bold text-lg text-primary">Anonymize for Review</h3>
+                        <p class="text-sm">Remove all identifying information (name, affiliation) from the body and properties of your document to facilitate **Double-Blind Peer Review**.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flex items-start">
+                    <div class="flex items-center justify-center w-8 h-8 bg-accent text-white rounded-full mr-4 flex-shrink-0 font-bold">3</div>
+                    <div>
+                        <h3 class="font-bold text-lg text-primary">Email Submission</h3>
+                        <p class="text-sm">Email your final, anonymized document as an MS Word attachment to the dedicated submission email address below.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-6 pt-4 border-t text-center">
+                <p class="text-sm font-semibold text-primary mb-2">Submission Email Address:</p>
+                <a href="mailto:siesjournalofhumanities@gmail.com" class="text-xl text-accent font-bold hover:underline transition duration-300">
+                    siesjournalofhumanities@gmail.com
+                </a>
+                <button onclick="closeModal('submissionModal')" class="mt-4 w-full bg-primary text-white py-3 rounded-lg font-bold shadow-lg hover:bg-indigo-900 transition duration-300">
+                    I Understand the Guidelines
+                </button>
+            </div>
+        </div>
+    </div> 
+
+    <script> 
+    
+// Initialize Lucide Icons
+lucide.createIcons(); 
+
+const API_KEY = "AIzaSyCgSGLvknEckDt0USonf5TZ6kkinJPJaeY"; 
+const API_URL_BASE = 'https://generativelanguage.googleapis.com/v1beta/models/';
+const MODEL_FLASH = 'gemini-2.5-flash-preview-05-20';
+
+// Helper function for API calls with exponential backoff
+async function fetchWithRetry(url, options, maxRetries = 5) {
+    for (let i = 0; i < maxRetries; i++) {
+        try {
+            const response = await fetch(url, options);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            return response.json();
+        } catch (error) {
+            if (i === maxRetries - 1) throw error;
+            const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
+            await new Promise(resolve => setTimeout(resolve, delay));
+        }
+    }
+}
+
+// --- LLM Feature 1: Title Suggestion Logic (Hero Section) ---
+const titleInput = document.getElementById('title-input');
+const titleSuggestBtn = document.getElementById('title-suggest-btn');
+const titleOutput = document.getElementById('title-suggestion-output');
+
+titleSuggestBtn.addEventListener('click', async () => {
+    const draftTitle = titleInput.value.trim();
+    if (draftTitle.length < 10) {
+        titleOutput.innerHTML = '<p class="text-yellow-400">Please enter a longer, more descriptive draft title (min 10 characters).</p>';
+        return;
+    }
+
+    titleOutput.innerHTML = `
+        <div class="flex items-center text-teal-300">
+            <div class="flex space-x-1">
+                <span class="loader-dot w-2 h-2 bg-teal-300 rounded-full"></span>
+                <span class="loader-dot w-2 h-2 bg-teal-300 rounded-full"></span>
+                <span class="loader-dot w-2 h-2 bg-teal-300 rounded-full"></span>
+            </div>
+            <span class="ml-2">Optimizing your title...</span>
+        </div>
+    `;
+    
+    const systemPrompt = `You are a professional academic editor. Your task is to take a draft research paper title and generate exactly three (3) highly professional, concise, and academically compelling alternatives. Use clear, formal language. Format the output as a numbered list in Markdown.`;
+    const userQuery = `Draft Title: "${draftTitle}"`;
+    
+    const payload = {
+        contents: [{ parts: [{ text: userQuery }] }],
+        systemInstruction: { parts: [{ text: systemPrompt }] },
+    };
+    
+    const url = `${API_URL_BASE}${MODEL_FLASH}:generateContent?key=${API_KEY}`;
+
+    try {
+        const result = await fetchWithRetry(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (text) {
+            titleOutput.innerHTML = `
+                <p class="text-teal-300 font-semibold mb-1">Suggested Titles:</p>
+                <div class="bg-primary/50 p-3 rounded-lg">${text.replace(/\n/g, '<br>')}</div>
+            `;
+        } else {
+            titleOutput.innerHTML = '<p class="text-red-400">Error: Could not generate suggestions. Please try again.</p>';
+        }
+
+    } catch (error) {
+        console.error("LLM API Error:", error);
+        titleOutput.innerHTML = '<p class="text-red-400">API failed. Check console for details.</p>';
+    }
+});
+
+// --- LLM Feature 2: Policy Clarifier Bot (Static Placement) ---
+const chatWindow = document.getElementById('clarifier-chat-window');
+const chatInput = document.getElementById('clarifier-input');
+const chatSendBtn = document.getElementById('clarifier-send-btn');
+
+// Full context of guidelines for the bot (Policy Grounding)
+const POLICY_CONTEXT = `
+    The SIES Journal of Humanities is a peer-reviewed, multidisciplinary annual journal.
+    - **Submission Fee:** There are NO submission or publication fees.
+    - **Manuscript Length:** Articles must be between 3000 and 6000 words.
+    - **Formatting:** Use MS Word, Times New Roman, font size 12, with 1.5 spacing.
+    - **Citation Style:** Strictly follow the latest edition of the MLA (Modern Language Association) style.
+    - **Ethics:** All research must comply with the SIESASCN Research Ethics Policy. Articles must be original, plagiarism-free, and authors must declare no conflict of interest.
+    - **Review:** Double-blind peer review process. Authors must anonymize their documents (remove name, affiliation).
+    - **Review Timeline:** Initial decision communicated within 6 to 8 weeks.
+`;
+    
+function appendMessage(sender, text, isLoader = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('chat-bubble');
+    
+    if (isLoader) {
+        messageDiv.classList.add('bot-message', 'flex', 'items-center');
+        messageDiv.innerHTML = `
+            <div class="flex space-x-1">
+                <span class="loader-dot w-2 h-2 bg-primary rounded-full"></span>
+                <span class="loader-dot w-2 h-2 bg-primary rounded-full"></span>
+                <span class="loader-dot w-2 h-2 bg-primary rounded-full"></span>
+            </div>
+        `;
+        messageDiv.id = 'loader-message';
+    } else {
+        messageDiv.textContent = text;
+        if (sender === 'user') {
+            messageDiv.classList.add('user-message');
+        } else {
+            messageDiv.classList.add('bot-message');
+        }
+    }
+    
+    chatWindow.appendChild(messageDiv);
+    chatWindow.scrollTop = chatWindow.scrollHeight; // Auto-scroll
+}
+
+async function handleClarifierQuery() {
+    const userQuery = chatInput.value.trim();
+    if (!userQuery) return;
+    
+    appendMessage('user', userQuery);
+    chatInput.value = '';
+    chatInput.disabled = true;
+    chatSendBtn.disabled = true;
+    
+    appendMessage('bot', '', true); // Show loader
+    
+    const systemPrompt = `You are the SIES Journal Policy Clarifier Bot. Your goal is to provide concise, direct, and accurate answers based ONLY on the provided context about the journal's policies. If the answer is not in the context, state that you cannot answer it and refer the user to the FAQ page.`;
+    
+    const contextQuery = `Context: ${POLICY_CONTEXT}\n\nUser Question: ${userQuery}`;
+
+    const payload = {
+        contents: [{ parts: [{ text: contextQuery }] }],
+        systemInstruction: { parts: [{ text: systemPrompt }] },
+    };
+    
+    const url = `${API_URL_BASE}${MODEL_FLASH}:generateContent?key=${API_KEY}`;
+
+    try {
+        const result = await fetchWithRetry(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const text = result.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't process that question. Please try rephrasing.";
+        
+        // Remove loader and append bot response
+        const loader = document.getElementById('loader-message');
+        if (loader) loader.remove();
+        
+        appendMessage('bot', text);
+
+    } catch (error) {
+        console.error("LLM API Error:", error);
+        const loader = document.getElementById('loader-message');
+        if (loader) loader.remove();
+        appendMessage('bot', 'A connection error occurred. Please try again later.');
+    } finally {
+        chatInput.disabled = false;
+        chatSendBtn.disabled = false;
+        chatInput.focus();
+    }
+}
+
+chatSendBtn.addEventListener('click', handleClarifierQuery);
+
+// --- Standard JS functions (Mobile Menu, Form, Modal, FAQ, Slider) ---
+
+// --- Mobile Menu Toggle ---
+const menuButton = document.getElementById('menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+
+menuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+});
+
+// Close mobile menu when a link is clicked
+mobileMenu.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('click', () => {
+        // Wait briefly for modal/scroll to start before hiding
+        setTimeout(() => mobileMenu.classList.add('hidden'), 300); 
+    });
+});
+
+// --- Simple Form Submission Handler ---
+const submissionForm = document.getElementById('submission-form');
+const formMessage = document.getElementById('form-message');
+
+submissionForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    formMessage.textContent = 'Thank you! Your message has been received.';
+    formMessage.classList.remove('hidden', 'text-red-600');
+    formMessage.classList.add('text-green-600');
+    submissionForm.reset();
+    
+    setTimeout(() => {
+        formMessage.classList.add('hidden');
+    }, 5000);
+});
+
+// --- Modal Logic ---
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+    // Animate content for smooth transition
+    modal.querySelector('div:first-child').classList.remove('translate-y-4');
+}
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    // Animate content back before hiding
+    modal.querySelector('div:first-child').classList.add('translate-y-4');
+    
+    setTimeout(() => {
+        modal.classList.add('opacity-0', 'pointer-events-none');
+    }, 300);
+}
+
+// Close modal when clicking outside the content
+document.getElementById('submissionModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeModal('submissionModal');
+    }
+});
+
+// --- FAQ Accordion Logic
+document.querySelectorAll('.faq-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+        const item = button.closest('.faq-item');
+        const content = item.querySelector('.faq-content');
+        const icon = button.querySelector('i');
+        const isExpanded = item.classList.contains('faq-open');
+
+        // Close all other open items
+        document.querySelectorAll('.faq-item.faq-open').forEach(openItem => {
+            if (openItem !== item) {
+                openItem.classList.remove('faq-open');
+                openItem.querySelector('i').classList.remove('rotate-180');
+            }
+        });
+
+        // Toggle current item
+        if (isExpanded) {
+            item.classList.remove('faq-open');
+            icon.classList.remove('rotate-180');
+        } else {
+            item.classList.add('faq-open');
+            icon.classList.add('rotate-180');
+        }
+
+        // Re-initialize Lucide icons for the newly rotated icon
+        lucide.createIcons();
+    });
+});
+
+// --- Testimonial Slider Logic ---
+const slider = document.getElementById('testimonial-slider');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const dotsContainer = document.getElementById('slider-dots');
+const slides = slider.children;
+const totalSlides = slides.length;
+let currentSlide = 0;
+
+function createDots() {
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.classList.add('w-3', 'h-3', 'rounded-full', 'bg-white/50', 'hover:bg-accent', 'transition', 'duration-300');
+        dot.setAttribute('data-slide', i);
+        dot.onclick = () => showSlide(i);
+        dotsContainer.appendChild(dot);
+    }
+}
+
+function showSlide(index) {
+    // Loop back if necessary
+    if (index < 0) {
+        index = totalSlides - 1;
+    } else if (index >= totalSlides) {
+        index = 0;
+    }
+
+    currentSlide = index;
+    const offset = -currentSlide * 100;
+    slider.style.transform = `translateX(${offset}%)`;
+
+    // Update dots
+    Array.from(dotsContainer.children).forEach((dot, i) => {
+        dot.classList.remove('bg-accent', 'scale-110');
+        dot.classList.add('bg-white/50');
+        if (i === currentSlide) {
+            dot.classList.add('bg-accent', 'scale-110');
+            dot.classList.remove('bg-white/50');
+        }
+    });
+}
+
+prevBtn.addEventListener('click', () => {
+    showSlide(currentSlide - 1);
+});
+
+nextBtn.addEventListener('click', () => {
+    showSlide(currentSlide + 1);
+});
+
+createDots();
+showSlide(0); 
+
+    </script>
+    
+</body>
+</html>
