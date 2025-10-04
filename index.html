@@ -37,6 +37,33 @@
             position: relative;
         }
         
+        /* Enhanced sticky header - using fixed positioning for better reliability */
+        .sticky-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            z-index: 100 !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        /* Add padding to body to account for fixed header */
+        body {
+            padding-top: 0;
+        }
+        
+        /* Add margin to main content to account for fixed header */
+        main {
+            margin-top: 80px; /* Adjust this value based on your header height */
+        }
+        
+        /* Ensure container doesn't interfere with sticky positioning */
+        main {
+            position: relative;
+        }
+        
         /* Ensure all containers don't overflow */
         *, *::before, *::after {
             box-sizing: border-box;
@@ -170,7 +197,7 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            z-index: 900;
+            z-index: 200;
         }
 
         /* Chat Modal Positioning - Right Side */
@@ -180,7 +207,7 @@
             right: 20px;
             width: 420px;
             max-height: 600px;
-            z-index: 999;
+            z-index: 300;
             opacity: 0;
             visibility: hidden;
             transform: translateY(20px) scale(0.95);
@@ -298,7 +325,7 @@
 <body class="bg-gray-50 text-gray-800">
 
     <!-- Header & Navigation -->
-    <header class="header-bg sticky top-0 z-50 shadow-lg">
+    <header class="header-bg sticky-header shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
                 
@@ -317,7 +344,7 @@
                 <nav class="hidden md:flex space-x-6 items-center">
                     <a href="#hero" class="text-white hover:text-accent transition duration-300">Home</a>
                    <!--  <a href="#about" class="text-white hover:text-accent transition duration-300">About</a> -->
-                    <button onclick="openModal('collegeInfoModal')" class="text-white hover:text-accent transition duration-300 font-semibold">About Us</button> <!-- NEW NAV ITEM -->
+                    <button onclick="openModal('collegeInfoModal')" class="text-white hover:text-accent transition duration-300 font-semibold">About</button> <!-- NEW NAV ITEM -->
                     <a href="#publications" class="text-white hover:text-accent transition duration-300">Publications</a>
                     <a href="#editorial" class="text-white hover:text-accent transition duration-300">Editorial Board</a>
                     <a href="#announcements" class="text-white hover:text-accent transition duration-300">News</a>
@@ -904,7 +931,7 @@
     </button>
     
     <!-- Manuscript Upload Form Modal (Existing Component) -->
-    <div id="manuscriptFormModal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[999] opacity-0 invisible">
+    <div id="manuscriptFormModal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[1001] opacity-0 invisible">
         <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto custom-scrollbar transform scale-95 transition-all duration-300">
              <!-- Modal Header -->
             <div class="p-6 bg-accent text-white flex justify-between items-center rounded-t-xl">
@@ -998,7 +1025,7 @@
 
 
     <!-- College Info Modal (NEW) -->
-    <div id="collegeInfoModal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[999] opacity-0 invisible">
+    <div id="collegeInfoModal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[1001] opacity-0 invisible">
         <div class="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col transform scale-95 transition-all duration-300">
             <!-- Modal Header -->
             <div class="p-6 bg-primary text-white flex justify-between items-center rounded-t-xl flex-shrink-0">
@@ -1097,7 +1124,7 @@
         </div>
     </div>
 
-    <!-- JavaScript for Mobile Menu, Form Submission, Modal, and Slider -->
+   <!-- JavaScript for Mobile Menu, Form Submission, Modal, and Slider -->
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
