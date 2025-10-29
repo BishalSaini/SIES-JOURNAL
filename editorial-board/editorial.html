@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editorial Board - SIES Journal of Multidisciplinary Research and Innovation</title>
+    <link rel="icon" href="../assets/favicon.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3A7EBD', 
+                        'accent': '#CC7722',  
+                        'secondary': '#003366', 
+                        'off-white': '#F9FAFB', 
+                        'accent2': '#D8E5F2'
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --sies-navy: #1e3a8a;
+            --sies-blue: #1e40af;
+            --sies-orange: #E67E00;
+            --sies-orange-dark: #CC6F00;
+            --sies-black: #000000;
+            --sies-white: #ffffff;
+        }
+        
+        .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; width: 100%; position: relative; }
+        
+        .sticky-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            z-index: 100 !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .header-bg { background-color: var(--primary-color, #3A7EBD); }
+        .bg-accent { background-color: var(--accent-color, #3A7EBD); } 
+        .bg-accent2 { background-color: var(--accent-color, #1e3a8a); }
+        .hover-accent:hover { background-color: #0284c7; }
+        .text-primary { color: var(--primary-color, #1e3a8a); }
+        .text-accent { color: var(--accent-color, #0ea5e9); } 
+        .text-accent2 { color: var(--accent-color, #D8E5F2); }
+        .text-secondary { color: var(--secondary-color, #1e40af); }
+        .text-golden { color: var(--golden-color, #fbbf24); }
+        .bg-golden { background-color: var(--golden-color, #fbbf24); }
+
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            justify-items: center;
+        }
+
+        .chief-editor-card {
+            grid-column: span 1;
+            max-width: 350px; 
+            order: 0;
+        }
+
+        @media (min-width: 640px) { 
+            .editorial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .chief-editor-card {
+                grid-column: span 2; 
+                max-width: 400px; 
+            }
+        }
+
+        @media (min-width: 1024px) { 
+            .editorial-grid {
+                grid-template-columns: repeat(5, minmax(0, 1fr)); 
+                gap: 2rem;
+            }
+
+            .chief-editor-card {
+                grid-column: 1 / span 5; 
+                max-width: 450px;
+                margin-bottom: 2rem;
+                justify-self: center;
+            }
+
+            .member-card-1, .member-card-2, .member-card-3, .member-card-4, .member-card-5 { 
+                grid-column: span 1; 
+                margin-top: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-padding { 
+                padding-top: 3rem; 
+                padding-bottom: 3rem; 
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
+        .modal {
+            display: none;
+        }
+        .modal.show {
+            display: flex;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            background-color: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #0ea5e9; 
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: #0284c7;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="header-bg sticky-header shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                
+                <!-- LOGO SECTION -->
+                <a href="index.html" class="flex items-center text-white transition duration-300">
+                    <img 
+                        src="https://siesascn.edu.in/images/sies_ascn_logo.jpg" 
+                        alt="SIES College Logo" 
+                        class="h-10 sm:h-12 w-auto" 
+                        onerror="this.onerror=null; this.style.display='none'; document.getElementById('logo-text-fallback').style.display='inline';"
+                    >
+                    <span id="logo-text-fallback" class="ml-3 text-2xl font-extrabold tracking-wider"></span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-6 items-center">
+                    <a href="../index.html" class="text-white hover:text-accent transition duration-300">Home</a>
+                    <a href="../about-us/about.html" class="text-white hover:text-accent transition duration-300">About</a>
+                    <a href="../journals/journals.html" class="text-white hover:text-accent transition duration-300">Journals</a>
+                    <a href="../editorial-board/editorial.html" class="text-golden font-semibold">Editorial Board</a> 
+                    <a href="../announcements/announcements.html" class="text-white hover:text-accent transition duration-300">Announcements</a>
+                    <a href="../faq/faq.html" class="text-white hover:text-accent transition duration-300">FAQ</a>
+                    <a href="../contact/contact.html" class="text-white hover:text-accent transition duration-300">Contact</a>
+
+                    <button onclick="openModal('manuscriptFormModal')" class="bg-accent text-white px-5 py-2 rounded-full font-semibold shadow-md transition duration-300">
+                        Submit Manuscript
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-button" class="md:hidden text-white focus:outline-none" aria-label="Toggle Menu">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full header-bg shadow-xl">
+            <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
+                <a href="../index.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Home</a>
+                <a href="../about-us/about.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">About</a>
+                <a href="../journals/journals.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Journals</a>
+                <a href="../editorial-board/editorial.html" class="text-golden w-full text-center py-2 rounded-md">Editorial Board</a> 
+                <a href="../announcements/announcements.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Announcements</a>
+                <a href="../faq/faq.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">FAQ</a>
+                <a href="../contact/contact.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Contact</a>
+
+                <button onclick="openModal('manuscriptFormModal')" class="bg-accent text-white px-5 py-2 mt-2 w-11/12 rounded-full font-semibold shadow-md transition duration-300">
+                    Submit Manuscript
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section with Book/Journal Background -->
+        <section class="relative bg-gradient-to-r from-primary to-secondary text-white section-padding pt-32 overflow-hidden">
+            <!-- Hero Background Image (alternative book/journal themed) -->
+            <div class="absolute inset-0 w-full h-full z-0">
+                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80" alt="Book Journal Background" class="w-full h-full object-cover opacity-70" style="object-position: center;" />
+                <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-80"></div>
+            </div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6">
+                    Editorial <span class="text-accent">Board</span>
+                </h1>
+                <p class="text-xl text-blue-200 max-w-3xl mx-auto">
+                    Meet our distinguished team of academicians committed to maintaining the highest standards of peer review and publication quality
+                </p>
+            </div>
+        </section>
+
+        <!-- Editorial Board Section -->
+        <section class="section-padding bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4 text-secondary">Our Editorial Team</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto">
+                        Our editorial board comprises renowned scholars and experts from various disciplines, ensuring rigorous peer review and maintaining the academic excellence of our journal.
+                    </p>
+                </div>
+                
+                <!-- Editorial Board Grid -->
+                <div class="editorial-grid">
+
+                    <!-- CHIEF EDITOR -->
+                    <div class="chief-editor-card text-center p-8 bg-gradient-to-br from-primary to-secondary text-white rounded-xl shadow-xl border-2 border-accent hover:shadow-2xl transition duration-300">
+                        <div class="w-32 h-32 mx-auto rounded-full bg-white/20 mb-6 flex items-center justify-center overflow-hidden border-4 border-accent">
+                            <i data-lucide="user" class="w-16 h-16 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Dr. Koel Roychoudhury</h3>
+                        <p class="text-accent font-bold text-lg mb-3">Chief Editor</p>
+                        <p class="text-gray-200 text-sm">Principal, SIES (Nerul) College of Arts, Science and Commerce (Autonomous)</p>
+ <!--                        <div class="mt-4 pt-4 border-t border-white/20">
+                            <p class="text-xs text-gray-300">Leading the editorial vision and maintaining publication standards</p>
+                        </div> -->
+                    </div>
+                    
+                    <!-- Member 1: Dr. Arijit Chatterjee -->
+                    <div class="member-card-1 text-center p-6 bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:shadow-xl hover:border-accent transition duration-300">
+                        <div class="w-24 h-24 mx-auto rounded-full bg-primary/10 mb-4 flex items-center justify-center overflow-hidden border-2 border-primary/20">
+                            <i data-lucide="user" class="w-12 h-12 text-primary"></i>
+                        </div>
+                        <p class="text-xs font-bold text-accent mb-2 uppercase tracking-wide">Management Studies</p>
+                        <h3 class="text-lg font-bold text-secondary mb-1">Dr. Arijit Chatterjee</h3>
+                        <p class="text-accent font-semibold text-sm mb-2">Professor of Management</p>
+                        <p class="text-gray-600 text-xs">ESSEC Business School, Singapore</p>
+<!--                         <div class="mt-3 pt-3 border-t border-gray-200">
+                            <p class="text-xs text-gray-500">Strategic Management & Organizational Behavior</p>
+                        </div> -->
+                    </div>
+
+                    <!-- Member 2: M Sashikumar -->
+                    <div class="member-card-2 text-center p-6 bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:shadow-xl hover:border-accent transition duration-300">
+                        <div class="w-24 h-24 mx-auto rounded-full bg-primary/10 mb-4 flex items-center justify-center overflow-hidden border-2 border-primary/20">
+                            <i data-lucide="user" class="w-12 h-12 text-primary"></i>
+                        </div>
+                        <p class="text-xs font-bold text-accent mb-2 uppercase tracking-wide">Information Technology</p>
+                        <h3 class="text-lg font-bold text-secondary mb-1">M Sashikumar</h3>
+                        <p class="text-accent font-semibold text-sm mb-2">Executive Director</p>
+                        <p class="text-gray-600 text-xs">Centre for Development of Advanced Computing (CDAC)</p>
+<!--                         <div class="mt-3 pt-3 border-t border-gray-200">
+                            <p class="text-xs text-gray-500">Advanced Computing & Technology Innovation</p>
+                        </div> -->
+                    </div>
+
+                    <!-- Member 3: Dr. Bhavana Sharma -->
+                    <div class="member-card-3 text-center p-6 bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:shadow-xl hover:border-accent transition duration-300">
+                        <div class="w-24 h-24 mx-auto rounded-full bg-primary/10 mb-4 flex items-center justify-center overflow-hidden border-2 border-primary/20">
+                            <i data-lucide="user" class="w-12 h-12 text-primary"></i>
+                        </div>
+                        <p class="text-xs font-bold text-accent mb-2 uppercase tracking-wide">Commerce & Finance</p>
+                        <h3 class="text-lg font-bold text-secondary mb-1">Dr. Bhavana Sharma</h3>
+                        <p class="text-accent font-semibold text-sm mb-2">Professor</p>
+                        <p class="text-gray-600 text-xs">Amity University</p>
+<!--                         <div class="mt-3 pt-3 border-t border-gray-200">
+                            <p class="text-xs text-gray-500">Financial Management & Business Research</p>
+                        </div> -->
+                    </div>
+
+                    <!-- Member 4: Dr. Nirupama Warriar -->
+                    <div class="member-card-4 text-center p-6 bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:shadow-xl hover:border-accent transition duration-300">
+                        <div class="w-24 h-24 mx-auto rounded-full bg-primary/10 mb-4 flex items-center justify-center overflow-hidden border-2 border-primary/20">
+                            <i data-lucide="user" class="w-12 h-12 text-primary"></i>
+                        </div>
+                        <p class="text-xs font-bold text-accent mb-2 uppercase tracking-wide">Library Science</p>
+                        <h3 class="text-lg font-bold text-secondary mb-1">Dr. Nirupama Warriar</h3>
+                        <p class="text-accent font-semibold text-sm mb-2">Professor</p>
+                        <p class="text-gray-600 text-xs">Library & Information Science</p>
+<!--                         <div class="mt-3 pt-3 border-t border-gray-200">
+                            <p class="text-xs text-gray-500">Information Management & Digital Libraries</p>
+                        </div> -->
+                    </div>
+
+                    <!-- Member 5: Dr. Seema Mishra -->
+                    <div class="member-card-5 text-center p-6 bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:shadow-xl hover:border-accent transition duration-300">
+                        <div class="w-24 h-24 mx-auto rounded-full bg-primary/10 mb-4 flex items-center justify-center overflow-hidden border-2 border-primary/20">
+                            <i data-lucide="user" class="w-12 h-12 text-primary"></i>
+                        </div>
+                        <p class="text-xs font-bold text-accent mb-2 uppercase tracking-wide">Environmental Science</p>
+                        <h3 class="text-lg font-bold text-secondary mb-1">Dr. Seema Mishra</h3>
+                        <p class="text-accent font-semibold text-sm mb-2">Professor</p>
+                        <p class="text-gray-600 text-xs">G D Goenka University</p>
+<!--                         <div class="mt-3 pt-3 border-t border-gray-200">
+                            <p class="text-xs text-gray-500">Environmental Studies & Sustainability</p>
+                        </div> -->
+                    </div>
+                </div>
+
+                <!-- Editorial Process -->
+                <div class="mt-16 bg-gray-50 p-8 rounded-2xl">
+                    <h3 class="text-3xl font-bold text-center mb-8 text-secondary">Our Editorial Process</h3>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-accent text-white rounded-full flex items-center justify-center mb-4">
+                                <i data-lucide="file-text" class="w-8 h-8"></i>
+                            </div>
+                            <h4 class="text-xl font-bold mb-3 text-secondary">Submission Review</h4>
+                            <p class="text-gray-600">Initial assessment of manuscript quality, relevance, and adherence to journal guidelines</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-accent text-white rounded-full flex items-center justify-center mb-4">
+                                <i data-lucide="users" class="w-8 h-8"></i>
+                            </div>
+                            <h4 class="text-xl font-bold mb-3 text-secondary">Peer Review</h4>
+                            <p class="text-gray-600">Rigorous double-blind peer review by subject matter experts from our editorial board</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto bg-accent text-white rounded-full flex items-center justify-center mb-4">
+                                <i data-lucide="check-circle" class="w-8 h-8"></i>
+                            </div>
+                            <h4 class="text-xl font-bold mb-3 text-secondary">Final Decision</h4>
+                            <p class="text-gray-600">Editorial board makes final publication decision based on reviewer recommendations</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Editorial Board -->
+                <div class="mt-16 text-center">
+                    <div class="bg-gradient-to-r from-primary to-secondary text-white p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold mb-4">Connect with Our Editorial Team</h3>
+                        <p class="text-gray-200 mb-6 max-w-2xl mx-auto">
+                            Have questions about the editorial process or want to contribute as a reviewer? Get in touch with our editorial board.
+                        </p>
+                        <a href="../contact/contact.html" class="inline-block bg-accent text-white px-8 py-3 rounded-full font-bold shadow-xl hover:bg-opacity-90 transition duration-300 transform hover:scale-105">
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- Manuscript Upload Form Modal -->
+    <div id="manuscriptFormModal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[1001] opacity-0 invisible">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto custom-scrollbar transform scale-95 transition-all duration-300">
+             <!-- Modal Header -->
+            <div class="p-6 bg-accent text-white flex justify-between items-center rounded-t-xl">
+                <h3 class="text-2xl font-bold flex items-center">
+                    <i data-lucide="file-up" class="w-6 h-6 mr-3"></i> Manuscript Submission Form
+                </h3>
+                <button onclick="closeModal('manuscriptFormModal')" class="text-white hover:text-primary transition" aria-label="Close Modal">
+                    <i data-lucide="x" class="w-7 h-7"></i>
+                </button>
+            </div>
+            
+            <!-- Modal Content (Form) -->
+            <form id="manuscript-upload-form" action="../submit_manuscript.php" method="POST" enctype="multipart/form-data" class="p-8 space-y-6 text-gray-700">
+                <p class="text-lg font-semibold text-secondary">Please provide your details and attach the anonymized manuscript PDF.</p>
+
+                <!-- Personal Details -->
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <input type="text" name="author_name" placeholder="Full Name of Primary Author" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                    <input type="email" name="email" placeholder="Email Address" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                    <input type="text" name="affiliation" placeholder="Affiliation / Institution" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent sm:col-span-2" required>
+                </div>
+                
+                <!-- Manuscript Details -->
+                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Manuscript Information</h4>
+                <div class="space-y-3">
+                    <input type="text" id="title-input" name="manuscript_title" placeholder="Title of Manuscript" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                    <div id="title-suggestion-output" class="text-sm"></div>
+                </div>
+                <textarea name="abstract" placeholder="Brief Abstract (150-250 words)" rows="3" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required></textarea>
+
+                <!-- File Upload -->
+                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Upload Manuscript (PDF/DOCX)</h4>
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                    <label for="manuscript-file" class="cursor-pointer text-accent hover:text-primary font-semibold">
+                           <i data-lucide="upload-cloud" class="w-8 h-8 mx-auto mb-2"></i>
+                        Click to select file (PDF or DOCX)
+                    </label>
+                    <input type="file" name="manuscript_file" id="manuscript-file" accept=".pdf,.docx" class="hidden" required>
+                    <p id="file-name-display" class="text-sm text-gray-500 mt-2">No file selected.</p>
+                </div>
+
+                <button type="submit" id="manuscript-submit-btn" class="w-full bg-accent text-white py-3 rounded-lg font-bold text-lg shadow-lg hover-accent transition duration-300 transform hover:scale-[1.01]">
+                    Submit Manuscript
+                </button>
+                <p id="upload-form-message" class="text-sm text-center text-green-600 hidden mt-3">Manuscript submitted successfully!</p>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="header-bg py-8 mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white text-sm">
+            <p>&copy; 2025 SIES College Nerul. All Rights Reserved. | ISSN: 3048-9768 (Online)</p>
+            <p class="mt-2 text-accent">Designed By Bishal Saini | Vishal32saini@gmail.com</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@0.400.0/dist/umd/lucide.js"></script>
+    <script>
+        // Modal Functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('show');
+                modal.classList.remove('opacity-0', 'invisible');
+                modal.classList.add('opacity-100', 'visible');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('show', 'opacity-100', 'visible');
+                modal.classList.add('opacity-0', 'invisible');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Mobile Menu Toggle
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (menuButton && mobileMenu) {
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Form handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const uploadForm = document.getElementById('manuscript-upload-form');
+            const fileInput = document.getElementById('manuscript-file');
+            const fileNameDisplay = document.getElementById('file-name-display');
+            const messageEl = document.getElementById('upload-form-message');
+
+            if (fileInput) {
+                fileInput.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        fileNameDisplay.textContent = this.files[0].name;
+                        fileNameDisplay.classList.add('text-green-600');
+                    } else {
+                        fileNameDisplay.textContent = 'No file selected.';
+                        fileNameDisplay.classList.remove('text-green-600');
+                    }
+                });
+            }
+
+            if (uploadForm) {
+                uploadForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    if (messageEl) {
+                        messageEl.textContent = 'Submission simulated successfully!';
+                        messageEl.classList.remove('hidden');
+                    }
+                    
+                    setTimeout(() => {
+                        closeModal('manuscriptFormModal');
+                        uploadForm.reset();
+                        if (fileNameDisplay) {
+                            fileNameDisplay.textContent = 'No file selected.';
+                            fileNameDisplay.classList.remove('text-green-600');
+                        }
+                        if (messageEl) {
+                            messageEl.classList.add('hidden');
+                        }
+                    }, 2000);
+                });
+            }
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('manuscriptFormModal');
+                if (modal && event.target === modal) {
+                    closeModal('manuscriptFormModal');
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeModal('manuscriptFormModal');
+                }
+            });
+        });
+
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+    <script src="../assets/js/manuscript-submission.js"></script>
+</body>
+</html>

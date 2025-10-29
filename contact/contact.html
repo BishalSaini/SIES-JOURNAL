@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - SIES Journal of Multidisciplinary Research and Innovation</title>
+    <link rel="icon" href="../assets/favicon.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3A7EBD', 
+                        'accent': '#CC7722',  
+                        'secondary': '#003366', 
+                        'off-white': '#F9FAFB', 
+                        'accent2': '#D8E5F2'
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --sies-navy: #1e3a8a;
+            --sies-blue: #1e40af;
+            --sies-black: #000000;
+            --sies-white: #ffffff;
+        }
+        
+        .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; width: 100%; position: relative; }
+        
+        .sticky-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            z-index: 100 !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .header-bg { background-color: var(--primary-color, #3A7EBD); }
+        .bg-accent { background-color: var(--accent-color, #3A7EBD); } 
+        .bg-accent2 { background-color: var(--accent-color, #1e3a8a); }
+        .hover-accent:hover { background-color: #0284c7; }
+        .text-primary { color: var(--primary-color, #1e3a8a); }
+        .text-accent { color: var(--accent-color, #0ea5e9); } 
+        .text-accent2 { color: var(--accent-color, #D8E5F2); }
+        .text-secondary { color: var(--secondary-color, #1e40af); }
+        .text-golden { color: var(--golden-color, #fbbf24); }
+        .bg-golden { background-color: var(--golden-color, #fbbf24); }
+
+        @media (max-width: 768px) {
+            .section-padding { 
+                padding-top: 3rem; 
+                padding-bottom: 3rem; 
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
+        .modal {
+            display: none;
+        }
+        .modal.show {
+            display: flex;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            background-color: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #0ea5e9; 
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: #0284c7;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="header-bg sticky-header shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                
+                <!-- LOGO SECTION -->
+                <a href="index.html" class="flex items-center text-white transition duration-300">
+                    <img 
+                        src="https://siesascn.edu.in/images/sies_ascn_logo.jpg" 
+                        alt="SIES College Logo" 
+                        class="h-10 sm:h-12 w-auto" 
+                        onerror="this.onerror=null; this.style.display='none'; document.getElementById('logo-text-fallback').style.display='inline';"
+                    >
+                    <span id="logo-text-fallback" class="ml-3 text-2xl font-extrabold tracking-wider"></span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-6 items-center">
+                    <a href="../index.html" class="text-white hover:text-accent transition duration-300">Home</a>
+                    <a href="../about-us/about.html" class="text-white hover:text-accent transition duration-300">About</a>
+                    <a href="../journals/journals.html" class="text-white hover:text-accent transition duration-300">Journals</a>
+                    <a href="../editorial-board/editorial.html" class="text-white hover:text-accent transition duration-300">Editorial Board</a> 
+                    <a href="../announcements/announcements.html" class="text-white hover:text-accent transition duration-300">Announcements</a>
+                    <a href="../faq/faq.html" class="text-white hover:text-accent transition duration-300">FAQ</a>
+                    <a href="../contact/contact.html" class="text-golden font-semibold">Contact</a>
+
+                    <button onclick="openModal('manuscriptFormModal')" class="bg-accent text-white px-5 py-2 rounded-full font-semibold shadow-md transition duration-300">
+                        Submit Manuscript
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-button" class="md:hidden text-white focus:outline-none" aria-label="Toggle Menu">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full header-bg shadow-xl">
+            <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
+                <a href="../index.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Home</a>
+                <a href="../about-us/about.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">About</a>
+                <a href="../journals/journals.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Journals</a>
+                <a href="../editorial-board/editorial.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Editorial Board</a> 
+                <a href="../announcements/announcements.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Announcements</a>
+                <a href="../faq/faq.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">FAQ</a>
+                <a href="../contact/contact.html" class="text-golden w-full text-center py-2 rounded-md">Contact</a>
+
+                <button onclick="openModal('manuscriptFormModal')" class="bg-accent text-white px-5 py-2 mt-2 w-11/12 rounded-full font-semibold shadow-md transition duration-300">
+                    Submit Manuscript
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section with Contact Image -->
+        <section class="relative bg-gradient-to-r from-primary to-secondary text-white section-padding pt-32 overflow-hidden">
+            <div class="absolute inset-0 w-full h-full z-0">
+                <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=1200&q=80" alt="Contact Us Background" class="w-full h-full object-cover opacity-70" style="object-position: center;" />
+                <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-80"></div>
+            </div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6">
+                    Contact <span class="text-accent">Us</span>
+                </h1>
+                <p class="text-xl text-blue-200 max-w-3xl mx-auto">
+                    Get in touch with our editorial team for submissions, inquiries, and collaboration opportunities
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Information & Form -->
+        <section class="section-padding bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid lg:grid-cols-2 gap-16">
+                    
+                    <!-- Contact Information -->
+                    <div>
+                        <h2 class="text-3xl font-bold mb-8 text-secondary">Get in Touch</h2>
+                        <p class="text-gray-700 mb-8 leading-relaxed">
+                            We welcome your inquiries about manuscript submissions, editorial processes, and collaboration opportunities. Our team is here to assist you with any questions related to the SIES Journal of Multidisciplinary Research and Innovation.
+                        </p>
+
+                        <!-- Editorial Office -->
+                        <div class="mb-8 p-6 bg-gray-50 rounded-xl shadow-lg">
+                            <div class="space-y-3 text-gray-700">
+                                <p class="flex items-start">
+                                    <i data-lucide="map-pin" class="w-5 h-5 mr-3 text-accent mt-1 flex-shrink-0"></i>
+                                    <span>
+                                        <strong>SIES (Nerul) College of Arts, Science & Commerce (Autonomous)</strong><br>
+                                        Plot No. 1-C, Sector 5, Nerul,<br>
+                                        Navi Mumbai - 400706,<br>
+                                        Maharashtra, India
+                                    </span>
+                                </p>
+                                <p class="flex items-center">
+                                    <i data-lucide="phone" class="w-5 h-5 mr-3 text-accent"></i>
+                                    <span><strong>Phone:</strong> +91 22 2770 8371</span>
+                                </p>
+                                <p class="flex items-center">
+                                    <i data-lucide="mail" class="w-5 h-5 mr-3 text-accent"></i>
+                                    <span><strong>Email:</strong> sies@ascn.edu.in</span>
+                                </p>
+                                <p class="flex items-center">
+                                    <i data-lucide="globe" class="w-5 h-5 mr-3 text-accent"></i>
+                                    <span><strong>Website:</strong> www.siesascn.edu.in</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Quick Contact Info -->
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div class="p-6 bg-primary/5 rounded-xl border-l-4 border-accent">
+                                <h4 class="font-bold text-secondary mb-2 flex items-center">
+                                    <i data-lucide="clock" class="w-5 h-5 mr-2 text-accent"></i>
+                                    Office Hours
+                                </h4>
+                                <p class="text-gray-700 text-sm">
+                                    Monday - Friday: 9:00 AM - 5:00 PM<br>
+                                    Saturday: 9:00 AM - 1:00 PM<br>
+                                    Sunday: Closed
+                                </p>
+                            </div>
+                            
+                            <div class="p-6 bg-primary/5 rounded-xl border-l-4 border-accent">
+                                <h4 class="font-bold text-secondary mb-2 flex items-center">
+                                    <i data-lucide="timer" class="w-5 h-5 mr-2 text-accent"></i>
+                                    Response Time
+                                </h4>
+                                <p class="text-gray-700 text-sm">
+                                    Email inquiries: 24-48 hours<br>
+                                    Manuscript submissions: 8-10 weeks<br>
+                                    General queries: Same day
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Social & Academic Links -->
+                        <div class="mt-8">
+                            <h4 class="font-bold text-secondary mb-4">Connect With Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-primary text-white p-3 rounded-full hover:bg-primary/80 transition duration-300">
+                                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                                </a>
+                                <a href="#" class="bg-primary text-white p-3 rounded-full hover:bg-primary/80 transition duration-300">
+                                    <i data-lucide="twitter" class="w-5 h-5"></i>
+                                </a>
+                                <a href="#" class="bg-primary text-white p-3 rounded-full hover:bg-primary/80 transition duration-300">
+                                    <i data-lucide="facebook" class="w-5 h-5"></i>
+                                </a>
+                                <a href="#" class="bg-primary text-white p-3 rounded-full hover:bg-primary/80 transition duration-300">
+                                    <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div>
+                        <div class="bg-white p-8 rounded-xl shadow-xl border border-gray-200">
+                            <h2 class="text-3xl font-bold mb-2 text-secondary">Send us a Message</h2>
+                            <p class="text-gray-600 mb-8">Fill out the form below and we'll get back to you as soon as possible.</p>
+                            
+                            <form id="contact-form" class="space-y-6">
+                                <!-- Form Header -->
+                                <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-accent">
+                                    <h3 class="font-bold text-secondary mb-1">Contact Information</h3>
+                                    <p class="text-sm text-gray-600">Please provide your details so we can respond to you.</p>
+                                </div>
+
+                                <!-- Personal Information -->
+                                <div class="grid sm:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-bold text-gray-700 mb-2">
+                                            <i data-lucide="user" class="w-4 h-4 inline mr-1 text-accent"></i>
+                                            Full Name *
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            name="fullName"
+                                            placeholder="Enter your full name" 
+                                            class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition duration-300 font-medium" 
+                                            required
+                                        >
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-gray-700 mb-2">
+                                            <i data-lucide="mail" class="w-4 h-4 inline mr-1 text-accent"></i>
+                                            Email Address *
+                                        </label>
+                                        <input 
+                                            type="email" 
+                                            name="email"
+                                            placeholder="your.email@domain.com" 
+                                            class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition duration-300 font-medium" 
+                                            required
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="grid sm:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-bold text-gray-700 mb-2">
+                                            <i data-lucide="phone" class="w-4 h-4 inline mr-1 text-accent"></i>
+                                            Phone Number
+                                        </label>
+                                        <input 
+                                            type="tel" 
+                                            name="phone"
+                                            placeholder="+91 98765 43210" 
+                                            class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition duration-300 font-medium"
+                                        >
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-gray-700 mb-2">
+                                            <i data-lucide="building" class="w-4 h-4 inline mr-1 text-accent"></i>
+                                            Institution/Organization
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            name="institution"
+                                            placeholder="Your institution or organization" 
+                                            class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition duration-300 font-medium"
+                                        >
+                                    </div>
+                                </div>
+
+                                <!-- Inquiry Details -->
+                             <!--    <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-accent mt-8">
+                                    <h3 class="font-bold text-secondary mb-1">Inquiry Details</h3>
+                                    <p class="text-sm text-gray-600">Please specify the nature of your inquiry and provide detailed information.</p>
+                                </div> -->
+
+                                <!-- Inquiry Type -->
+                            <!--     <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">
+                                        <i data-lucide="tag" class="w-4 h-4 inline mr-1 text-accent"></i>
+                                        Inquiry Type *
+                                    </label>
+                                    <select 
+                                        name="inquiryType"
+                                        class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition duration-300 font-medium" 
+                                        required
+                                    >
+                                        <option value="">-- Please select an inquiry type --</option>
+                                        <option value="manuscript">📄 Manuscript Submission</option>
+                                        <option value="editorial">👥 Editorial Board Inquiry</option>
+                                        <option value="review">🔍 Peer Review Process</option>
+                                        <option value="collaboration">🤝 Collaboration Opportunity</option>
+                                        <option value="technical">🛠️ Technical Support</option>
+                                        <option value="general">ℹ️ General Information</option>
+                                        <option value="media">📰 Media & Press Inquiry</option>
+                                        <option value="complaint">⚠️ Complaint or Concern</option>
+                                    </select>
+                                </div> -->
+
+                                <!-- Subject -->
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">
+                                        <i data-lucide="file-text" class="w-4 h-4 inline mr-1 text-accent"></i>
+                                        Subject *
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        name="subject"
+                                        placeholder="Brief, descriptive subject of your inquiry" 
+                                        class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition duration-300 font-medium" 
+                                        required
+                                    >
+                                </div>
+
+                                <!-- Message -->
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">
+                                        <i data-lucide="message-square" class="w-4 h-4 inline mr-1 text-accent"></i>
+                                        Message *
+                                    </label>
+                                    <textarea 
+                                        rows="6" 
+                                        name="message"
+                                        placeholder="Please provide detailed information about your inquiry. Include any relevant background information, specific questions, or requirements." 
+                                        class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition duration-300 resize-vertical font-medium" 
+                                        required
+                                    ></textarea>
+                                  <!--   <p class="text-xs text-gray-500 mt-1">Minimum 50 characters required</p> -->
+                                </div>
+
+                                <!-- File Attachment -->
+                              <!--   <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">
+                                        <i data-lucide="paperclip" class="w-4 h-4 inline mr-1 text-accent"></i>
+                                        Attachment (Optional)
+                                    </label>
+                                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-accent hover:bg-gray-50 transition duration-300">
+                                        <input type="file" id="attachment" name="attachment" class="hidden" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                                        <label for="attachment" class="cursor-pointer">
+                                            <i data-lucide="upload" class="w-12 h-12 mx-auto text-gray-400 mb-3"></i>
+                                            <p class="text-gray-600 font-medium">Click to upload a file</p>
+                                            <p class="text-xs text-gray-500 mt-2">Supported formats: PDF, DOC, DOCX, JPG, PNG</p>
+                                            <p class="text-xs text-gray-500">Maximum file size: 10MB</p>
+                                        </label>
+                                        <div id="file-selected" class="hidden mt-3 p-2 bg-green-50 rounded border border-green-200">
+                                            <p class="text-green-700 text-sm font-medium"></p>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                                <!-- Privacy Notice -->
+<!--                                 <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                                    <div class="flex items-start">
+                                        <i data-lucide="info" class="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <div class="text-sm text-blue-800">
+                                            <p class="font-semibold mb-1">Privacy Notice</p>
+                                            <p>Your personal information will be used solely for responding to your inquiry and will not be shared with third parties. By submitting this form, you consent to our processing of your data in accordance with our privacy policy.</p>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                                <!-- Submit Button -->
+                                <div class="pt-4">
+                                    <button 
+                                        type="submit" 
+                                        class="w-full text-white py-4 px-8 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.01] focus:ring-4 focus:ring-opacity-50"
+                                        style="background-color: #3A7EBD;"
+                                        onmouseover="this.style.background='#0284c7'"
+                                        onmouseout="this.style.background='#0EA5E9'"
+                                    >
+                                        <i data-lucide="send" class="w-5 h-5 inline mr-3"></i>
+                                        Send Message
+                                    </button>
+                                </div>
+
+                                <!-- Success/Error Messages -->
+                                <div id="form-messages" class="space-y-2">
+                                    <p id="form-success" class="text-sm text-center text-green-600 bg-green-50 p-3 rounded-lg border border-green-200 hidden">
+                                        <i data-lucide="check-circle" class="w-4 h-4 inline mr-1"></i>
+                                        Message sent successfully! We'll get back to you within 24-48 hours.
+                                    </p>
+                                    <p id="form-error" class="text-sm text-center text-red-600 bg-red-50 p-3 rounded-lg border border-red-200 hidden">
+                                        <i data-lucide="alert-circle" class="w-4 h-4 inline mr-1"></i>
+                                        There was an error sending your message. Please try again or contact us directly.
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- Manuscript Upload Form Modal -->
+    <div id="manuscriptFormModal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[1001] opacity-0 invisible">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto custom-scrollbar transform scale-95 transition-all duration-300">
+             <!-- Modal Header -->
+            <div class="p-6 bg-accent text-white flex justify-between items-center rounded-t-xl">
+                <h3 class="text-2xl font-bold flex items-center">
+                    <i data-lucide="file-up" class="w-6 h-6 mr-3"></i> Manuscript Submission Form
+                </h3>
+                <button onclick="closeModal('manuscriptFormModal')" class="text-white hover:text-primary transition" aria-label="Close Modal">
+                    <i data-lucide="x" class="w-7 h-7"></i>
+                </button>
+            </div>
+            
+            <!-- Modal Content (Form) -->
+            <form id="manuscript-upload-form" action="../submit_manuscript.php" method="POST" enctype="multipart/form-data" class="p-8 space-y-6 text-gray-700">
+                <p class="text-lg font-semibold text-secondary">Please provide your details and attach the anonymized manuscript PDF.</p>
+
+                <!-- Personal Details -->
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <input type="text" name="author_name" placeholder="Full Name of Primary Author" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                    <input type="email" name="email" placeholder="Email Address" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                    <input type="text" name="affiliation" placeholder="Affiliation / Institution" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent sm:col-span-2" required>
+                </div>
+                
+                <!-- Manuscript Details -->
+                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Manuscript Information</h4>
+                <div class="space-y-3">
+                    <input type="text" id="title-input" name="manuscript_title" placeholder="Title of Manuscript" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                    <div id="title-suggestion-output" class="text-sm"></div>
+                </div>
+                <textarea name="abstract" placeholder="Brief Abstract (150-250 words)" rows="3" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required></textarea>
+
+                <!-- File Upload -->
+                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Upload Manuscript (PDF/DOCX)</h4>
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                    <label for="manuscript-file" class="cursor-pointer text-accent hover:text-primary font-semibold">
+                           <i data-lucide="upload-cloud" class="w-8 h-8 mx-auto mb-2"></i>
+                        Click to select file (PDF or DOCX)
+                    </label>
+                    <input type="file" name="manuscript_file" id="manuscript-file" accept=".pdf,.docx" class="hidden" required>
+                    <p id="file-name-display" class="text-sm text-gray-500 mt-2">No file selected.</p>
+                </div>
+
+                <button type="submit" id="manuscript-submit-btn" class="w-full bg-accent text-white py-3 rounded-lg font-bold text-lg shadow-lg hover-accent transition duration-300 transform hover:scale-[1.01]">
+                    Submit Manuscript
+                </button>
+                <p id="upload-form-message" class="text-sm text-center text-green-600 hidden mt-3">Submission simulated successfully!</p>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="header-bg py-8 mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white text-sm">
+            <p>&copy; 2025 SIES College Nerul. All Rights Reserved. | ISSN: 3048-9768 (Online)</p>
+            <p class="mt-2 text-accent">Designed By Bishal Saini | Vishal32saini@gmail.com</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@0.400.0/dist/umd/lucide.js"></script>
+    <script>
+        // Modal Functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('show');
+                modal.classList.remove('opacity-0', 'invisible');
+                modal.classList.add('opacity-100', 'visible');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('show', 'opacity-100', 'visible');
+                modal.classList.add('opacity-0', 'invisible');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Modal form handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const uploadForm = document.getElementById('manuscript-upload-form');
+            const fileInput = document.getElementById('manuscript-file');
+            const fileNameDisplay = document.getElementById('file-name-display');
+            const messageEl = document.getElementById('upload-form-message');
+
+            if (fileInput) {
+                fileInput.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        fileNameDisplay.textContent = this.files[0].name;
+                        fileNameDisplay.classList.add('text-green-600');
+                    } else {
+                        fileNameDisplay.textContent = 'No file selected.';
+                        fileNameDisplay.classList.remove('text-green-600');
+                    }
+                });
+            }
+
+            if (uploadForm) {
+                uploadForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    if (messageEl) {
+                        messageEl.textContent = 'Submission simulated successfully!';
+                        messageEl.classList.remove('hidden');
+                    }
+                    
+                    setTimeout(() => {
+                        closeModal('manuscriptFormModal');
+                        uploadForm.reset();
+                        if (fileNameDisplay) {
+                            fileNameDisplay.textContent = 'No file selected.';
+                            fileNameDisplay.classList.remove('text-green-600');
+                        }
+                        if (messageEl) {
+                            messageEl.classList.add('hidden');
+                        }
+                    }, 2000);
+                });
+            }
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('manuscriptFormModal');
+                if (modal && event.target === modal) {
+                    closeModal('manuscriptFormModal');
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeModal('manuscriptFormModal');
+                }
+            });
+        });
+
+        // Mobile Menu Toggle
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (menuButton && mobileMenu) {
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Enhanced Contact Form Submission
+        const contactForm = document.getElementById('contact-form');
+        const formSuccess = document.getElementById('form-success');
+        const formError = document.getElementById('form-error');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Form validation
+                const formData = new FormData(contactForm);
+                const message = formData.get('message');
+                
+                // Check minimum message length
+                if (message.length < 10) {
+                    showError('Please provide a more detailed message (minimum 10 characters).');
+                    return;
+                }
+                
+                // Show loading state
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 inline mr-3 animate-spin"></i>Sending...';
+                submitBtn.disabled = true;
+                
+                try {
+                    // Submit form data to PHP handler
+                    const response = await fetch('contact_handler.php', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        // Show success message
+                        showSuccess(result.message);
+                        
+                        // Reset form after showing success
+                        setTimeout(() => {
+                            contactForm.reset();
+                            hideMessages();
+                            resetFileUpload();
+                        }, 4000);
+                        
+                    } else {
+                        // Show error message
+                        showError(result.message || 'There was an error sending your message. Please try again.');
+                    }
+                    
+                } catch (error) {
+                    // Handle network or other errors
+                    showError('Network error: Could not send your message. Please check your connection and try again.');
+                }
+                
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Refresh Lucide icons
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            });
+        }
+
+        // Enhanced File attachment handling
+        const attachmentInput = document.getElementById('attachment');
+        const fileSelectedDiv = document.getElementById('file-selected');
+
+        if (attachmentInput) {
+            attachmentInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    // Check file size (10MB limit)
+                    if (file.size > 10 * 1024 * 1024) {
+                        showError('File size exceeds 10MB limit. Please choose a smaller file.');
+                        this.value = '';
+                        return;
+                    }
+                    
+                    // Show selected file
+                    fileSelectedDiv.classList.remove('hidden');
+                    fileSelectedDiv.querySelector('p').textContent = `Selected: ${file.name} (${formatFileSize(file.size)})`;
+                } else {
+                    fileSelectedDiv.classList.add('hidden');
+                }
+            });
+        }
+
+        // Helper functions
+        function showSuccess(message = 'Thank you! Your message has been received.') {
+            hideMessages();
+            if (formSuccess) {
+                // Find the text content within the success message (after the icon)
+                const textContent = formSuccess.innerHTML.match(/>(.*?)$/);
+                if (textContent) {
+                    formSuccess.innerHTML = formSuccess.innerHTML.replace(textContent[1], message);
+                } else {
+                    formSuccess.innerHTML = '<i data-lucide="check-circle" class="w-4 h-4 inline mr-1"></i>' + message;
+                }
+                formSuccess.classList.remove('hidden');
+                formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        function showError(message) {
+            hideMessages();
+            if (formError) {
+                // Find the text content within the error message (after the icon)
+                const textContent = formError.innerHTML.match(/>(.*?)$/);
+                if (textContent) {
+                    formError.innerHTML = formError.innerHTML.replace(textContent[1], message);
+                } else {
+                    formError.innerHTML = '<i data-lucide="alert-circle" class="w-4 h-4 inline mr-1"></i>' + message;
+                }
+                formError.classList.remove('hidden');
+                formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        function hideMessages() {
+            formSuccess.classList.add('hidden');
+            formError.classList.add('hidden');
+        }
+
+        function resetFileUpload() {
+            if (attachmentInput) {
+                attachmentInput.value = '';
+            }
+            if (fileSelectedDiv) {
+                fileSelectedDiv.classList.add('hidden');
+            }
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Form field enhancements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add real-time validation
+            const requiredFields = contactForm.querySelectorAll('[required]');
+            requiredFields.forEach(field => {
+                field.addEventListener('blur', function() {
+                    if (this.value.trim() === '') {
+                        this.classList.add('border-red-300');
+                        this.classList.remove('border-gray-300');
+                    } else {
+                        this.classList.add('border-green-300');
+                        this.classList.remove('border-red-300', 'border-gray-300');
+                    }
+                });
+                
+                field.addEventListener('input', function() {
+                    if (this.value.trim() !== '') {
+                        this.classList.remove('border-red-300');
+                        this.classList.add('border-green-300');
+                    }
+                });
+            });
+
+            // Initialize Lucide icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    </script>
+    
+    <!-- Include manuscript submission functionality -->
+    <script src="../manuscript-submission.js"></script>
+</body>
+</html>

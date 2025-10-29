@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal Volumes & Issues - SIES Journal of Multidisciplinary Research and Innovation</title> 
+    <link rel="icon" href="../assets/favicon.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3A7EBD', 
+                        'accent': '#CC7722',  
+                        'secondary': '#003366', 
+                        'off-white': '#F9FAFB', 
+                        'accent2': '#D8E5F2'
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+        html { 
+            scroll-behavior: smooth; 
+            overflow-x: hidden;
+        }
+        body { 
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+        
+        .sticky-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            z-index: 100 !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .header-bg { background-color: var(--primary-color, #3A7EBD); }
+        .bg-accent { background-color: var(--accent-color, #3A7EBD); } 
+        .bg-accent2 { background-color: var(--accent-color, #1e3a8a); }
+        .hover-accent:hover { background-color: #0284c7; }
+        .text-primary { color: var(--primary-color, #1e3a8a); }
+        .text-accent { color: var(--accent-color, #0ea5e9); } 
+        .text-accent2 { color: var(--accent-color, #D8E5F2); }
+        .text-secondary { color: var(--secondary-color, #1e40af); }
+        .text-golden { color: var(--golden-color, #fbbf24); }
+        .bg-golden { background-color: var(--golden-color, #fbbf24); }
+
+        @media (max-width: 768px) {
+            .section-padding { 
+                padding-top: 3rem; 
+                padding-bottom: 3rem; 
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
+        .journal-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .journal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .volume-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .volume-card:hover {
+            border-color: #0ea5e9;
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.15);
+        }
+
+        .modal {
+            display: none;
+        }
+        .modal.show {
+            display: flex;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            background-color: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #0ea5e9; 
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: #0284c7;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="header-bg sticky-header shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                
+                <!-- LOGO SECTION -->
+                <a href="index5.html" class="flex items-center text-white transition duration-300">
+                    <img 
+                        src="https://siesascn.edu.in/images/sies_ascn_logo.jpg" 
+                        alt="SIES College Logo" 
+                        class="h-10 sm:h-12 w-auto" 
+                        onerror="this.onerror=null; this.style.display='none'; document.getElementById('logo-text-fallback').style.display='inline';"
+                    >
+                    <span id="logo-text-fallback" class="ml-3 text-2xl font-extrabold tracking-wider"><span class="font-normal text-accent"></span></span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-6 items-center">
+                    <a href="../index.html" class="text-white hover:text-accent transition duration-300">Home</a>
+                    <a href="../about-us/about.html" class="text-white hover:text-accent transition duration-300">About</a>
+                    <a href="../journals/journals.html" class="text-golden font-semibold">Journals</a>
+                    <a href="../editorial-board/editorial.html" class="text-white hover:text-accent transition duration-300">Editorial Board</a>  
+                    <a href="../announcements/announcements.html" class="text-white hover:text-accent transition duration-300">Announcements</a>
+                    <a href="../faq/faq.html" class="text-white hover:text-accent transition duration-300">FAQ</a>
+                    <a href="../contact/contact.html" class="text-white hover:text-accent transition duration-300">Contact</a>
+
+                    <button onclick="openModal('manuscriptFormModal')" class="bg-accent text-white px-5 py-2 rounded-full font-semibold shadow-md transition duration-300">
+                        Submit Manuscript
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-button" class="md:hidden text-white focus:outline-none" aria-label="Toggle Menu">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full header-bg shadow-xl">
+            <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
+                <a href="../index.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Home</a>
+                <a href="../about-us/about.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">About</a>
+                <a href="../journals/journals.html" class="text-golden font-semibold w-full text-center py-2 rounded-md">Journals</a>
+                <a href="../editorial-board/editorial.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Editorial Board</a> 
+                <a href="../announcements/announcements.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Announcements</a>
+                <a href="../faq/faq.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">FAQ</a>
+                <a href="../contact/contact.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Contact</a>
+
+                <button onclick="openModal('manuscriptFormModal')" class="bg-accent text-white px-5 py-2 mt-2 w-11/12 rounded-full font-semibold shadow-md transition duration-300">
+                    Submit Manuscript
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="relative bg-gradient-to-r from-primary to-secondary text-white pt-32 pb-16 overflow-hidden">
+            <div class="absolute inset-0 w-full h-full z-0">
+                <img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1200&q=80" alt="Book Journal Alternative Background" class="w-full h-full object-cover opacity-50" style="object-position: center;" />
+                <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-80"></div>
+            </div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4">
+                    Journal <span style="color: #CC7722;">Volumes & Issues</span>
+                </h1>
+                <p class="text-xl text-blue-200 mb-6 max-w-3xl mx-auto">
+                    Browse and download all published volumes of SIES journals across multiple disciplines
+                </p>
+                <div class="flex items-center justify-center space-x-4 text-white/80">
+                    <div class="flex items-center">
+                        <i data-lucide="book-open" class="w-5 h-5 mr-2 text-accent"></i>
+                        <span>Peer-Reviewed Publications</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-lucide="download" class="w-5 h-5 mr-2 text-accent"></i>
+                        <span>Free Access</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Journals Collection -->
+        <section class="section-padding bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- SIES Journal of Multidisciplinary Research & Innovation -->
+                <div class="journal-card bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden mb-12">
+                    <!-- Journal Header -->
+                    <div class="bg-gradient-to-r from-primary to-secondary text-white p-8">
+                        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+                            <div class="mb-4 lg:mb-0">
+                                <h2 class="text-3xl font-bold mb-2">SIES Journal of Multidisciplinary Research & Innovation</h2>
+                                <p class="text-accent text-lg font-semibold">ISSN: 3048-9768 (Online) | Frequency: Annual | Started: 2025</p>
+                                <p class="text-white/90 mt-2">A peer-reviewed double-blind multidisciplinary journal focusing on interdisciplinary research across humanities, social sciences, and management studies.</p>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                                    <i data-lucide="book-open" class="w-12 h-12 mx-auto mb-2 text-accent"></i>
+                                    <p class="text-sm font-medium">Multidisciplinary</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Volumes List -->
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-secondary mb-6 flex items-center">
+                            <i data-lucide="archive" class="w-6 h-6 mr-3 text-accent"></i>
+                            Published Volumes
+                        </h3>
+                        
+                        <div class="grid gap-6">
+                            <!-- Volume 1 - 2025 -->
+                            <div class="volume-card p-6 rounded-xl">
+                                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+                                    <div class="mb-4 sm:mb-0">
+                                        <div class="flex items-center mb-2">
+                                            <div class="bg-accent text-white px-3 py-1 rounded-full text-sm font-bold mr-3">
+                                                LATEST
+                                            </div>
+                                            <h4 class="text-xl font-bold text-secondary">Volume 1, Issue 1</h4>
+                                        </div>
+                                        <p class="text-gray-600 mb-2">
+                                            <strong>Publication Date:</strong> December 2025 | 
+                                            <strong>Articles:</strong> 15 | 
+                                            <strong>Pages:</strong> 180
+                                        </p>
+                                        <p class="text-gray-700">
+                                            <strong>Theme:</strong> Inaugural Issue - Multidisciplinary Research & Innovation
+                                        </p>
+                                        <p class="text-sm text-gray-600 mt-2">
+                                            Features peer-reviewed articles across humanities, social sciences, management studies, and interdisciplinary research methodologies.
+                                        </p>
+                                    </div>
+                                    <div class="flex flex-col space-y-3 sm:ml-6">
+                                        <button class="bg-accent text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover-accent transition duration-300 flex items-center justify-center">
+                                            <i data-lucide="download" class="w-5 h-5 mr-2"></i>
+                                            Download PDF
+                                        </button>
+                                        <button class="bg-gray-100 text-secondary px-6 py-2 rounded-lg font-medium hover:bg-gray-200 transition duration-300 flex items-center justify-center">
+                                            <i data-lucide="eye" class="w-4 h-4 mr-2"></i>
+                                            View Online
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Articles in this Volume -->
+                                <div class="border-t border-gray-200 pt-6">
+                                    <h5 class="text-lg font-bold text-secondary mb-4 flex items-center">
+                                        <i data-lucide="file-text" class="w-5 h-5 mr-2 text-accent"></i>
+                                        Articles in this Issue
+                                    </h5>
+                                    
+                                    <!-- Article Grid -->
+                                    <div class="grid gap-4">
+                                        <!-- Article 1 -->
+                                        <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
+                                            <div class="flex flex-col lg:flex-row lg:justify-between">
+                                                <div class="flex-1">
+                                                    <h6 class="text-lg font-semibold text-secondary mb-2">Digital Transformation in Higher Education: A Post-Pandemic Analysis</h6>
+                                                    <p class="text-sm text-gray-600 mb-2">
+                                                        <strong>Authors:</strong> Author1, Author2, Author3
+                                                    </p>
+                                                    <p class="text-sm text-gray-700 mb-3">
+                                                        This study examines the accelerated digital transformation in higher education institutions following the COVID-19 pandemic, analyzing the adoption of online learning platforms, virtual laboratories, and digital assessment methods...
+                                                    </p>
+                                                    <div class="flex flex-wrap gap-2 mb-3">
+                                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Education Technology</span>
+                                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Digital Learning</span>
+                                                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">Higher Education</span>
+                                                    </div>
+                                                    <p class="text-xs text-gray-500">Pages: 1-12</p>
+                                                </div>
+                                                <div class="flex flex-col space-y-2 lg:ml-4 mt-3 lg:mt-0">
+                                                    <button class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
+                                                        <i data-lucide="download" class="w-4 h-4 mr-1"></i>
+                                                        PDF
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Article 2 -->
+                                        <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
+                                            <div class="flex flex-col lg:flex-row lg:justify-between">
+                                                <div class="flex-1">
+                                                    <h6 class="text-lg font-semibold text-secondary mb-2">Sustainable Business Practices in Indian SMEs: A Mumbai Metropolitan Region Study</h6>
+                                                    <p class="text-sm text-gray-600 mb-2">
+                                                        <strong>Authors:</strong> Author1, Author2, Author3
+                                                    </p>
+                                                    <p class="text-sm text-gray-700 mb-3">
+                                                        An empirical analysis of sustainability adoption among small and medium enterprises in the Mumbai Metropolitan Region, exploring the drivers, barriers, and performance impacts of green business practices...
+                                                    </p>
+                                                    <div class="flex flex-wrap gap-2 mb-3">
+                                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Sustainability</span>
+                                                        <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">SME</span>
+                                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Business Strategy</span>
+                                                    </div>
+                                                    <p class="text-xs text-gray-500">Pages: 13-28</p>
+                                                </div>
+                                                <div class="flex flex-col space-y-2 lg:ml-4 mt-3 lg:mt-0">
+                                                    <button class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
+                                                        <i data-lucide="download" class="w-4 h-4 mr-1"></i>
+                                                        PDF
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Article 3 -->
+                                        <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
+                                            <div class="flex flex-col lg:flex-row lg:justify-between">
+                                                <div class="flex-1">
+                                                    <h6 class="text-lg font-semibold text-secondary mb-2">Cultural Heritage Preservation Through Digital Storytelling: A Mumbai Case Study</h6>
+                                                    <p class="text-sm text-gray-600 mb-2">
+                                                        <strong>Authors:</strong> Author1, Author2, Author3
+                                                    </p>
+                                                    <p class="text-sm text-gray-700 mb-3">
+                                                        This research explores innovative approaches to preserving Mumbai's cultural heritage through digital storytelling platforms, examining community engagement and technological integration...
+                                                    </p>
+                                                    <div class="flex flex-wrap gap-2 mb-3">
+                                                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">Cultural Studies</span>
+                                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Digital Media</span>
+                                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">Heritage</span>
+                                                    </div>
+                                                    <p class="text-xs text-gray-500">Pages: 29-42</p>
+                                                </div>
+                                                <div class="flex flex-col space-y-2 lg:ml-4 mt-3 lg:mt-0">
+                                                    <button class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
+                                                        <i data-lucide="download" class="w-4 h-4 mr-1"></i>
+                                                        PDF
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Articles 4-15 (Remaining Articles) -->
+                                        <div class="grid gap-4 mt-4">
+                                            <!-- Article 4 -->
+                                            <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
+                                                <div class="flex flex-col lg:flex-row lg:justify-between">
+                                                    <div class="flex-1">
+                                                        <h6 class="text-lg font-semibold text-secondary mb-2">Machine Learning Applications in Financial Risk Assessment</h6>
+                                                        <p class="text-sm text-gray-600 mb-2">
+                                                            <strong>Authors:</strong> Author1, Author2
+                                                        </p>
+                                                        <p class="text-sm text-gray-700 mb-3">
+                                                            A comprehensive analysis of machine learning algorithms in financial risk assessment, comparing traditional methods with modern AI approaches...
+                                                        </p>
+                                                        <div class="flex flex-wrap gap-2 mb-3">
+                                                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Machine Learning</span>
+                                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Finance</span>
+                                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Risk Management</span>
+                                                        </div>
+                                                        <p class="text-xs text-gray-500">Pages: 43-58</p>
+                                                    </div>
+                                                    <div class="flex flex-col space-y-2 lg:ml-4 mt-3 lg:mt-0">
+                                                        <button class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
+                                                            <i data-lucide="download" class="w-4 h-4 mr-1"></i>
+                                                            PDF
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Article 5 -->
+                                            <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
+                                                <div class="flex flex-col lg:flex-row lg:justify-between">
+                                                    <div class="flex-1">
+                                                        <h6 class="text-lg font-semibold text-secondary mb-2">Social Media Impact on Youth Mental Health: A Mumbai Study</h6>
+                                                        <p class="text-sm text-gray-600 mb-2">
+                                                            <strong>Authors:</strong> Author1, Author2
+                                                        </p>
+                                                        <p class="text-sm text-gray-700 mb-3">
+                                                            An empirical study examining the correlation between social media usage patterns and mental health outcomes among college students in Mumbai...
+                                                        </p>
+                                                        <div class="flex flex-wrap gap-2 mb-3">
+                                                            <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded text-xs">Psychology</span>
+                                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Social Media</span>
+                                                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">Mental Health</span>
+                                                        </div>
+                                                        <p class="text-xs text-gray-500">Pages: 59-74</p>
+                                                    </div>
+                                                    <div class="flex flex-col space-y-2 lg:ml-4 mt-3 lg:mt-0">
+                                                        <button class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
+                                                            <i data-lucide="download" class="w-4 h-4 mr-1"></i>
+                                                            PDF
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        <!-- Hidden Articles Container (Articles 6-15) -->
+                                        <div id="more-articles-container" class="hidden">
+                                            <!-- Article 6 -->
+                                            <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
+                                                <div class="flex flex-col lg:flex-row lg:justify-between">
+                                                    <div class="flex-1">
+                                                        <h6 class="text-lg font-semibold text-secondary mb-2">Environmental Economics and Carbon Pricing Mechanisms</h6>
+                                                        <p class="text-sm text-gray-600 mb-2">
+                                                            <strong>Authors:</strong> Author1, Author2, Author3
+                                                        </p>
+                                                        <p class="text-sm text-gray-700 mb-3">
+                                                            This study evaluates the effectiveness of carbon pricing mechanisms in India and their impact on industrial environmental compliance...
+                                                        </p>
+                                                        <div class="flex flex-wrap gap-2 mb-3">
+                                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Environmental Economics</span>
+                                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Policy Analysis</span>
+                                                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">Carbon Pricing</span>
+                                                        </div>
+                                                        <p class="text-xs text-gray-500">Pages: 75-88</p>
+                                                    </div>
+                                                    <div class="flex flex-col space-y-2 lg:ml-4 mt-3 lg:mt-0">
+                                                        <button class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
+                                                            <i data-lucide="download" class="w-4 h-4 mr-1"></i>
+                                                            PDF
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Article 7 -->
+                                            <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
+                                                <div class="flex flex-col lg:flex-row lg:justify-between">
+                                                    <div class="flex-1">
+                                                        <h6 class="text-lg font-semibold text-secondary mb-2">Contemporary Indian Literature and Globalization</h6>
+                                                        <p class="text-sm text-gray-600 mb-2">
+                                                            <strong>Authors:</strong> Author1, Author2
+                                                        </p>
+                                                        <p class="text-sm text-gray-700 mb-3">
+                                                            An analysis of how globalization themes are reflected in contemporary Indian literature, examining works from 2010-2025...
+                                                        </p>
+                                                        <div class="flex flex-wrap gap-2 mb-3">
+                                                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">Literature</span>
+                                                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">Cultural Studies</span>
+                                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Globalization</span>
+                                                        </div>
+                                                        <p class="text-xs text-gray-500">Pages: 89-104</p>
+                                                    </div>
+                                                    <div class="flex flex-col space-y-2 lg:ml-4 mt-3 lg:mt-0">
+                                                        <button class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
+                                                            <i data-lucide="download" class="w-4 h-4 mr-1"></i>
+                                                            PDF
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Article 8 -->
+                                            <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
+                                                <div class="flex flex-col lg:flex-row lg:justify-between">
+                                                    <div class="flex-1">
+                                                        <h6 class="text-lg font-semibold text-secondary mb-2">Supply Chain Management in Post-COVID Era</h6>
+                                                        <p class="text-sm text-gray-600 mb-2">
+                                                            <strong>Authors:</strong> Author1, Author2, Author3
+                                                        </p>
+                                                        <p class="text-sm text-gray-700 mb-3">
+                                                            Examining supply chain resilience strategies adopted by Indian manufacturing companies after the COVID-19 pandemic...
+                                                        </p>
+                                                        <div class="flex flex-wrap gap-2 mb-3">
+                                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Supply Chain</span>
+                                                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Crisis Management</span>
+                                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Operations</span>
+                                                        </div>
+                                                        <p class="text-xs text-gray-500">Pages: 105-118</p>
+                                                    </div>
+                                                    <div class="flex flex-col space-y-2 lg:ml-4 mt-3 lg:mt-0">
+                                                        <button class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
+                                                            <i data-lucide="download" class="w-4 h-4 mr-1"></i>
+                                                            PDF
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Article 9 -->
+                                            <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
+                                                <div class="flex flex-col lg:flex-row lg:justify-between">
+                                                    <div class="flex-1">
+                                                        <h6 class="text-lg font-semibold text-secondary mb-2">Urban Planning and Smart City Development in India</h6>
+                                                        <p class="text-sm text-gray-600 mb-2">
+                                                            <strong>Authors:</strong> Author1, Author2
+                                                        </p>
+                                                        <p class="text-sm text-gray-700 mb-3">
+                                                            A comprehensive study of smart city initiatives in India, analyzing technological integration and citizen participation...
+                                                        </p>
+                                                        <div class="flex flex-wrap gap-2 mb-3">
+                                                            <span class="bg-cyan-100 text-cyan-800 px-2 py-1 rounded text-xs">Urban Planning</span>
+                                                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">Smart Cities</span>
+                                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Technology</span>
+                                                        </div>
+                                                        <p class="text-xs text-gray-500">Pages: 119-132</p>
+                                                    </div>
+                                                    <div class="flex flex-col space-y-2 lg:ml-4 mt-3 lg:mt-0">
+                                                        <button class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
+                                                            <i data-lucide="download" class="w-4 h-4 mr-1"></i>
+                                                            PDF
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Article 10 -->
+                                            <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
+                                                <div class="flex flex-col lg:flex-row lg:justify-between">
+                                                    <div class="flex-1">
+                                                        <h6 class="text-lg font-semibold text-secondary mb-2">Gender Representation in Indian Corporate Boards</h6>
+                                                        <p class="text-sm text-gray-600 mb-2">
+                                                            <strong>Authors:</strong> Author1, Author2, Author3
+                                                        </p>
+                                                        <p class="text-sm text-gray-700 mb-3">
+                                                            An empirical analysis of gender diversity in Indian corporate governance and its impact on organizational performance...
+                                                        </p>
+                                                        <div class="flex flex-wrap gap-2 mb-3">
+                                                            <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded text-xs">Gender Studies</span>
+                                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Corporate Governance</span>
+                                                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">Management</span>
+                                                        </div>
+                                                        <p class="text-xs text-gray-500">Pages: 133-146</p>
+                                                    </div>
+                                                    <div class="flex flex-col space-y-2 lg:ml-4 mt-3 lg:mt-0">
+                                                        <button class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
+                                                            <i data-lucide="download" class="w-4 h-4 mr-1"></i>
+                                                            PDF
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Article 11 -->
+                                            <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
+                                                <div class="flex flex-col lg:flex-row lg:justify-between">
+                                                    <div class="flex-1">
+                                                        <h6 class="text-lg font-semibold text-secondary mb-2">Blockchain Technology in Banking and Financial Services</h6>
+                                                        <p class="text-sm text-gray-600 mb-2">
+                                                            <strong>Authors:</strong> Author1, Author2
+                                                        </p>
+                                                        <p class="text-sm text-gray-700 mb-3">
+                                                            Exploring the implementation challenges and opportunities of blockchain technology in Indian banking sector...
+                                                        </p>
+                                                        <div class="flex flex-wrap gap-2 mb-3">
+                                                            <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded text-xs">Blockchain</span>
+                                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Banking</span>
+                                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">FinTech</span>
+                                                        </div>
+                                                        <p class="text-xs text-gray-500">Pages: 147-160</p>
+                                                    </div>
+                                                    <div class="flex flex-col space-y-2 lg:ml-4 mt-3 lg:mt-0">
+                                                        <button class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
+                                                            <i data-lucide="download" class="w-4 h-4 mr-1"></i>
+                                                            PDF
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Article 12 -->
+                                            <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
+                                                <div class="flex flex-col lg:flex-row lg:justify-between">
+                                                    <div class="flex-1">
+                                                        <h6 class="text-lg font-semibold text-secondary mb-2">Climate Change Adaptation in Coastal Maharashtra</h6>
+                                                        <p class="text-sm text-gray-600 mb-2">
+                                                            <strong>Authors:</strong> Author1, Author2, Author3
+                                                        </p>
+                                                        <p class="text-sm text-gray-700 mb-3">
+                                                            Assessment of climate change adaptation strategies implemented in coastal regions of Maharashtra state...
+                                                        </p>
+                                                        <div class="flex flex-wrap gap-2 mb-3">
+                                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Climate Change</span>
+                                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Environmental Science</span>
+                                                            <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">Coastal Studies</span>
+                                                        </div>
+                                                        <p class="text-xs text-gray-500">Pages: 161-174</p>
+                                                    </div>
+                                                    <div class="flex flex-col space-y-2 lg:ml-4 mt-3 lg:mt-0">
+                                                        <button class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
+                                                            <i data-lucide="download" class="w-4 h-4 mr-1"></i>
+                                                            PDF
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Article 13 -->
+                                            <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
+                                                <div class="flex flex-col lg:flex-row lg:justify-between">
+                                                    <div class="flex-1">
+                                                        <h6 class="text-lg font-semibold text-secondary mb-2">Artificial Intelligence in Healthcare Diagnostics</h6>
+                                                        <p class="text-sm text-gray-600 mb-2">
+                                                            <strong>Authors:</strong> Author1, Author2
+                                                        </p>
+                                                        <p class="text-sm text-gray-700 mb-3">
+                                                            Evaluation of AI-powered diagnostic tools in Indian healthcare systems and their accuracy in disease detection...
+                                                        </p>
+                                                        <div class="flex flex-wrap gap-2 mb-3">
+                                                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Artificial Intelligence</span>
+                                                            <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded text-xs">Healthcare</span>
+                                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Medical Technology</span>
+                                                        </div>
+                                                        <p class="text-xs text-gray-500">Pages: 175-188</p>
+                                                    </div>
+                                                    <div class="flex flex-col space-y-2 lg:ml-4 mt-3 lg:mt-0">
+                                                        <button class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
+                                                            <i data-lucide="download" class="w-4 h-4 mr-1"></i>
+                                                            PDF
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Article 14 -->
+                                            <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
+                                                <div class="flex flex-col lg:flex-row lg:justify-between">
+                                                    <div class="flex-1">
+                                                        <h6 class="text-lg font-semibold text-secondary mb-2">Microfinance and Women Entrepreneurship in Rural India</h6>
+                                                        <p class="text-sm text-gray-600 mb-2">
+                                                            <strong>Authors:</strong> Author1, Author2, Author3
+                                                        </p>
+                                                        <p class="text-sm text-gray-700 mb-3">
+                                                            Investigating the role of microfinance institutions in promoting women entrepreneurship in rural Maharashtra...
+                                                        </p>
+                                                        <div class="flex flex-wrap gap-2 mb-3">
+                                                            <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded text-xs">Microfinance</span>
+                                                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">Women Empowerment</span>
+                                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Rural Development</span>
+                                                        </div>
+                                                        <p class="text-xs text-gray-500">Pages: 189-202</p>
+                                                    </div>
+                                                    <div class="flex flex-col space-y-2 lg:ml-4 mt-3 lg:mt-0">
+                                                        <button class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
+                                                            <i data-lucide="download" class="w-4 h-4 mr-1"></i>
+                                                            PDF
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Article 15 -->
+                                            <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
+                                                <div class="flex flex-col lg:flex-row lg:justify-between">
+                                                    <div class="flex-1">
+                                                        <h6 class="text-lg font-semibold text-secondary mb-2">Digital Marketing Strategies for Indian E-commerce</h6>
+                                                        <p class="text-sm text-gray-600 mb-2">
+                                                            <strong>Authors:</strong> Author1, Author2
+                                                        </p>
+                                                        <p class="text-sm text-gray-700 mb-3">
+                                                            Analysis of effective digital marketing strategies adopted by successful Indian e-commerce platforms during 2020-2025...
+                                                        </p>
+                                                        <div class="flex flex-wrap gap-2 mb-3">
+                                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Digital Marketing</span>
+                                                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">E-commerce</span>
+                                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Business Strategy</span>
+                                                        </div>
+                                                        <p class="text-xs text-gray-500">Pages: 203-216</p>
+                                                    </div>
+                                                    <div class="flex flex-col space-y-2 lg:ml-4 mt-3 lg:mt-0">
+                                                        <button class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
+                                                            <i data-lucide="download" class="w-4 h-4 mr-1"></i>
+                                                            PDF
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End of Hidden Articles Container -->
+
+                                        <!-- View More/Less Button (appears after all articles) -->
+                                        <div class="text-center mt-6 mb-4">
+                                            <button id="view-more-articles" class="bg-gradient-to-r from-primary to-secondary text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition duration-300 flex items-center justify-center mx-auto">
+                                                <i data-lucide="chevron-down" class="w-5 h-5 mr-2"></i>
+                                                View More Articles (10 More)
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Archive Statistics -->
+        <section class="section-padding bg-gradient-to-r from-primary to-secondary text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold mb-4">Publication Archive Statistics</h2>
+                <p class="text-accent mb-12 max-w-3xl mx-auto">
+                    Our growing repository of peer-reviewed research contributions
+                </p>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+                        <i data-lucide="book" class="w-10 h-10 mx-auto text-accent mb-3"></i>
+                        <p class="text-4xl font-extrabold">1</p>
+                        <p class="text-lg font-semibold">Published Volumes</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+                        <i data-lucide="file-text" class="w-10 h-10 mx-auto text-accent mb-3"></i>
+                        <p class="text-4xl font-extrabold">15+</p>
+                        <p class="text-lg font-semibold">Research Articles</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+                        <i data-lucide="users" class="w-10 h-10 mx-auto text-accent mb-3"></i>
+                        <p class="text-4xl font-extrabold">30+</p>
+                        <p class="text-lg font-semibold">Contributing Authors</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+                        <i data-lucide="download" class="w-10 h-10 mx-auto text-accent mb-3"></i>
+                        <p class="text-4xl font-extrabold">500+</p>
+                        <p class="text-lg font-semibold">Total Downloads</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+   
+    <!-- Manuscript Upload Form Modal -->
+    <div id="manuscriptFormModal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[1001] opacity-0 invisible">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto custom-scrollbar transform scale-95 transition-all duration-300">
+             <!-- Modal Header -->
+            <div class="p-6 bg-accent text-white flex justify-between items-center rounded-t-xl">
+                <h3 class="text-2xl font-bold flex items-center">
+                    <i data-lucide="file-up" class="w-6 h-6 mr-3"></i> Manuscript Submission Form
+                </h3>
+                <button onclick="closeModal('manuscriptFormModal')" class="text-white hover:text-primary transition" aria-label="Close Modal">
+                    <i data-lucide="x" class="w-7 h-7"></i>
+                </button>
+            </div>
+            
+            <!-- Modal Content (Form) -->
+            <form id="manuscript-upload-form" action="../submit_manuscript.php" method="POST" enctype="multipart/form-data" class="p-8 space-y-6 text-gray-700">
+                <p class="text-lg font-semibold text-secondary">Please provide your details and attach the anonymized manuscript PDF.</p>
+
+                <!-- Personal Details -->
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <input type="text" name="author_name" placeholder="Full Name of Primary Author" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                    <input type="email" name="email" placeholder="Email Address" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                    <input type="text" name="affiliation" placeholder="Affiliation / Institution" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent sm:col-span-2" required>
+                </div>
+                
+                <!-- Manuscript Details -->
+                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Manuscript Information</h4>
+                <div class="space-y-3">
+                    <input type="text" id="title-input" name="manuscript_title" placeholder="Title of Manuscript" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                    <div id="title-suggestion-output" class="text-sm"></div>
+                </div>
+                <textarea name="abstract" placeholder="Brief Abstract (150-250 words)" rows="3" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required></textarea>
+
+                <!-- File Upload -->
+                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Upload Manuscript (PDF/DOCX)</h4>
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                    <label for="manuscript-file" class="cursor-pointer text-accent hover:text-primary font-semibold">
+                           <i data-lucide="upload-cloud" class="w-8 h-8 mx-auto mb-2"></i>
+                        Click to select file (PDF or DOCX)
+                    </label>
+                    <input type="file" name="manuscript_file" id="manuscript-file" accept=".pdf,.docx" class="hidden" required>
+                    <p id="file-name-display" class="text-sm text-gray-500 mt-2">No file selected.</p>
+                </div>
+
+                <button type="submit" id="manuscript-submit-btn" class="w-full bg-accent text-white py-3 rounded-lg font-bold text-lg shadow-lg hover-accent transition duration-300 transform hover:scale-[1.01]">
+                    Submit Manuscript
+                </button>
+                <p id="upload-form-message" class="text-sm text-center text-green-600 hidden mt-3">Submission simulated successfully!</p>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="header-bg py-8 mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white text-sm">
+            <p>&copy; 2025 SIES College Nerul. All Rights Reserved. | ISSN: 3048-9768 (Online)</p>
+            <p class="mt-2 text-accent">Designed By Bishal Saini | Vishal32saini@gmail.com</p>
+        </div>
+    </footer> 
+
+      <script>
+        // Define Lucide initialization functions first
+        let lucideInitialized = false;
+
+        function initializeLucide() {
+   
+            waitForLucideAndInit();
+        }
+
+        function loadLucideFallback() {
+            const fallbackScript = document.createElement('script');
+            fallbackScript.src = 'https://cdn.jsdelivr.net/npm/lucide@0.400.0/dist/umd/lucide.js';
+            fallbackScript.onload = waitForLucideAndInit;
+            fallbackScript.onerror = function() {
+  
+            };
+            document.head.appendChild(fallbackScript);
+        }
+
+        function waitForLucideAndInit() {
+            let attempts = 0;
+            const maxAttempts = 50;
+            
+            function checkLucide() {
+                attempts++;
+
+                
+                // Check multiple possible locations for Lucide
+                const lucideObj = window.lucide || window.Lucide || (window.LucideReact && window.LucideReact.createIcons);
+                
+                if (lucideObj && typeof lucideObj.createIcons === 'function') {
+                    console.log('Lucide found, initializing icons...');
+                    try {
+                        // Force a small delay to ensure DOM is ready
+                        setTimeout(() => {
+                            lucideObj.createIcons();
+                            lucideInitialized = true;
+                            window.lucideInstance = lucideObj; // Store reference
+
+                        }, 50);
+                    } catch (error) {
+                    
+                        // Try alternative initialization with manual SVG creation
+                        tryManualIconCreation();
+                    }
+                } else if (attempts < maxAttempts) {
+                    setTimeout(checkLucide, 100);
+                } else {
+    
+                }
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', checkLucide);
+            } else {
+                checkLucide();
+            }
+        }
+
+        // Safe function to create icons that can be called anywhere
+        function safeCreateIcons() {
+            const lucideObj = window.lucideInstance || window.lucide || window.Lucide;
+            if (lucideObj && typeof lucideObj.createIcons === 'function') {
+                try {
+                    lucideObj.createIcons();
+                } catch (error) {
+              
+                    // Try manual icon replacement as fallback
+                    tryManualIconReplacement();
+                }
+            } else if (!lucideInitialized) {
+                console.warn('Lucide not yet initialized, retrying...');
+                setTimeout(safeCreateIcons, 200);
+            }
+        }
+
+        function tryManualIconReplacement() {
+            if (window.lucide && window.lucide.icons) {
+                document.querySelectorAll('[data-lucide]').forEach(element => {
+                    const iconName = element.getAttribute('data-lucide');
+                    if (window.lucide.icons[iconName]) {
+                        try {
+                            element.innerHTML = window.lucide.icons[iconName].toSvg();
+                        } catch (e) {
+                          
+                        }
+                    }
+                });
+            }
+        }
+
+        function tryManualIconCreation() {
+            lucideInitialized = true; // Mark as initialized to avoid loops
+            window.lucideInstance = window.lucide || window.Lucide;
+            tryManualIconReplacement();
+        }
+    </script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@0.400.0/dist/umd/lucide.js" onload="initializeLucide()" onerror="loadLucideFallback()"></script>
+
+    <!-- JavaScript for Mobile Menu and Show More Articles -->
+    <script>
+        // Modal Functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('show');
+                modal.classList.remove('opacity-0', 'invisible');
+                modal.classList.add('opacity-100', 'visible');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('show', 'opacity-100', 'visible');
+                modal.classList.add('opacity-0', 'invisible');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Initialize Lucide Icons safely
+        document.addEventListener('DOMContentLoaded', function() {
+            safeCreateIcons();
+
+            // Form handling
+            const uploadForm = document.getElementById('manuscript-upload-form');
+            const fileInput = document.getElementById('manuscript-file');
+            const fileNameDisplay = document.getElementById('file-name-display');
+            const messageEl = document.getElementById('upload-form-message');
+
+            if (fileInput) {
+                fileInput.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        fileNameDisplay.textContent = this.files[0].name;
+                        fileNameDisplay.classList.add('text-green-600');
+                    } else {
+                        fileNameDisplay.textContent = 'No file selected.';
+                        fileNameDisplay.classList.remove('text-green-600');
+                    }
+                });
+            }
+
+            if (uploadForm) {
+                uploadForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    // Get submit button and message element
+                    const submitBtn = document.getElementById('manuscript-submit-btn');
+                    const messageEl = document.getElementById('upload-form-message');
+                    
+                    // Disable submit button and show loading
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.innerHTML = 'Submitting...';
+                    }
+                    
+                    // Clear previous messages
+                    if (messageEl) {
+                        messageEl.classList.add('hidden');
+                        messageEl.classList.remove('text-green-600', 'text-red-500');
+                    }
+                    
+                    try {
+                        // Create FormData object
+                        const formData = new FormData(uploadForm);
+                        
+                        // Submit form data to PHP script
+                        const response = await fetch('../submit_manuscript.php', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (result.success) {
+                            // Success
+                            if (messageEl) {
+                                messageEl.textContent = result.message || 'Manuscript submitted successfully!';
+                                messageEl.classList.remove('hidden', 'text-red-500');
+                                messageEl.classList.add('text-green-600');
+                            }
+                            
+                            // Reset form
+                            uploadForm.reset();
+                            if (fileNameDisplay) {
+                                fileNameDisplay.textContent = 'No file selected.';
+                            }
+                            
+                            // Auto-close modal after 3 seconds
+                            setTimeout(() => { 
+                                if (messageEl) messageEl.classList.add('hidden'); 
+                                closeModal('manuscriptFormModal');
+                            }, 3000);
+                            
+                        } else {
+                            // Error from server
+                            if (messageEl) {
+                                messageEl.textContent = result.message || 'Submission failed. Please try again.';
+                                messageEl.classList.remove('hidden', 'text-green-600');
+                                messageEl.classList.add('text-red-500');
+                            }
+                        }
+                        
+                    } catch (error) {
+                        // Network or other error
+                        console.error('Submission error:', error);
+                        if (messageEl) {
+                            messageEl.textContent = 'Network error. Please check your connection and try again.';
+                            messageEl.classList.remove('hidden', 'text-green-600');
+                            messageEl.classList.add('text-red-500');
+                        }
+                    }
+                    
+                    // Re-enable submit button
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = 'Submit Manuscript';
+                    }
+                });
+            }
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('manuscriptFormModal');
+                if (modal && event.target === modal) {
+                    closeModal('manuscriptFormModal');
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeModal('manuscriptFormModal');
+                }
+            });
+        });
+
+        // Mobile Menu Toggle
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (menuButton && mobileMenu) {
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // View More Articles Toggle
+        const viewMoreButton = document.getElementById('view-more-articles');
+        const moreArticlesContainer = document.getElementById('more-articles-container');
+
+        if (viewMoreButton && moreArticlesContainer) {
+            viewMoreButton.addEventListener('click', () => {
+                const isHidden = moreArticlesContainer.classList.contains('hidden');
+                
+                if (isHidden) {
+                    // Show more articles
+                    moreArticlesContainer.classList.remove('hidden');
+                    viewMoreButton.innerHTML = '<i data-lucide="chevron-up" class="w-5 h-5 mr-2"></i>Show Less Articles';
+                    
+                    // Smooth scroll to the newly revealed content
+                    setTimeout(() => {
+                        moreArticlesContainer.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'start' 
+                        });
+                    }, 100);
+                } else {
+                    // Hide additional articles
+                    moreArticlesContainer.classList.add('hidden');
+                    viewMoreButton.innerHTML = '<i data-lucide="chevron-down" class="w-5 h-5 mr-2"></i>View More Articles (10 More)';
+                    
+                    // Scroll back to the button
+                    setTimeout(() => {
+                        viewMoreButton.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                    }, 100);
+                }
+                
+                // Reinitialize Lucide icons after innerHTML change
+                safeCreateIcons();
+            });
+        }
+
+        // Add smooth hover effects for article cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const articleCards = document.querySelectorAll('.bg-gray-50.rounded-lg');
+            
+            articleCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.1)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - SIES Journal of Multidisciplinary Research and Innovation</title>
+    <link rel="icon" href="../assets/favicon.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1e3a8a', 
+                        'accent': '#0ea5e9', 
+                        'secondary': '#1e40af', 
+                        'golden': '#fbbf24', 
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --sies-navy: #1e3a8a;
+            --sies-blue: #1e40af;
+            --sies-orange: #E67E00;
+            --sies-orange-dark: #CC6F00;
+            --sies-black: #000000;
+            --sies-white: #ffffff;
+        }
+        
+        .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; width: 100%; position: relative; }
+        
+        .sticky-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            z-index: 100 !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .header-bg { background-color: var(--primary-color, #1e3a8a); }
+        .bg-accent { background-color: var(--accent-color, #E67E00); }
+        .hover-accent:hover { background-color: #0284c7; }
+        .text-primary { color: var(--primary-color, #1e3a8a); }
+        .text-accent { color: var(--accent-color, #E67E00); }
+        .text-secondary { color: var(--secondary-color, #1e40af); }
+
+        @media (max-width: 768px) {
+            .section-padding { 
+                padding-top: 3rem; 
+                padding-bottom: 3rem; 
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-content.active {
+            max-height: 200px;
+            transition: max-height 0.3s ease-in;
+        }
+
+
+        .modal {
+            display: none;
+        }
+        .modal.show {
+            display: flex;
+        }
+
+        /* Custom scrollbar for webkit browsers */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            background-color: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #0ea5e9; 
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: #0284c7;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="header-bg sticky-header shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                
+                <!-- LOGO SECTION -->
+                <a href="index.html" class="flex items-center text-white transition duration-300">
+                    <img 
+                        src="https://siesascn.edu.in/images/sies_ascn_logo.jpg" 
+                        alt="SIES College Logo" 
+                        class="h-10 sm:h-12 w-auto" 
+                        onerror="this.onerror=null; this.style.display='none'; document.getElementById('logo-text-fallback').style.display='inline';"
+                    >
+                    <span id="logo-text-fallback" class="ml-3 text-2xl font-extrabold tracking-wider"></span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-6 items-center">
+                    <a href="../index.html" class="text-white hover:text-accent transition duration-300">Home</a>
+                    <a href="../about-us/about.html" class="text-white hover:text-accent transition duration-300">About</a>
+                    <a href="../journals/journals.html" class="text-white hover:text-accent transition duration-300">Journals</a>
+                    <a href="../editorial-board/editorial.html" class="text-white hover:text-accent transition duration-300">Editorial Board</a> 
+                     <a href="../announcements/announcements.html" class="text-white hover:text-accent transition duration-300">Announcements</a>
+                    <a href="../faq/faq.html" class="text-golden font-semibold">FAQ</a>
+                    <a href="../contact/contact.html" class="text-white hover:text-accent transition duration-300">Contact</a>
+                    <button onclick="openModal('manuscriptFormModal')" class="bg-accent text-white px-5 py-2 rounded-full font-semibold shadow-md hover-accent transition duration-300">
+                        Submit Manuscript
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-button" class="md:hidden text-white focus:outline-none" aria-label="Toggle Menu">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full header-bg shadow-xl">
+            <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
+                <a href="../index.html" class="text-white hover:bg-blue-700 w-full text-center py-2 rounded-md transition duration-300">Home</a>
+                <a href="../about-us/about.html" class="text-white hover:bg-blue-700 w-full text-center py-2 rounded-md transition duration-300">About</a>
+                <a href="../journals/journals.html" class="text-white hover:bg-blue-700 w-full text-center py-2 rounded-md transition duration-300">Journals</a>
+                <a href="../editorial-board/editorial.html" class="text-white hover:bg-blue-700 w-full text-center py-2 rounded-md transition duration-300">Editorial Board</a> 
+                 <a href="../announcements/announcements.html" class="text-white hover:bg-blue-700 w-full text-center py-2 rounded-md transition duration-300">Announcements</a>
+                <a href="../faq/faq.html" class="text-golden bg-blue-700 w-full text-center py-2 rounded-md">FAQ</a>
+                <a href="../contact/contact.html" class="text-white hover:bg-blue-700 w-full text-center py-2 rounded-md transition duration-300">Contact</a>
+
+                <button onclick="openModal('manuscriptFormModal')" class="bg-accent text-white px-5 py-2 mt-2 w-11/12 rounded-full font-semibold shadow-md hover-accent transition duration-300">
+                    Submit Manuscript
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-r from-primary to-secondary text-white section-padding pt-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6">
+                    Frequently Asked <span class="text-accent">Questions</span>
+                </h1>
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto">
+                    Find quick answers to the most common queries about submission guidelines, review process, and journal policies
+                </p>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section-padding bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4 text-secondary">Your Questions Answered</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        Browse through our comprehensive FAQ section to find detailed information about the submission process, editorial guidelines, and journal policies.
+                    </p>
+                </div>
+
+                <div id="faq-accordion" class="space-y-4">
+                    
+                    <!-- FAQ Item 1 -->
+                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                        <button class="w-full text-left p-4 flex justify-between items-center text-lg font-semibold text-secondary hover:bg-gray-50 transition duration-300" onclick="toggleAccordion('faq-1')">
+                            Is the journal peer-reviewed and indexed?
+                            <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" id="icon-faq-1"></i>
+                        </button>
+                        <div id="faq-1" class="accordion-content">
+                            <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
+                                Yes, the SIES Journal of Multidisciplinary Research and Innovation is a double-blind peer-reviewed, multi-disciplinary journal. It is also ISSN certified (3048-9768 Online) and follows rigorous academic standards for publication.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                        <button class="w-full text-left p-4 flex justify-between items-center text-lg font-semibold text-secondary hover:bg-gray-50 transition duration-300" onclick="toggleAccordion('faq-2')">
+                            What is the required citation style?
+                            <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" id="icon-faq-2"></i>
+                        </button>
+                        <div id="faq-2" class="accordion-content">
+                            <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
+                                All manuscripts must strictly follow the guidelines of the <strong>APA 7th Edition</strong> style for citations, references, and formatting. Please ensure your manuscript adheres to these standards before submission.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                        <button class="w-full text-left p-4 flex justify-between items-center text-lg font-semibold text-secondary hover:bg-gray-50 transition duration-300" onclick="toggleAccordion('faq-3')">
+                            How long does the review process take?
+                            <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" id="icon-faq-3"></i>
+                        </button>
+                        <div id="faq-3" class="accordion-content">
+                            <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
+                                The double-blind peer-review process typically takes between <strong>8 to 10 weeks</strong> from the date of submission. Authors are notified promptly of the decision along with reviewer comments and feedback.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 - Additional -->
+                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                        <button class="w-full text-left p-4 flex justify-between items-center text-lg font-semibold text-secondary hover:bg-gray-50 transition duration-300" onclick="toggleAccordion('faq-4')">
+                            What file formats are accepted for submission?
+                            <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" id="icon-faq-4"></i>
+                        </button>
+                        <div id="faq-4" class="accordion-content">
+                            <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
+                                We accept manuscripts in <strong>PDF</strong> and <strong>Microsoft Word (.docx)</strong> formats. Please ensure your manuscript is anonymized for the double-blind review process and follows the journal's formatting guidelines.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 5 - Additional -->
+                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                        <button class="w-full text-left p-4 flex justify-between items-center text-lg font-semibold text-secondary hover:bg-gray-50 transition duration-300" onclick="toggleAccordion('faq-5')">
+                            What are the word limits for submissions?
+                            <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" id="icon-faq-5"></i>
+                        </button>
+                        <div id="faq-5" class="accordion-content">
+                            <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
+                                Research articles should be between <strong>3,000-8,000 words</strong> including references and appendices. Review articles may extend up to <strong>10,000 words</strong>. The abstract should be 150-250 words.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 6 - Additional -->
+                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                        <button class="w-full text-left p-4 flex justify-between items-center text-lg font-semibold text-secondary hover:bg-gray-50 transition duration-300" onclick="toggleAccordion('faq-6')">
+                            Is there a publication fee?
+                            <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" id="icon-faq-6"></i>
+                        </button>
+                        <div id="faq-6" class="accordion-content">
+                            <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
+                                Currently, there is <strong>no publication fee</strong> for submitting or publishing articles in the SIES Journal of Multidisciplinary Research and Innovation. The journal operates on an open-access model.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 7 - Additional -->
+                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                        <button class="w-full text-left p-4 flex justify-between items-center text-lg font-semibold text-secondary hover:bg-gray-50 transition duration-300" onclick="toggleAccordion('faq-7')">
+                            What disciplines does the journal cover?
+                            <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" id="icon-faq-7"></i>
+                        </button>
+                        <div id="faq-7" class="accordion-content">
+                            <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
+                                The journal welcomes submissions from <strong>social sciences, humanities, management studies, education, library science, environmental studies</strong>, and other interdisciplinary research areas that contribute to multidisciplinary knowledge.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 8 - Additional -->
+                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                        <button class="w-full text-left p-4 flex justify-between items-center text-lg font-semibold text-secondary hover:bg-gray-50 transition duration-300" onclick="toggleAccordion('faq-8')">
+                            Can international authors submit their work?
+                            <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" id="icon-faq-8"></i>
+                        </button>
+                        <div id="faq-8" class="accordion-content">
+                            <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
+                                Yes, we welcome submissions from <strong>researchers worldwide</strong>. The journal has an international scope and encourages submissions from scholars across different countries and cultural contexts.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Still Need Help Section -->
+                <div class="mt-16 text-center">
+                    <div class="bg-gradient-to-r from-primary to-secondary text-white p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold mb-4">Still Have Questions?</h3>
+                        <p class="text-gray-200 mb-6 max-w-2xl mx-auto">
+                            Can't find the answer you're looking for? Our editorial team is here to help with any specific questions about submissions or journal policies.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="../contact/contact.html" class="inline-block bg-accent text-white px-8 py-3 rounded-full font-bold shadow-xl hover:bg-opacity-90 transition duration-300 transform hover:scale-105">
+                                <i data-lucide="mail" class="inline-block w-5 h-5 mr-2"></i>
+                                Contact Editorial Office
+                            </a>
+                         <!--    <button onclick="toggleChat()" class="inline-block bg-white text-primary px-8 py-3 rounded-full font-bold shadow-xl hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                                <i data-lucide="bot" class="inline-block w-5 h-5 mr-2"></i>
+                                Chat with Assistant
+                            </button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+ 
+    <!-- Manuscript Upload Form Modal -->
+    <div id="manuscriptFormModal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[1001] opacity-0 invisible">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto custom-scrollbar transform scale-95 transition-all duration-300">
+             <!-- Modal Header -->
+            <div class="p-6 bg-accent text-white flex justify-between items-center rounded-t-xl">
+                <h3 class="text-2xl font-bold flex items-center">
+                    <i data-lucide="file-up" class="w-6 h-6 mr-3"></i> Manuscript Submission Form
+                </h3>
+                <button onclick="closeModal('manuscriptFormModal')" class="text-white hover:text-primary transition" aria-label="Close Modal">
+                    <i data-lucide="x" class="w-7 h-7"></i>
+                </button>
+            </div>
+            
+            <!-- Modal Content (Form) -->
+            <form id="manuscript-upload-form" action="../submit_manuscript.php" method="POST" enctype="multipart/form-data" class="p-8 space-y-6 text-gray-700">
+                <p class="text-lg font-semibold text-secondary">Please provide your details and attach the anonymized manuscript PDF.</p>
+
+                <!-- Personal Details -->
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <input type="text" name="author_name" placeholder="Full Name of Primary Author" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                    <input type="email" name="email" placeholder="Email Address" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                    <input type="text" name="affiliation" placeholder="Affiliation / Institution" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent sm:col-span-2" required>
+                </div>
+                
+                <!-- Manuscript Details -->
+                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Manuscript Information</h4>
+                <div class="space-y-3">
+                    <input type="text" id="title-input" name="manuscript_title" placeholder="Title of Manuscript" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                    <div id="title-suggestion-output" class="text-sm"></div>
+                </div>
+                <textarea name="abstract" placeholder="Brief Abstract (150-250 words)" rows="3" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required></textarea>
+
+                <!-- File Upload -->
+                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Upload Manuscript (PDF/DOCX)</h4>
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                    <label for="manuscript-file" class="cursor-pointer text-accent hover:text-primary font-semibold">
+                           <i data-lucide="upload-cloud" class="w-8 h-8 mx-auto mb-2"></i>
+                        Click to select file (PDF or DOCX)
+                    </label>
+                    <input type="file" name="manuscript_file" id="manuscript-file" accept=".pdf,.docx" class="hidden" required>
+                    <p id="file-name-display" class="text-sm text-gray-500 mt-2">No file selected.</p>
+                </div>
+
+                <button type="submit" id="manuscript-submit-btn" class="w-full bg-accent text-white py-3 rounded-lg font-bold text-lg shadow-lg hover-accent transition duration-300 transform hover:scale-[1.01]">
+                    Submit Manuscript
+                </button>
+                <p id="upload-form-message" class="text-sm text-center text-green-600 hidden mt-3">Manuscript submitted successfully!</p>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="header-bg py-8 mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white text-sm">
+            <p>&copy; 2025 SIES College Nerul. All Rights Reserved. | ISSN: 3048-9768 (Online)</p>
+            <p class="mt-2 text-accent">Designed By Bishal Saini | Vishal32saini@gmail.com</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@0.400.0/dist/umd/lucide.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (menuButton && mobileMenu) {
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // FAQ Accordion Toggle
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                // Close all other accordions first
+                document.querySelectorAll('.accordion-content').forEach(item => {
+                    item.classList.remove('active');
+                });
+                document.querySelectorAll('[id^="icon-faq-"]').forEach(item => {
+                    item.style.transform = 'rotate(0deg)';
+                });
+                
+                // Open clicked accordion
+                content.classList.add('active');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+     // --- General Modal Logic ---
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('invisible', 'opacity-0');
+                const modalContent = modal.querySelector('div');
+                if (modalContent) {
+                    setTimeout(() => modalContent.classList.remove('scale-95'), 10);
+                }
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+        }
+        window.openModal = openModal;
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                const modalContent = modal.querySelector('div');
+                if (modalContent) {
+                    modalContent.classList.add('scale-95');
+                }
+                setTimeout(() => {
+                    modal.classList.add('invisible', 'opacity-0');
+                    document.body.style.overflow = ''; // Restore scrolling
+                }, 300);
+            }
+        }
+        window.closeModal = closeModal; // Expose globally for onclick
+
+        // Close modal when clicking outside
+        const manuscriptModal = document.getElementById('manuscriptFormModal');
+        if (manuscriptModal) {
+            manuscriptModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal('manuscriptFormModal');
+                }
+            });
+        }
+
+        // --- Manuscript Upload Form Submission Handler ---
+        const uploadForm = document.getElementById('manuscript-upload-form');
+        const uploadFormMessage = document.getElementById('upload-form-message');
+
+        if (uploadForm && uploadFormMessage) {
+            uploadForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                uploadFormMessage.textContent = 'Manuscript submitted successfully! Please check your email for confirmation.';
+                uploadFormMessage.classList.remove('hidden', 'text-red-500');
+                uploadFormMessage.classList.add('text-green-600');
+                uploadForm.reset();
+                const fileNameDisplay = document.getElementById('file-name-display');
+                if (fileNameDisplay) fileNameDisplay.textContent = 'No file selected.';
+                
+                setTimeout(() => { 
+                    uploadFormMessage.classList.add('hidden');
+                    closeModal('manuscriptFormModal');
+                }, 5000);
+            });
+        }
+        
+        // File selection update
+        const manuscriptFile = document.getElementById('manuscript-file');
+        if (manuscriptFile) {
+            manuscriptFile.addEventListener('change', function() {
+                const fileNameDisplay = document.getElementById('file-name-display');
+                if (fileNameDisplay) {
+                    if (this.files && this.files[0]) {
+                        fileNameDisplay.textContent = this.files[0].name;
+                    } else {
+                        fileNameDisplay.textContent = 'No file selected.';
+                    }
+                }
+            });
+        }
+
+
+        function generateFAQResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+            
+            if (message.includes('peer review') || message.includes('indexed')) {
+                return "Yes! The SIES Journal is a double-blind peer-reviewed journal with ISSN certification (3048-9768 Online).";
+            } else if (message.includes('citation') || message.includes('style') || message.includes('apa')) {
+                return "All manuscripts must follow APA 7th Edition style for citations and formatting.";
+            } else if (message.includes('review time') || message.includes('how long')) {
+                return "The review process typically takes 8-10 weeks from submission to decision.";
+            } else if (message.includes('format') || message.includes('file')) {
+                return "We accept PDF and Microsoft Word (.docx) formats. Please ensure manuscripts are anonymized.";
+            } else if (message.includes('word limit') || message.includes('length')) {
+                return "Research articles: 3,000-8,000 words. Review articles: up to 10,000 words. Abstract: 150-250 words.";
+            } else if (message.includes('fee') || message.includes('cost')) {
+                return "There's no publication fee! The journal operates on an open-access model.";
+            } else if (message.includes('discipline') || message.includes('subject')) {
+                return "We cover social sciences, humanities, management, education, library science, environmental studies, and interdisciplinary research.";
+            } else if (message.includes('international') || message.includes('global')) {
+                return "Yes! We welcome submissions from researchers worldwide.";
+            } else {
+                return "I can help you with questions about submission guidelines, review process, citation style, word limits, publication fees, and more. Try asking about any specific topic!";
+            }
+        }
+
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+    <script src="../assets/js/manuscript-submission.js"></script>
+</body>
+</html>

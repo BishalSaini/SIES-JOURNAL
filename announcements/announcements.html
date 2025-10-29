@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements - SIES Journal of Multidisciplinary Research and Innovation</title>
+     <link rel="icon" href="../assets/favicon.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3A7EBD', 
+                        'accent': '#CC7722',  
+                        'secondary': '#003366', 
+                        'off-white': '#F9FAFB', 
+                        'accent2': '#D8E5F2'
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+        html { 
+            scroll-behavior: smooth; 
+            overflow-x: hidden;
+        }
+        body { 
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+        
+        .sticky-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            z-index: 100 !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        @media (max-width: 768px) {
+            .section-padding { 
+                padding-top: 3rem; 
+                padding-bottom: 3rem; 
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .max-w-7xl {
+                max-width: 100% !important;
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            
+            h1, h2, h3, p {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+        }
+        
+         .header-bg { background-color: var(--primary-color, #3A7EBD); }
+        .bg-accent { background-color: var(--accent-color, #3A7EBD); } 
+        .bg-accent2 { background-color: var(--accent-color, #1e3a8a); }
+        .hover-accent:hover { background-color: #0284c7; }
+        .text-primary { color: var(--primary-color, #1e3a8a); }
+        .text-accent { color: var(--accent-color, #0ea5e9); } 
+        .text-accent2 { color: var(--accent-color, #D8E5F2); }
+        .text-secondary { color: var(--secondary-color, #1e40af); }
+        .text-golden { color: var(--golden-color, #fbbf24); }
+        .bg-golden { background-color: var(--golden-color, #fbbf24); }
+
+        .modal {
+            transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            background-color: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #0ea5e9; 
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: #0284c7;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="header-bg sticky-header shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                
+                <!-- LOGO SECTION -->
+                <a href="index.html" class="flex items-center text-white transition duration-300">
+                    <img 
+                        src="https://siesascn.edu.in/images/sies_ascn_logo.jpg" 
+                        alt="SIES College Logo" 
+                        class="h-10 sm:h-12 w-auto" 
+                        onerror="this.onerror=null; this.style.display='none'; document.getElementById('logo-text-fallback').style.display='inline';"
+                    >
+                    <span id="logo-text-fallback" class="ml-3 text-2xl font-extrabold tracking-wider"><span class="font-normal text-accent"></span></span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-6 items-center">
+                    <a href="../index.html" class="text-white hover:text-accent transition duration-300">Home</a>
+                    <a href="../about-us/about.html" class="text-white hover:text-accent transition duration-300">About</a>
+                    <a href="../journals/journals.html" class="text-white hover:text-accent transition duration-300">Journals</a>
+                    <a href="../editorial-board/editorial.html" class="text-white hover:text-accent transition duration-300">Editorial Board</a>
+                    <a href="../announcements/announcements.html" class="text-golden font-semibold">Announcements</a>
+                    <a href="../faq/faq.html" class="text-white hover:text-accent transition duration-300">FAQ</a>
+                    <a href="../contact/contact.html" class="text-white hover:text-accent transition duration-300">Contact</a>
+                    <button onclick="openModal('manuscriptFormModal')" class="bg-accent text-white px-5 py-2 rounded-full font-semibold shadow-md transition duration-300">
+                        Submit Manuscript
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-button" class="md:hidden text-white focus:outline-none" aria-label="Toggle Menu">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full header-bg shadow-xl">
+            <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
+                <a href="../index.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Home</a>
+                <a href="../about-us/about.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">About</a>
+                <a href="../journals/journals.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Journals</a>
+                <a href="../editorial-board/editorial.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Editorial Board</a>
+                <a href="../announcements/announcements.html" class="text-golden w-full text-center py-2 rounded-md">Announcements</a>
+                <a href="../faq/faq.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">FAQ</a>
+                <a href="../contact/contact.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Contact</a>
+    
+                <button onclick="openModal('manuscriptFormModal')" class="bg-accent text-white px-5 py-2 mt-2 w-11/12 rounded-full font-semibold shadow-md transition duration-300">
+                    Submit Manuscript
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Header with Hero Background -->
+        <section class="relative bg-gradient-to-r from-primary to-secondary text-white pt-32 pb-16 overflow-hidden">
+            <div class="absolute inset-0 w-full h-full z-0">
+                <img src="../assets/hero-images/announcementshero.png" alt="Announcement Illustration Background" class="w-full h-full object-cover opacity-70" style="object-position: center;" />
+                <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-80"></div>
+            </div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Announcements</h1>
+                <p class="text-xl text-blue-200 max-w-3xl mx-auto">Stay informed about important updates, deadlines, and news from the SIES Journal of Multidisciplinary Research and Innovation.</p>
+            </div>
+        </section>
+
+        <!-- All Announcements Section -->
+        <section class="section-padding bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Quick Navigation -->
+                <div class="bg-gray-50 p-6 rounded-xl mb-12 border-l-4 border-accent">
+                    <h2 class="text-2xl font-bold text-secondary mb-4">Quick Navigation</h2>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <a href="#current-calls" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition duration-300 border-l-4 border-red-500">
+                            <i data-lucide="megaphone" class="w-6 h-6 text-red-500 mb-2"></i>
+                            <h3 class="font-bold text-secondary">Current Calls</h3>
+                            <p class="text-sm text-gray-600">Active submission opportunities</p>
+                        </a>
+                        <a href="#recent-publications" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition duration-300 border-l-4 border-accent">
+                            <i data-lucide="book-open" class="w-6 h-6 text-accent mb-2"></i>
+                            <h3 class="font-bold text-secondary">Publications</h3>
+                            <p class="text-sm text-gray-600">Latest published volumes</p>
+                        </a>
+                        <a href="#journal-updates" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition duration-300 border-l-4 border-blue-500">
+                            <i data-lucide="info" class="w-6 h-6 text-blue-500 mb-2"></i>
+                            <h3 class="font-bold text-secondary">Journal Updates</h3>
+                            <p class="text-sm text-gray-600">Important announcements</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Current Calls for Papers -->
+                <div id="current-calls" class="mb-16">
+                    <h2 class="text-3xl font-bold text-secondary mb-8 pb-4 border-b-2 border-red-500">
+                        <i data-lucide="megaphone" class="inline-block w-8 h-8 mr-3 text-red-500"></i>
+                        Current Calls for Papers
+                    </h2>
+                    <div class="space-y-6">
+                        
+                        <!-- Call for Papers Volume 2 -->
+                        <div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-500 hover:shadow-lg transition duration-300">
+                            <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-secondary mb-2">Call for Papers - Volume 2 (2026)</h3>
+                                    <div class="flex items-center space-x-4 text-sm text-gray-600">
+                                        <span class="flex items-center"><i data-lucide="calendar" class="w-4 h-4 mr-1"></i> Deadline: August 31, 2026</span>
+                                        <span class="flex items-center"><i data-lucide="user" class="w-4 h-4 mr-1"></i> Open to All Researchers</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 lg:mt-0">
+                                    <span class="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold">ACTIVE</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 mb-4">
+                                We are pleased to announce the call for papers for the second volume of SIES Journal of Multidisciplinary Research and Innovation. 
+                                This volume welcomes research contributions across all disciplines including humanities, social sciences, management studies, 
+                                education, and interdisciplinary research.
+                            </p>
+                            <div class="bg-white p-4 rounded-lg mb-4">
+                                <h4 class="font-bold text-secondary mb-2">Key Information:</h4>
+                                <ul class="text-gray-700 space-y-1">
+                                    <li>• <strong>Submission Opens:</strong> January 1, 2026</li>
+                                    <li>• <strong>Submission Deadline:</strong> August 31, 2026</li>
+                                    <li>• <strong>Review Process:</strong> Double-blind peer review (8-10 weeks)</li>
+                                    <li>• <strong>Publication Date:</strong> December 2026</li>
+                                    <li>• <strong>Publication Fees:</strong> No charges (completely free)</li>
+                                </ul>
+                            </div>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="#" class="bg-red-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-600 transition duration-300">
+                                    <i data-lucide="download" class="inline-block w-4 h-4 mr-2"></i>Download Guidelines
+                                </a>
+                                <button onclick="openModal('manuscriptFormModal')" class="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-800 transition duration-300">
+                                    <i data-lucide="file-text" class="inline-block w-4 h-4 mr-2"></i>Submit Manuscript
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Recent Publications -->
+                <div id="recent-publications" class="mb-16">
+                    <h2 class="text-3xl font-bold text-secondary mb-8 pb-4 border-b-2 border-accent">
+                        <i data-lucide="book-open" class="inline-block w-8 h-8 mr-3 text-accent"></i>
+                        Recent Publications
+                    </h2>
+                    <div class="space-y-6">
+                        
+                        <!-- Volume 1 Published -->
+                        <div class="bg-blue-50 p-6 rounded-xl border-l-4 border-accent hover:shadow-lg transition duration-300">
+                            <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-secondary mb-2">Volume 1 Successfully Published!</h3>
+                                    <div class="flex items-center space-x-4 text-sm text-gray-600">
+                                        <span class="flex items-center"><i data-lucide="calendar" class="w-4 h-4 mr-1"></i> Published: December 15, 2025</span>
+                                        <span class="flex items-center"><i data-lucide="file-text" class="w-4 h-4 mr-1"></i> 15 Articles</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 lg:mt-0">
+                                    <span class="bg-accent text-white px-4 py-2 rounded-full text-sm font-bold">PUBLISHED</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 mb-4">
+                                The inaugural volume of SIES Journal of Multidisciplinary Research and Innovation has been successfully published 
+                                with 15 peer-reviewed articles across humanities, social sciences, and management studies. This milestone represents 
+                                our commitment to promoting quality interdisciplinary research.
+                            </p>
+                            <div class="bg-white p-4 rounded-lg mb-4">
+                                <h4 class="font-bold text-secondary mb-2">Volume 1 Highlights:</h4>
+                                <ul class="text-gray-700 space-y-1">
+                                    <li>• <strong>Total Articles:</strong> 15 peer-reviewed research papers</li>
+                                    <li>• <strong>Contributing Authors:</strong> 30+ researchers from various institutions</li>
+                                    <li>• <strong>Review Process:</strong> Rigorous double-blind peer review</li>
+                                    <li>• <strong>Disciplines Covered:</strong> Humanities, Social Sciences, Management, Education</li>
+                                    <li>• <strong>Access:</strong> Open access with ISSN: 3048-9768</li>
+                                </ul>
+                            </div>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="../journals/journals.html" class="bg-accent text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-600 transition duration-300">
+                                    <i data-lucide="download" class="inline-block w-4 h-4 mr-2"></i>Download Volume 1
+                                </a>
+                                <a href="../journals/journals.html" class="bg-secondary text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                                    <i data-lucide="eye" class="inline-block w-4 h-4 mr-2"></i>Browse Articles
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Journal Updates -->
+                <div id="journal-updates" class="mb-16">
+                    <h2 class="text-3xl font-bold text-secondary mb-8 pb-4 border-b-2 border-blue-500">
+                        <i data-lucide="info" class="inline-block w-8 h-8 mr-3 text-blue-500"></i>
+                        Journal Updates & Important Announcements
+                    </h2>
+                    <div class="space-y-6">
+                        
+                        <!-- Journal Launch -->
+                        <div class="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 hover:shadow-lg transition duration-300">
+                            <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-secondary mb-2">SIES JMRI Journal Officially Launched</h3>
+                                    <div class="flex items-center space-x-4 text-sm text-gray-600">
+                                        <span class="flex items-center"><i data-lucide="calendar" class="w-4 h-4 mr-1"></i> September 10, 2025</span>
+                                        <span class="flex items-center"><i data-lucide="award" class="w-4 h-4 mr-1"></i> ISSN Certified</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 lg:mt-0">
+                                    <span class="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-bold">MILESTONE</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 mb-4">
+                                We are proud to announce the official launch of SIES Journal of Multidisciplinary Research and Innovation 
+                                (ISSN: 3048-9768), a peer-reviewed annual publication focusing on interdisciplinary research. The journal 
+                                aims to bridge various academic disciplines and promote collaborative research.
+                            </p>
+                            <div class="bg-white p-4 rounded-lg mb-4">
+                                <h4 class="font-bold text-secondary mb-2">Journal Features:</h4>
+                                <ul class="text-gray-700 space-y-1">
+                                    <li>• <strong>ISSN:</strong> 3048-9768 (Online)</li>
+                                    <li>• <strong>Publication Frequency:</strong> Annual</li>
+                                    <li>• <strong>Review Process:</strong> Double-blind peer review</li>
+                                    <li>• <strong>Focus Areas:</strong> Multidisciplinary research across all academic fields</li>
+                                    <li>• <strong>Access Model:</strong> Open access, no publication charges</li>
+                                </ul>
+                            </div>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="about.html" class="bg-blue-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-600 transition duration-300">
+                                    <i data-lucide="info" class="inline-block w-4 h-4 mr-2"></i>Learn More
+                                </a>
+                                <a href="editorial.html" class="bg-secondary text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                                    <i data-lucide="users" class="inline-block w-4 h-4 mr-2"></i>Editorial Board
+                                </a>
+                            </div>
+                        </div>
+
+
+                        <!-- Website Launch -->
+                        <div class="bg-purple-50 p-6 rounded-xl border-l-4 border-purple-500 hover:shadow-lg transition duration-300">
+                            <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-secondary mb-2">Official Journal Website Launched</h3>
+                                    <div class="flex items-center space-x-4 text-sm text-gray-600">
+                                        <span class="flex items-center"><i data-lucide="calendar" class="w-4 h-4 mr-1"></i> July 20, 2025</span>
+                                        <span class="flex items-center"><i data-lucide="globe" class="w-4 h-4 mr-1"></i> Online Platform</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 lg:mt-0">
+                                    <span class="bg-purple-500 text-white px-4 py-2 rounded-full text-sm font-bold">LAUNCHED</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 mb-4">
+                                The official website for SIES Journal of Multidisciplinary Research and Innovation has been launched, 
+                                providing easy access to submission guidelines, published articles, editorial information, and 
+                                announcement updates for the research community.
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="index.html" class="bg-purple-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-purple-600 transition duration-300">
+                                    <i data-lucide="home" class="inline-block w-4 h-4 mr-2"></i>Visit Homepage
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Manuscript Upload Form Modal -->
+    <div id="manuscriptFormModal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[1001] opacity-0 invisible">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto custom-scrollbar transform scale-95 transition-all duration-300">
+             <!-- Modal Header -->
+            <div class="p-6 bg-accent text-white flex justify-between items-center rounded-t-xl">
+                <h3 class="text-2xl font-bold flex items-center">
+                    <i data-lucide="file-up" class="w-6 h-6 mr-3"></i> Manuscript Submission Form
+                </h3>
+                <button onclick="closeModal('manuscriptFormModal')" class="text-white hover:text-primary transition" aria-label="Close Modal">
+                    <i data-lucide="x" class="w-7 h-7"></i>
+                </button>
+            </div>
+            
+            <!-- Modal Content (Form) -->
+            <form id="manuscript-upload-form" action="../submit_manuscript.php" method="POST" enctype="multipart/form-data" class="p-8 space-y-6 text-gray-700">
+                <p class="text-lg font-semibold text-secondary">Please provide your details and attach the anonymized manuscript PDF.</p>
+
+                <!-- Personal Details -->
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <input type="text" name="author_name" placeholder="Full Name of Primary Author" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                    <input type="email" name="email" placeholder="Email Address" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                    <input type="text" name="affiliation" placeholder="Affiliation / Institution" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent sm:col-span-2" required>
+                </div>
+                
+                <!-- Manuscript Details -->
+                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Manuscript Information</h4>
+                <div class="space-y-3">
+                    <input type="text" id="title-input" name="manuscript_title" placeholder="Title of Manuscript" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                    <div id="title-suggestion-output" class="text-sm"></div>
+                </div>
+                <textarea name="abstract" placeholder="Brief Abstract (150-250 words)" rows="3" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required></textarea>
+
+                <!-- File Upload -->
+                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Upload Manuscript (PDF/DOCX)</h4>
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                    <label for="manuscript-file" class="cursor-pointer text-accent hover:text-primary font-semibold">
+                           <i data-lucide="upload-cloud" class="w-8 h-8 mx-auto mb-2"></i>
+                        Click to select file (PDF or DOCX)
+                    </label>
+                    <input type="file" name="manuscript_file" id="manuscript-file" accept=".pdf,.docx" class="hidden" required>
+                    <p id="file-name-display" class="text-sm text-gray-500 mt-2">No file selected.</p>
+                </div>
+
+                <button type="submit" id="manuscript-submit-btn" class="w-full bg-accent text-white py-3 rounded-lg font-bold text-lg shadow-lg hover-accent transition duration-300 transform hover:scale-[1.01]">
+                    Submit Manuscript
+                </button>
+                <p id="upload-form-message" class="text-sm text-center text-green-600 hidden mt-3">Manuscript submitted successfully!</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="header-bg py-8 mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white text-sm">
+            <p>&copy; 2025 SIES College Nerul. All Rights Reserved. | ISSN: 3048-9768 (Online)</p>
+            <p class="mt-2 text-accent">Designed By Bishal Saini | Vishal32saini@gmail.com</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@0.400.0/dist/umd/lucide.js"></script>
+    <script>
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+
+        // Mobile Menu Toggle
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (menuButton && mobileMenu) {
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // --- General Modal Logic ---
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('invisible', 'opacity-0');
+                const modalContent = modal.querySelector('div');
+                if (modalContent) {
+                    setTimeout(() => modalContent.classList.remove('scale-95'), 10);
+                }
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+        }
+        window.openModal = openModal;
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                const modalContent = modal.querySelector('div');
+                if (modalContent) {
+                    modalContent.classList.add('scale-95');
+                }
+                setTimeout(() => {
+                    modal.classList.add('invisible', 'opacity-0');
+                    document.body.style.overflow = ''; // Restore scrolling
+                }, 300);
+            }
+        }
+        window.closeModal = closeModal; // Expose globally for onclick
+
+        // Close modal when clicking outside
+        const manuscriptModal = document.getElementById('manuscriptFormModal');
+        if (manuscriptModal) {
+            manuscriptModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal('manuscriptFormModal');
+                }
+            });
+        }
+
+        // --- Manuscript Upload Form Submission Handler ---
+        const uploadForm = document.getElementById('manuscript-upload-form');
+        const uploadFormMessage = document.getElementById('upload-form-message');
+
+        if (uploadForm && uploadFormMessage) {
+            uploadForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                uploadFormMessage.textContent = 'Manuscript submitted successfully! Please check your email for confirmation.';
+                uploadFormMessage.classList.remove('hidden', 'text-red-500');
+                uploadFormMessage.classList.add('text-green-600');
+                uploadForm.reset();
+                const fileNameDisplay = document.getElementById('file-name-display');
+                if (fileNameDisplay) fileNameDisplay.textContent = 'No file selected.';
+                
+                setTimeout(() => { 
+                    uploadFormMessage.classList.add('hidden');
+                    closeModal('manuscriptFormModal');
+                }, 5000);
+            });
+        }
+        
+        // File selection update
+        const manuscriptFile = document.getElementById('manuscript-file');
+        if (manuscriptFile) {
+            manuscriptFile.addEventListener('change', function() {
+                const fileNameDisplay = document.getElementById('file-name-display');
+                if (fileNameDisplay) {
+                    if (this.files && this.files[0]) {
+                        fileNameDisplay.textContent = this.files[0].name;
+                    } else {
+                        fileNameDisplay.textContent = 'No file selected.';
+                    }
+                }
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="../assets/js/manuscript-submission.js"></script>
+</body>
+</html>
