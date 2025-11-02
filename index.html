@@ -792,6 +792,10 @@
                     <p class="text-gray-600 text-sm">Please provide your details to download the journal PDF. This helps us track our readership and improve our services.</p>
                 </div>
 
+                <!-- Hidden fields to track what's being downloaded -->
+                <input type="hidden" name="download_type" value="journal">
+                <input type="hidden" name="download_item_id" value="volume-1">
+
                 <!-- Student Details -->
                 <div class="grid sm:grid-cols-2 gap-4">
                     <input type="text" name="student_name" id="student_name" placeholder="Full Name *" class="w-full p-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary required-field" required>
@@ -1120,7 +1124,7 @@
                 
                 try {
                     // Submit form data to PHP script
-                    const response = await fetch('download_pdf.php', {
+                    const response = await fetch('download_journal.php', {
                         method: 'POST',
                         body: formData
                     });
@@ -1136,6 +1140,17 @@
                         downloadMessage.textContent = result.message;
                         downloadMessage.classList.remove('hidden', 'text-red-500');
                         downloadMessage.classList.add('text-green-600');
+                        
+                        // Store user details in localStorage for future use
+                        const userDetails = {
+                            student_name: formData.get('student_name'),
+                            email: formData.get('email'),
+                            college_name: formData.get('college_name'),
+                            course: formData.get('course'),
+                            year_of_study: formData.get('year_of_study'),
+                            phone_number: formData.get('phone_number')
+                        };
+                        localStorage.setItem('sies_user_details', JSON.stringify(userDetails));
                         
                         // Check if PDF is available for download
                         if (result.pdf_available && result.download_url) {

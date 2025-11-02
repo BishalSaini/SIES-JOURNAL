@@ -243,14 +243,14 @@
                                         </p>
                                     </div>
                                     <div class="flex flex-col space-y-3 sm:ml-6">
-                                        <button class="bg-accent text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover-accent transition duration-300 flex items-center justify-center">
+                                        <button onclick="openDownloadModal('journal', 'volume-1', 'SIES Journal of Multidisciplinary Research - Volume 1')" class="bg-accent text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover-accent transition duration-300 flex items-center justify-center">
                                             <i data-lucide="download" class="w-5 h-5 mr-2"></i>
                                             Download PDF
                                         </button>
-                                        <button class="bg-gray-100 text-secondary px-6 py-2 rounded-lg font-medium hover:bg-gray-200 transition duration-300 flex items-center justify-center">
+<!--                                         <button class="bg-gray-100 text-secondary px-6 py-2 rounded-lg font-medium hover:bg-gray-200 transition duration-300 flex items-center justify-center">
                                             <i data-lucide="eye" class="w-4 h-4 mr-2"></i>
                                             View Online
-                                        </button>
+                                        </button> -->
                                     </div>
                                 </div>
 
@@ -282,7 +282,7 @@
                                                     <p class="text-xs text-gray-500">Pages: 1-12</p>
                                                 </div>
                                                 <div class="flex flex-col space-y-2 lg:ml-4 mt-3 lg:mt-0">
-                                                    <button class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
+                                                    <button onclick="openDownloadModal('article', 'article-1', 'Digital Transformation in Higher Education: A Post-Pandemic Analysis')" class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
                                                         <i data-lucide="download" class="w-4 h-4 mr-1"></i>
                                                         PDF
                                                     </button>
@@ -309,7 +309,7 @@
                                                     <p class="text-xs text-gray-500">Pages: 13-28</p>
                                                 </div>
                                                 <div class="flex flex-col space-y-2 lg:ml-4 mt-3 lg:mt-0">
-                                                    <button class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
+                                                    <button onclick="openDownloadModal('article', 'article-2', 'Sustainable Business Practices in Small and Medium Enterprises: A Case Study from Mumbai')" class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
                                                         <i data-lucide="download" class="w-4 h-4 mr-1"></i>
                                                         PDF
                                                     </button>
@@ -336,7 +336,7 @@
                                                     <p class="text-xs text-gray-500">Pages: 29-42</p>
                                                 </div>
                                                 <div class="flex flex-col space-y-2 lg:ml-4 mt-3 lg:mt-0">
-                                                    <button class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
+                                                    <button onclick="openDownloadModal('article', 'article-3', 'The Role of Digital Media in Preserving Cultural Heritage: A Mumbai Perspective')" class="bg-accent text-white px-4 py-2 rounded text-sm hover-accent transition duration-300 flex items-center justify-center">
                                                         <i data-lucide="download" class="w-4 h-4 mr-1"></i>
                                                         PDF
                                                     </button>
@@ -726,6 +726,75 @@
     </main>
 
    
+    <!-- Student Details Modal for PDF Download -->
+    <div id="studentDetailsModal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[1001] opacity-0 invisible">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto custom-scrollbar transform scale-95 transition-all duration-300">
+            <!-- Modal Header -->
+            <div class="p-6 bg-primary text-white flex justify-between items-center rounded-t-xl">
+                <h3 class="text-2xl font-bold flex items-center">
+                    <i data-lucide="download" class="w-6 h-6 mr-3"></i> <span id="download-modal-title">Download Journal PDF</span>
+                </h3>
+                <button onclick="closeModal('studentDetailsModal')" class="text-white hover:text-accent transition" aria-label="Close Modal">
+                    <i data-lucide="x" class="w-7 h-7"></i>
+                </button>
+            </div>
+            
+            <!-- Modal Content (Form) -->
+            <form id="student-details-form" class="p-8 space-y-6 text-gray-700">
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                    <p id="download-modal-subtitle" class="text-primary font-semibold mb-2">📚 SIES Journal of Multidisciplinary Research - Volume 1</p>
+                    <p class="text-gray-600 text-sm">Please provide your details to download the journal PDF. This helps us track our readership and improve our services.</p>
+                </div>
+
+                <!-- Hidden field to track what's being downloaded -->
+                <input type="hidden" id="download_type" name="download_type" value="journal">
+                <input type="hidden" id="download_item_id" name="download_item_id" value="">
+
+                <!-- Student Details -->
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <input type="text" name="student_name" id="student_name" placeholder="Full Name *" class="w-full p-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary required-field" required>
+                    <input type="email" name="email" id="student_email" placeholder="Email Address *" class="w-full p-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary required-field" required>
+                </div>
+                
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <input type="text" name="college_name" id="college_name" placeholder="College/Institution Name *" class="w-full p-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary required-field" required>
+                    <input type="text" name="course" id="course" placeholder="Course/Program *" class="w-full p-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary required-field" required>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <select name="year_of_study" id="year_of_study" class="w-full p-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary required-field" required>
+                        <option value="">Select Year of Study *</option>
+                        <option value="1st Year">1st Year</option>
+                        <option value="2nd Year">2nd Year</option>
+                        <option value="3rd Year">3rd Year</option>
+                        <option value="4th Year">4th Year</option>
+                        <option value="Postgraduate">Postgraduate</option>
+                        <option value="PhD">PhD</option>
+                        <option value="Faculty">Faculty</option>
+                        <option value="Researcher">Researcher</option>
+                    </select>
+                    <input type="tel" name="phone_number" placeholder="Phone Number (Optional)" class="w-full p-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary">
+                </div>
+
+                <textarea name="purpose_of_download" placeholder="Purpose of Download (Optional - e.g., Research, Academic Assignment, Reference)" rows="2" class="w-full p-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary"></textarea>
+
+                <div class="flex items-start space-x-3">
+                    <input type="checkbox" id="terms_agreement" class="mt-1 required-field" required>
+                    <label for="terms_agreement" class="text-sm text-gray-600">
+                        I agree to use this journal content for academic purposes only and acknowledge that the content is copyrighted by SIES College of Arts, Science & Commerce.
+                    </label>
+                </div>
+
+                <button type="submit" id="download-submit-btn" class="w-full bg-primary text-white py-3 rounded-lg font-bold text-lg shadow-lg hover:bg-blue-800 transition duration-300 transform hover:scale-[1.01] opacity-50 cursor-not-allowed" disabled>
+                    <i data-lucide="download" class="inline-block w-5 h-5 mr-2"></i>
+                    Download PDF
+                </button>
+                
+                <div id="download-message" class="text-sm text-center hidden mt-3"></div>
+            </form>
+        </div>
+    </div>
+
     <!-- Manuscript Upload Form Modal -->
     <div id="manuscriptFormModal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[1001] opacity-0 invisible">
         <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto custom-scrollbar transform scale-95 transition-all duration-300">
@@ -888,6 +957,35 @@
 
     <!-- JavaScript for Mobile Menu and Show More Articles -->
     <script>
+        // Function to update article download buttons automatically
+        function updateArticleButtons() {
+            // Article data mapping - matches actual articles in HTML
+            const articles = [
+                { id: 'article-4', title: 'Machine Learning Applications in Financial Risk Assessment' },
+                { id: 'article-5', title: 'Social Media Impact on Youth Mental Health: A Mumbai Study' },
+                { id: 'article-6', title: 'Environmental Economics and Carbon Pricing Mechanisms' },
+                { id: 'article-7', title: 'Contemporary Indian Literature and Globalization' },
+                { id: 'article-8', title: 'Supply Chain Management in Post-COVID Era' },
+                { id: 'article-9', title: 'Urban Planning and Smart City Development in India' },
+                { id: 'article-10', title: 'Gender Representation in Indian Corporate Boards' },
+                { id: 'article-11', title: 'Blockchain Technology in Banking and Financial Services' },
+                { id: 'article-12', title: 'Climate Change Adaptation in Coastal Maharashtra' },
+                { id: 'article-13', title: 'Artificial Intelligence in Healthcare Diagnostics' },
+                { id: 'article-14', title: 'Microfinance and Women Entrepreneurship in Rural India' },
+                { id: 'article-15', title: 'Digital Marketing Strategies for Indian E-commerce' }
+            ];
+
+            // Find all article download buttons that don't have onclick handlers
+            const downloadButtons = document.querySelectorAll('.bg-accent.text-white[class*="px-4"][class*="py-2"]:not([onclick])');
+            
+            downloadButtons.forEach((button, index) => {
+                if (index < articles.length) {
+                    const article = articles[index];
+                    button.setAttribute('onclick', `openDownloadModal('article', '${article.id}', '${article.title}')`);
+                }
+            });
+        }
+
         // Modal Functions
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
@@ -908,9 +1006,186 @@
             }
         }
 
+        // Global functions for download modal
+        window.openDownloadModal = function(type, itemId, title) {
+            const modal = document.getElementById('studentDetailsModal');
+            const modalTitle = document.getElementById('download-modal-title');
+            const modalSubtitle = document.getElementById('download-modal-subtitle');
+            const downloadType = document.getElementById('download_type');
+            const downloadItemId = document.getElementById('download_item_id');
+            
+            if (modal && modalTitle && modalSubtitle && downloadType && downloadItemId) {
+                // Set the modal content based on type
+                if (type === 'journal') {
+                    modalTitle.textContent = 'Download Journal PDF';
+                    modalSubtitle.textContent = `📚 ${title}`;
+                } else if (type === 'article') {
+                    modalTitle.textContent = 'Download Article PDF';
+                    modalSubtitle.textContent = `📄 ${title}`;
+                }
+                
+                // Set hidden fields
+                downloadType.value = type;
+                downloadItemId.value = itemId;
+                
+                // Check if user has already provided details (localStorage check)
+                const userDetails = localStorage.getItem('sies_user_details');
+                if (userDetails) {
+                    try {
+                        const details = JSON.parse(userDetails);
+                        // Pre-fill the form
+                        document.getElementById('student_name').value = details.student_name || '';
+                        document.getElementById('student_email').value = details.email || '';
+                        document.getElementById('college_name').value = details.college_name || '';
+                        document.getElementById('course').value = details.course || '';
+                        document.getElementById('year_of_study').value = details.year_of_study || '';
+                        document.getElementById('phone_number').value = details.phone_number || '';
+                        
+                        // Show a message that details are pre-filled
+                        const messageDiv = document.getElementById('download-message');
+                        if (messageDiv) {
+                            messageDiv.textContent = 'Your details have been pre-filled from your previous submission.';
+                            messageDiv.classList.remove('hidden', 'text-red-500');
+                            messageDiv.classList.add('text-blue-600');
+                        }
+                    } catch (e) {
+                        console.log('Error parsing stored user details:', e);
+                    }
+                }
+                
+                openModal('studentDetailsModal');
+            }
+        };
+
         // Initialize Lucide Icons safely
         document.addEventListener('DOMContentLoaded', function() {
             safeCreateIcons();
+
+            // Student Details Form Handling
+            const studentForm = document.getElementById('student-details-form');
+            const downloadMessage = document.getElementById('download-message');
+            const downloadSubmitBtn = document.getElementById('download-submit-btn');
+
+            if (studentForm && downloadMessage && downloadSubmitBtn) {
+                studentForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(studentForm);
+                    
+                    downloadSubmitBtn.disabled = true;
+                    downloadSubmitBtn.innerHTML = '<i data-lucide="loader-2" class="inline-block w-5 h-5 mr-2 animate-spin"></i>Processing...';
+                    downloadMessage.classList.add('hidden');
+                    
+                    try {
+                        const response = await fetch('../download_journal.php', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (result.success) {
+                            downloadMessage.textContent = result.message;
+                            downloadMessage.classList.remove('hidden', 'text-red-500');
+                            downloadMessage.classList.add('text-green-600');
+                            
+                            // Store user details in localStorage for future use
+                            const userDetails = {
+                                student_name: formData.get('student_name'),
+                                email: formData.get('email'),
+                                college_name: formData.get('college_name'),
+                                course: formData.get('course'),
+                                year_of_study: formData.get('year_of_study'),
+                                phone_number: formData.get('phone_number')
+                            };
+                            localStorage.setItem('sies_user_details', JSON.stringify(userDetails));
+                            
+                            // If PDF is available, trigger download
+                            if (result.pdf_available && result.download_url) {
+                                setTimeout(() => {
+                                    const link = document.createElement('a');
+                                    link.href = result.download_url;
+                                    link.download = result.filename || 'journal.pdf';
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    document.body.removeChild(link);
+                                }, 1000);
+                            }
+                            
+                            // Close modal after 3 seconds
+                            setTimeout(() => {
+                                closeModal('studentDetailsModal');
+                                studentForm.reset();
+                                downloadMessage.classList.add('hidden');
+                            }, 3000);
+                            
+                        } else {
+                            downloadMessage.textContent = result.message || 'Download failed. Please try again.';
+                            downloadMessage.classList.remove('hidden', 'text-green-600');
+                            downloadMessage.classList.add('text-red-500');
+                        }
+                        
+                    } catch (error) {
+                        console.error('Download error:', error);
+                        downloadMessage.textContent = 'Network error. Please check your connection and try again.';
+                        downloadMessage.classList.remove('hidden', 'text-green-600');
+                        downloadMessage.classList.add('text-red-500');
+                    }
+                    
+                    downloadSubmitBtn.disabled = false;
+                    downloadSubmitBtn.innerHTML = '<i data-lucide="download" class="inline-block w-5 h-5 mr-2"></i>Download PDF';
+                    safeCreateIcons(); // Re-create icons after updating innerHTML
+                });
+            }
+
+            // Form validation for Student Details Modal
+            const form = document.getElementById('student-details-form');
+            const submitBtn = document.getElementById('download-submit-btn');
+            const requiredFields = form.querySelectorAll('.required-field');
+
+            function validateForm() {
+                let allValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (field.type === 'checkbox') {
+                        if (!field.checked) {
+                            allValid = false;
+                        }
+                    } else if (field.tagName === 'SELECT') {
+                        if (!field.value) {
+                            allValid = false;
+                        }
+                    } else {
+                        if (!field.value.trim()) {
+                            allValid = false;
+                        }
+                    }
+                });
+                
+                if (submitBtn) {
+                    if (allValid) {
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                        submitBtn.classList.add('hover:bg-blue-800');
+                    } else {
+                        submitBtn.disabled = true;
+                        submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                        submitBtn.classList.remove('hover:bg-blue-800');
+                    }
+                }
+            }
+
+            // Add event listeners to all required fields
+            requiredFields.forEach(field => {
+                field.addEventListener('input', validateForm);
+                field.addEventListener('change', validateForm);
+            });
+
+            // Run initial validation
+            validateForm();
+
+            // Auto-update remaining article download buttons
+            updateArticleButtons();
 
             // Form handling
             const uploadForm = document.getElementById('manuscript-upload-form');
@@ -1011,9 +1286,15 @@
 
             // Close modal when clicking outside
             window.addEventListener('click', function(event) {
-                const modal = document.getElementById('manuscriptFormModal');
-                if (modal && event.target === modal) {
+                const manuscriptModal = document.getElementById('manuscriptFormModal');
+                const studentModal = document.getElementById('studentDetailsModal');
+                
+                if (manuscriptModal && event.target === manuscriptModal) {
                     closeModal('manuscriptFormModal');
+                }
+                
+                if (studentModal && event.target === studentModal) {
+                    closeModal('studentDetailsModal');
                 }
             });
 
@@ -1021,6 +1302,7 @@
             document.addEventListener('keydown', function(event) {
                 if (event.key === 'Escape') {
                     closeModal('manuscriptFormModal');
+                    closeModal('studentDetailsModal');
                 }
             });
         });
