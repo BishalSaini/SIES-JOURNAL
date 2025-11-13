@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submission Guidelines - SIES Journal of Multidisciplinary Research and Innovation</title>
+    <link rel="icon" href="../assets/favicon.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3A7EBD', 
+                        'accent': '#CC7722',  
+                        'secondary': '#003366', 
+                        'off-white': '#F9FAFB', 
+                        'accent2': '#D8E5F2'
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; width: 100%; position: relative; }
+        
+        .sticky-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            z-index: 100 !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .header-bg { background-color: var(--primary-color, #3A7EBD); }
+        .bg-accent { background-color: var(--accent-color, #3A7EBD); } 
+        .text-accent { color: var(--accent-color, #CC7722); }
+        .text-accent2 { color: var(--accent-color, #D8E5F2); }
+        .text-secondary { color: var(--secondary-color, #003366); }
+        .text-golden { color: var(--golden-color, #fbbf24); }
+        .hover-accent:hover { background-color: #0284c7; }
+
+        @media (max-width: 768px) {
+            .section-padding { 
+                padding-top: 3rem; 
+                padding-bottom: 3rem; 
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .accordion-content.active {
+            max-height: 2000px;
+            transition: max-height 0.6s ease-in;
+        }
+
+        .modal {
+            transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            background-color: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #0ea5e9; 
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: #0284c7;
+        }
+
+        .guideline-card {
+            transition: all 0.3s ease;
+        }
+        .guideline-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #3A7EBD 0%, #003366 100%);
+        }
+
+        .checklist-item {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .checklist-item::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #CC7722;
+            color: white;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.875rem;
+        }
+
+        .timeline-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 50px;
+            padding-bottom: 3rem;
+        }
+        
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: 19px;
+            top: 40px;
+            bottom: 0;
+            width: 2px;
+            background: #E5E7EB;
+        }
+        
+        .timeline-item:last-child::before {
+            display: none;
+        }
+        
+        .timeline-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: #CC7722;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.125rem;
+            box-shadow: 0 0 0 4px #FFF, 0 0 0 6px #FEF3C7;
+        }
+        
+        .timeline-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-card:hover {
+            box-shadow: 0 10px 25px rgba(58, 126, 189, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-item {
+                padding-left: 40px;
+            }
+            
+            .timeline-number {
+                width: 32px;
+                height: 32px;
+                font-size: 0.875rem;
+                left: 0;
+            }
+            
+            .timeline-item::before {
+                left: 15px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="header-bg sticky-header shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                
+                <!-- LOGO -->
+                <a href="../index.html" class="flex items-center text-white transition duration-300">
+                    <img 
+                        src="https://siesascn.edu.in/images/sies_ascn_logo.jpg" 
+                        alt="SIES College Logo" 
+                        class="h-10 sm:h-12 w-auto" 
+                        onerror="this.onerror=null; this.style.display='none'; document.getElementById('logo-text-fallback').style.display='inline';"
+                    >
+                    <span id="logo-text-fallback" class="ml-3 text-2xl font-extrabold tracking-wider"></span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-6 items-center">
+                    <a href="../index.html" class="text-white hover:text-accent transition duration-300">Home</a>
+                    <a href="../about-us/about.html" class="text-white hover:text-accent transition duration-300">About</a>
+                    <a href="../journals/journals.html" class="text-white hover:text-accent transition duration-300">Journals</a>
+                    <a href="../editorial-board/editorial.html" class="text-white hover:text-accent transition duration-300">Editorial Board</a>
+                    <a href="../announcements/announcements.html" class="text-white hover:text-accent transition duration-300">Announcements</a>
+                    <a href="../guidelines/guidelines.html" class="text-golden font-semibold">Guidelines</a>
+                    <a href="../faq/faq.html" class="text-white hover:text-accent transition duration-300">FAQ</a>
+                    <a href="../contact/contact.html" class="text-white hover:text-accent transition duration-300">Contact</a>
+                    <button onclick="openModal('manuscriptFormModal')" class="bg-accent text-white px-5 py-2 rounded-full font-semibold shadow-md transition duration-300">
+                        Submit Manuscript
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-button" class="md:hidden text-white focus:outline-none" aria-label="Toggle Menu">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full header-bg shadow-xl">
+            <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
+                <a href="../index.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Home</a>
+                <a href="../about-us/about.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">About</a>
+                <a href="../journals/journals.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Journals</a>
+                <a href="../editorial-board/editorial.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Editorial Board</a>
+                <a href="../announcements/announcements.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Announcements</a>
+                <a href="../guidelines/guidelines.html" class="text-golden w-full text-center py-2 rounded-md">Guidelines</a>
+                <a href="../faq/faq.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">FAQ</a>
+                <a href="../contact/contact.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Contact</a>
+                <button onclick="openModal('manuscriptFormModal')" class="bg-accent text-white px-5 py-2 mt-2 w-11/12 rounded-full font-semibold shadow-md transition duration-300">
+                    Submit Manuscript
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative bg-gradient-to-r from-primary to-secondary text-white section-padding pt-32 overflow-hidden">
+            <div class="absolute inset-0 w-full h-full z-0">
+                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=80" alt="Guidelines Background" class="w-full h-full object-cover opacity-20" style="object-position: center;" />
+                <div class=""></div>
+            </div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6">
+                    Submission <span class="text-accent">Guidelines</span>
+                </h1>
+                <p class="text-xl text-blue-200 max-w-3xl mx-auto mb-8">
+                    Comprehensive guidelines for authors to ensure high-quality submissions to the SIES Journal of Multidisciplinary Research and Innovation
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#quick-start" class="bg-accent text-white px-8 py-3 rounded-full font-bold shadow-xl transition duration-300 transform hover:scale-105">
+                        <i data-lucide="rocket" class="inline-block w-5 h-5 mr-2"></i>
+                        Quick Start Guide
+                    </a>
+                    <a href="#detailed-guidelines" class="bg-white text-secondary px-8 py-3 rounded-full font-bold shadow-xl transition duration-300 transform hover:scale-105">
+                        <i data-lucide="book-open" class="inline-block w-5 h-5 mr-2"></i>
+                        Detailed Guidelines
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Overview Section -->
+        <section class="section-padding bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4 text-secondary">At a Glance</span></h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto">Essential information for prospective authors</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Quick Info Card 1 -->
+                    <div class="guideline-card bg-gradient-to-br from-primary to-secondary text-white p-6 rounded-xl shadow-lg text-center">
+                        <i data-lucide="file-text" class="w-12 h-12 mx-auto mb-4 text-accent"></i>
+                        <h3 class="text-xl font-bold mb-2">Article Length</h3>
+                        <p class="text-gray-200">3,000-8,000 words</p>
+                        <p class="text-sm text-gray-300 mt-2">Including references</p>
+                    </div>
+
+                    <!-- Quick Info Card 2 -->
+                    <div class="guideline-card bg-gradient-to-br from-primary to-secondary text-white p-6 rounded-xl shadow-lg text-center">
+                        <i data-lucide="calendar" class="w-12 h-12 mx-auto mb-4 text-accent"></i>
+                        <h3 class="text-xl font-bold mb-2">Review Time</h3>
+                        <p class="text-gray-200">8-10 weeks</p>
+                        <p class="text-sm text-gray-300 mt-2">Double-blind review</p>
+                    </div>
+
+                    <!-- Quick Info Card 3 -->
+                    <div class="guideline-card bg-gradient-to-br from-primary to-secondary text-white p-6 rounded-xl shadow-lg text-center">
+                        <i data-lucide="book" class="w-12 h-12 mx-auto mb-4 text-accent"></i>
+                        <h3 class="text-xl font-bold mb-2">Citation Style</h3>
+                        <p class="text-gray-200">APA 7th Edition</p>
+                        <p class="text-sm text-gray-300 mt-2">Mandatory format</p>
+                    </div>
+
+                    <!-- Quick Info Card 4 -->
+                    <div class="guideline-card bg-gradient-to-br from-primary to-secondary text-white p-6 rounded-xl shadow-lg text-center">
+                        <i data-lucide="dollar-sign" class="w-12 h-12 mx-auto mb-4 text-accent"></i>
+                        <h3 class="text-xl font-bold mb-2">Publication Fee</h3>
+                        <p class="text-gray-200">No Charges</p>
+                        <p class="text-sm text-gray-300 mt-2">Open access model</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Start Guide Section -->
+        <section id="quick-start" class="section-padding bg-gray-50">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4 text-secondary">Quick Start Guide</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Follow these steps to prepare and submit your manuscript</p>
+                </div>
+
+                <div class="timeline-container">
+                    <!-- Step 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-number">1</div>
+                        <div class="timeline-card">
+                            <h3 class="text-xl font-bold text-secondary mb-3">Prepare Your Manuscript</h3>
+                            <div class="space-y-2 text-gray-700 text-sm">
+                                <p class="checklist-item">Format according to APA 7th Edition guidelines</p>
+                                <p class="checklist-item">Ensure word count is between 3,000-8,000 words</p>
+                                <p class="checklist-item">Include a 150-250 word abstract</p>
+                                <p class="checklist-item">Add 4-6 keywords related to your research</p>
+                                <p class="checklist-item">Anonymize your manuscript (remove author names and affiliations)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-number">2</div>
+                        <div class="timeline-card">
+                            <h3 class="text-xl font-bold text-secondary mb-3">Review Submission Requirements</h3>
+                            <div class="space-y-2 text-gray-700 text-sm">
+                                <p class="checklist-item">Verify your research is original and unpublished</p>
+                                <p class="checklist-item">Check plagiarism (must be below 10%)</p>
+                                <p class="checklist-item">Ensure proper citations and references</p>
+                                <p class="checklist-item">Review ethical guidelines and obtain necessary approvals</p>
+                                <p class="checklist-item">Prepare cover letter with author details</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-number">3</div>
+                        <div class="timeline-card">
+                            <h3 class="text-xl font-bold text-secondary mb-3">Submit Your Work</h3>
+                            <div class="space-y-2 text-gray-700 text-sm">
+                                <p class="checklist-item">Use the online submission form on our website</p>
+                                <p class="checklist-item">Upload manuscript in PDF or DOCX format</p>
+                                <p class="checklist-item">Fill in all required author information</p>
+                                <p class="checklist-item">Provide accurate contact details</p>
+                                <p class="checklist-item">Submit and receive confirmation email</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="timeline-item">
+                        <div class="timeline-number">4</div>
+                        <div class="timeline-card">
+                            <h3 class="text-xl font-bold text-secondary mb-3">Track Your Submission</h3>
+                            <div class="space-y-2 text-gray-700 text-sm">
+                                <p class="checklist-item">Receive initial acknowledgment within 48 hours</p>
+                                <p class="checklist-item">Wait for peer review (8-10 weeks)</p>
+                                <p class="checklist-item">Respond to reviewer comments if required</p>
+                                <p class="checklist-item">Make revisions as suggested by reviewers</p>
+                                <p class="checklist-item">Receive final acceptance decision</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <button onclick="openModal('manuscriptFormModal')" class="bg-accent text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl transition duration-300 transform hover:scale-105">
+                        <i data-lucide="upload" class="inline-block w-5 h-5 mr-2"></i>
+                        Submit Your Manuscript Now
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Guidelines Section -->
+        <section id="detailed-guidelines" class="section-padding bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4 text-secondary">Detailed Submission Guidelines</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto">Comprehensive information for preparing your manuscript</p>
+                </div>
+
+                <!-- Accordion Guidelines -->
+                <div class="space-y-4 max-w-5xl mx-auto">
+                    
+                    <!-- Guideline 1: Manuscript Preparation -->
+                    <div class="border-2 border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition duration-300">
+                        <button class="w-full text-left p-6 flex justify-between items-center text-xl font-bold text-secondary hover:bg-gray-50 transition duration-300 rounded-t-xl" onclick="toggleAccordion('guideline-1')">
+                            <span class="flex items-center">
+                                <i data-lucide="file-edit" class="w-6 h-6 mr-3 text-accent"></i>
+                                Manuscript Preparation
+                            </span>
+                            <i data-lucide="chevron-down" class="w-6 h-6 transition-transform duration-300" id="icon-guideline-1"></i>
+                        </button>
+                        <div id="guideline-1" class="accordion-content">
+                            <div class="p-6 pt-0 text-gray-700 space-y-4">
+                                <h4 class="font-bold text-lg text-secondary">General Format</h4>
+                                <ul class="list-disc pl-6 space-y-2">
+                                    <li><strong>Font:</strong> Times New Roman, 12 point</li>
+                                    <li><strong>Spacing:</strong> Double-spaced throughout</li>
+                                    <li><strong>Margins:</strong> 1 inch (2.54 cm) on all sides</li>
+                                    <li><strong>Alignment:</strong> Left-aligned (ragged right)</li>
+                                    <li><strong>Page Numbers:</strong> Top right corner</li>
+                                    <li><strong>File Format:</strong> .docx or .pdf</li>
+                                </ul>
+                                
+                                <h4 class="font-bold text-lg text-secondary mt-6">Structure</h4>
+                                <ul class="list-disc pl-6 space-y-2">
+                                    <li><strong>Title Page:</strong> Title, abstract, keywords (anonymized)</li>
+                                    <li><strong>Abstract:</strong> 150-250 words, structured or unstructured</li>
+                                    <li><strong>Keywords:</strong> 4-6 relevant keywords</li>
+                                    <li><strong>Main Body:</strong> Introduction, Literature Review, Methodology, Results, Discussion, Conclusion</li>
+                                    <li><strong>References:</strong> APA 7th Edition format</li>
+                                    <li><strong>Appendices:</strong> If applicable, include after references</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Guideline 2: Citation & References -->
+                    <div class="border-2 border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition duration-300">
+                        <button class="w-full text-left p-6 flex justify-between items-center text-xl font-bold text-secondary hover:bg-gray-50 transition duration-300 rounded-t-xl" onclick="toggleAccordion('guideline-2')">
+                            <span class="flex items-center">
+                                <i data-lucide="quote" class="w-6 h-6 mr-3 text-accent"></i>
+                                Citation Style & References
+                            </span>
+                            <i data-lucide="chevron-down" class="w-6 h-6 transition-transform duration-300" id="icon-guideline-2"></i>
+                        </button>
+                        <div id="guideline-2" class="accordion-content">
+                            <div class="p-6 pt-0 text-gray-700 space-y-4">
+                                <h4 class="font-bold text-lg text-secondary">APA 7th Edition</h4>
+                                <p>All citations and references must follow the American Psychological Association (APA) 7th Edition style.</p>
+                                
+                                <h4 class="font-bold text-lg text-secondary mt-6">In-Text Citations</h4>
+                                <div class="bg-gray-50 p-4 rounded-lg space-y-2">
+                                    <p><strong>Single author:</strong> (Smith, 2020)</p>
+                                    <p><strong>Two authors:</strong> (Jones & Brown, 2021)</p>
+                                    <p><strong>Three or more:</strong> (Kumar et al., 2022)</p>
+                                    <p><strong>Direct quote:</strong> (Anderson, 2019, p. 45)</p>
+                                </div>
+                                
+                                <h4 class="font-bold text-lg text-secondary mt-6">Reference List</h4>
+                                <div class="bg-gray-50 p-4 rounded-lg space-y-3">
+                                    <p><strong>Journal Article:</strong><br>
+                                    Author, A. A., & Author, B. B. (Year). Title of article. <em>Journal Name, Volume</em>(Issue), page range. DOI or URL</p>
+                                    
+                                    <p><strong>Book:</strong><br>
+                                    Author, A. A. (Year). <em>Title of book</em> (Edition). Publisher.</p>
+                                    
+                                    <p><strong>Chapter in Book:</strong><br>
+                                    Author, A. A. (Year). Title of chapter. In B. B. Editor (Ed.), <em>Title of book</em> (pp. xx-xx). Publisher.</p>
+                                </div>
+                                
+                                <div class="bg-blue-50 border-l-4 border-primary p-4 rounded mt-4">
+                                    <p class="font-semibold text-secondary">💡 Tip:</p>
+                                    <p class="text-gray-700">Use reference management software like Zotero, Mendeley, or EndNote to ensure consistency.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Guideline 3: Tables & Figures -->
+                    <div class="border-2 border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition duration-300">
+                        <button class="w-full text-left p-6 flex justify-between items-center text-xl font-bold text-secondary hover:bg-gray-50 transition duration-300 rounded-t-xl" onclick="toggleAccordion('guideline-3')">
+                            <span class="flex items-center">
+                                <i data-lucide="image" class="w-6 h-6 mr-3 text-accent"></i>
+                                Tables, Figures & Images
+                            </span>
+                            <i data-lucide="chevron-down" class="w-6 h-6 transition-transform duration-300" id="icon-guideline-3"></i>
+                        </button>
+                        <div id="guideline-3" class="accordion-content">
+                            <div class="p-6 pt-0 text-gray-700 space-y-4">
+                                <h4 class="font-bold text-lg text-secondary">Tables</h4>
+                                <ul class="list-disc pl-6 space-y-2">
+                                    <li>Number tables consecutively (Table 1, Table 2, etc.)</li>
+                                    <li>Include a clear, descriptive title above the table</li>
+                                    <li>Use horizontal lines only (no vertical lines)</li>
+                                    <li>Place notes below the table if needed</li>
+                                    <li>Ensure tables are editable (not images)</li>
+                                </ul>
+                                
+                                <h4 class="font-bold text-lg text-secondary mt-6">Figures</h4>
+                                <ul class="list-disc pl-6 space-y-2">
+                                    <li>Number figures consecutively (Figure 1, Figure 2, etc.)</li>
+                                    <li>Include a caption below the figure</li>
+                                    <li>Submit in high resolution (minimum 300 DPI)</li>
+                                    <li>Accepted formats: PNG, JPEG, TIFF</li>
+                                    <li>Ensure all text in figures is legible</li>
+                                    <li>Cite the source if not original</li>
+                                </ul>
+                                
+                                <div class="bg-blue-50 border-l-4 border-primary p-4 rounded mt-4">
+                                    <p class="font-semibold text-secondary">📊 Best Practice:</p>
+                                    <p class="text-gray-700">Place tables and figures close to where they are first mentioned in the text.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Guideline 4: Ethical Considerations -->
+                    <div class="border-2 border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition duration-300">
+                        <button class="w-full text-left p-6 flex justify-between items-center text-xl font-bold text-secondary hover:bg-gray-50 transition duration-300 rounded-t-xl" onclick="toggleAccordion('guideline-4')">
+                            <span class="flex items-center">
+                                <i data-lucide="shield-check" class="w-6 h-6 mr-3 text-accent"></i>
+                                Ethical Guidelines & Policies
+                            </span>
+                            <i data-lucide="chevron-down" class="w-6 h-6 transition-transform duration-300" id="icon-guideline-4"></i>
+                        </button>
+                        <div id="guideline-4" class="accordion-content">
+                            <div class="p-6 pt-0 text-gray-700 space-y-4">
+                                <h4 class="font-bold text-lg text-secondary">Originality & Plagiarism</h4>
+                                <ul class="list-disc pl-6 space-y-2">
+                                    <li>All submissions must be original work</li>
+                                    <li>Plagiarism threshold: <strong>Maximum 10%</strong> similarity</li>
+                                    <li>Self-plagiarism is also considered misconduct</li>
+                                    <li>Proper attribution is required for all sources</li>
+                                    <li>Authors may be asked to submit plagiarism report</li>
+                                </ul>
+                                
+                                <h4 class="font-bold text-lg text-secondary mt-6">Research Ethics</h4>
+                                <ul class="list-disc pl-6 space-y-2">
+                                    <li>Research involving human participants requires IRB/ethical approval</li>
+                                    <li>Informed consent must be obtained from participants</li>
+                                    <li>Confidentiality and anonymity must be maintained</li>
+                                    <li>Animal research must follow ethical guidelines</li>
+                                    <li>Conflicts of interest must be declared</li>
+                                </ul>
+                                
+                                <h4 class="font-bold text-lg text-secondary mt-6">Authorship</h4>
+                                <ul class="list-disc pl-6 space-y-2">
+                                    <li>All listed authors must have made substantial contributions</li>
+                                    <li>All contributors must approve the final manuscript</li>
+                                    <li>Corresponding author is responsible for communication</li>
+                                    <li>Changes to authorship require written consent from all authors</li>
+                                </ul>
+                                
+                                <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded mt-4">
+                                    <p class="font-semibold text-red-700">⚠️ Important:</p>
+                                    <p class="text-gray-700">Violation of ethical guidelines may result in immediate rejection and potential blacklisting from future submissions.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Guideline 5: Review Process -->
+                    <div class="border-2 border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition duration-300">
+                        <button class="w-full text-left p-6 flex justify-between items-center text-xl font-bold text-secondary hover:bg-gray-50 transition duration-300 rounded-t-xl" onclick="toggleAccordion('guideline-5')">
+                            <span class="flex items-center">
+                                <i data-lucide="search" class="w-6 h-6 mr-3 text-accent"></i>
+                                Peer Review Process
+                            </span>
+                            <i data-lucide="chevron-down" class="w-6 h-6 transition-transform duration-300" id="icon-guideline-5"></i>
+                        </button>
+                        <div id="guideline-5" class="accordion-content">
+                            <div class="p-6 pt-0 text-gray-700 space-y-4">
+                                <h4 class="font-bold text-lg text-secondary">Double-Blind Review</h4>
+                                <p>SIES Journal follows a rigorous double-blind peer review process where both author and reviewer identities are concealed.</p>
+                                
+                                <h4 class="font-bold text-lg text-secondary mt-6">Review Timeline</h4>
+                                <div class="bg-gray-50 p-4 rounded-lg space-y-3">
+                                    <div class="flex items-start">
+                                        <span class="bg-accent text-white px-3 py-1 rounded-full text-sm font-bold mr-3 flex-shrink-0">0-2 days</span>
+                                        <p>Initial acknowledgment and manuscript ID assignment</p>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="bg-accent text-white px-3 py-1 rounded-full text-sm font-bold mr-3 flex-shrink-0">1 week</span>
+                                        <p>Editorial screening for scope and quality</p>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="bg-accent text-white px-3 py-1 rounded-full text-sm font-bold mr-3 flex-shrink-0">2-4 weeks</span>
+                                        <p>Reviewer assignment and invitation</p>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="bg-accent text-white px-3 py-1 rounded-full text-sm font-bold mr-3 flex-shrink-0">6-8 weeks</span>
+                                        <p>Peer review completion and feedback</p>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="bg-accent text-white px-3 py-1 rounded-full text-sm font-bold mr-3 flex-shrink-0">8-10 weeks</span>
+                                        <p>Editorial decision and author notification</p>
+                                    </div>
+                                </div>
+                                
+                                <h4 class="font-bold text-lg text-secondary mt-6">Possible Decisions</h4>
+                                <ul class="list-disc pl-6 space-y-2">
+                                    <li><strong>Accept:</strong> Manuscript is accepted with minor edits</li>
+                                    <li><strong>Minor Revision:</strong> Minor changes needed before acceptance</li>
+                                    <li><strong>Major Revision:</strong> Significant improvements required, re-review needed</li>
+                                    <li><strong>Reject & Resubmit:</strong> Substantial work needed, can resubmit as new</li>
+                                    <li><strong>Reject:</strong> Not suitable for publication in current form</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Guideline 6: After Acceptance -->
+                    <div class="border-2 border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition duration-300">
+                        <button class="w-full text-left p-6 flex justify-between items-center text-xl font-bold text-secondary hover:bg-gray-50 transition duration-300 rounded-t-xl" onclick="toggleAccordion('guideline-6')">
+                            <span class="flex items-center">
+                                <i data-lucide="check-circle" class="w-6 h-6 mr-3 text-accent"></i>
+                                After Acceptance
+                            </span>
+                            <i data-lucide="chevron-down" class="w-6 h-6 transition-transform duration-300" id="icon-guideline-6"></i>
+                        </button>
+                        <div id="guideline-6" class="accordion-content">
+                            <div class="p-6 pt-0 text-gray-700 space-y-4">
+                                <h4 class="font-bold text-lg text-secondary">Publication Process</h4>
+                                <ul class="list-disc pl-6 space-y-2">
+                                    <li>Authors receive acceptance letter with publication details</li>
+                                    <li>Final manuscript is copyedited for language and formatting</li>
+                                    <li>Authors receive proofs for final review (48-hour turnaround)</li>
+                                    <li>Corrected proofs are submitted for final publication</li>
+                                    <li>Article is published in the upcoming issue</li>
+                                </ul>
+                                
+                                <h4 class="font-bold text-lg text-secondary mt-6">Copyright & Licensing</h4>
+                                <ul class="list-disc pl-6 space-y-2">
+                                    <li>Authors retain copyright of their work</li>
+                                    <li>Articles are published under Creative Commons license</li>
+                                    <li>Open access ensures wide dissemination</li>
+                                    <li>Authors can share their published work freely</li>
+                                </ul>
+                                
+                                <h4 class="font-bold text-lg text-secondary mt-6">Post-Publication</h4>
+                                <ul class="list-disc pl-6 space-y-2">
+                                    <li>Authors receive a digital copy of their published article</li>
+                                    <li>Articles are assigned DOI for permanent identification</li>
+                                    <li>Published online with ISSN 3048-9768</li>
+                                    <li>Promoted through journal's social media channels</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Templates Section -->
+        <section class="section-padding bg-gradient-to-br from-primary to-secondary text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">Download Resources</h2>
+                    <p class="text-blue-200 max-w-2xl mx-auto">Templates and guides to help you prepare your manuscript</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Resource 1 -->
+                    <div class="bg-white text-gray-800 p-6 rounded-xl shadow-xl hover:transform hover:scale-105 transition duration-300 flex flex-col h-full">
+                        <i data-lucide="file-text" class="w-12 h-12 text-accent mb-4"></i>
+                        <h3 class="text-xl font-bold text-secondary mb-3">Manuscript Template</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Pre-formatted Word document following all journal guidelines</p>
+                        <button class="w-full bg-accent text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 transition">
+                            <i data-lucide="download" class="inline-block w-4 h-4 mr-2"></i>
+                            Download .DOCX
+                        </button>
+                    </div>
+
+                    <!-- Resource 2 -->
+                    <div class="bg-white text-gray-800 p-6 rounded-xl shadow-xl hover:transform hover:scale-105 transition duration-300 flex flex-col h-full">
+                        <i data-lucide="layout-template" class="w-12 h-12 text-accent mb-4"></i>
+                        <h3 class="text-xl font-bold text-secondary mb-3">Cover Letter Template</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Sample cover letter for manuscript submission</p>
+                        <button class="w-full bg-accent text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 transition">
+                            <i data-lucide="download" class="inline-block w-4 h-4 mr-2"></i>
+                            Download .DOCX
+                        </button>
+                    </div>
+
+                    <!-- Resource 3 -->
+                    <div class="bg-white text-gray-800 p-6 rounded-xl shadow-xl hover:transform hover:scale-105 transition duration-300 flex flex-col h-full">
+                        <i data-lucide="book-open" class="w-12 h-12 text-accent mb-4"></i>
+                        <h3 class="text-xl font-bold text-secondary mb-3">APA Style Guide</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Quick reference guide for APA 7th Edition formatting</p>
+                        <button class="w-full bg-accent text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 transition">
+                            <i data-lucide="download" class="inline-block w-4 h-4 mr-2"></i>
+                            Download PDF
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact for Help Section -->
+        <section class="section-padding bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-bold mb-6 text-secondary">Need Assistance?</h2>
+                <p class="text-gray-600 mb-8 text-lg max-w-2xl mx-auto">
+                    Our editorial team is here to help with any questions about the submission process or guidelines. Don't hesitate to reach out!
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="../contact/contact.html" class="inline-block bg-primary text-white px-8 py-4 rounded-full font-bold shadow-xl hover:bg-opacity-90 transition duration-300 transform hover:scale-105">
+                        <i data-lucide="mail" class="inline-block w-5 h-5 mr-2"></i>
+                        Contact Us
+                    </a>
+                    <button onclick="openModal('manuscriptFormModal')" class="inline-block bg-accent text-white px-8 py-4 rounded-full font-bold shadow-xl hover:bg-opacity-90 transition duration-300 transform hover:scale-105">
+                        <i data-lucide="send" class="inline-block w-5 h-5 mr-2"></i>
+                        Submit Manuscript
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Manuscript Upload Form Modal -->
+    <div id="manuscriptFormModal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[1001] opacity-0 invisible">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto custom-scrollbar transform scale-95 transition-all duration-300">
+            <!-- Modal Header -->
+            <div class="p-6 bg-primary text-white flex justify-between items-center rounded-t-xl">
+                <h3 class="text-2xl font-bold flex items-center">
+                    <i data-lucide="file-up" class="w-6 h-6 mr-3"></i> Manuscript Submission Form
+                </h3>
+                <button onclick="closeModal('manuscriptFormModal')" class="text-white hover:text-accent transition" aria-label="Close Modal">
+                    <i data-lucide="x" class="w-7 h-7"></i>
+                </button>
+            </div>
+            
+            <!-- Modal Content (Form) -->
+            <form id="manuscript-upload-form" action="../submit_manuscript.php" method="POST" enctype="multipart/form-data" class="p-8 space-y-6 text-gray-700">
+                <p class="text-lg font-semibold text-secondary">Please provide your details and attach the anonymized manuscript PDF.</p>
+
+                <!-- Personal Details -->
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <input type="text" name="author_name" placeholder="Full Name of Primary Author" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                    <input type="email" name="email" placeholder="Email Address" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                    <input type="text" name="affiliation" placeholder="Affiliation / Institution" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent sm:col-span-2" required>
+                </div>
+                
+                <!-- Manuscript Details -->
+                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Manuscript Information</h4>
+                <div class="space-y-3">
+                    <input type="text" id="title-input" name="manuscript_title" placeholder="Title of Manuscript" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
+                </div>
+                <textarea name="abstract" placeholder="Brief Abstract (150-250 words)" rows="3" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required></textarea>
+
+                <!-- File Upload -->
+                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Upload Manuscript (PDF/DOCX)</h4>
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                    <label for="manuscript-file" class="cursor-pointer text-accent hover:text-primary font-semibold">
+                        <i data-lucide="upload-cloud" class="w-8 h-8 mx-auto mb-2"></i>
+                        Click to select file (PDF or DOCX)
+                    </label>
+                    <input type="file" name="manuscript_file" id="manuscript-file" accept=".pdf,.docx" class="hidden" required>
+                    <p id="file-name-display" class="text-sm text-gray-500 mt-2">No file selected.</p>
+                </div>
+
+                <button type="submit" id="manuscript-submit-btn" class="w-full bg-accent text-white py-3 rounded-lg font-bold text-lg shadow-lg hover:bg-opacity-90 transition duration-300 transform hover:scale-[1.01]">
+                    Submit Manuscript
+                </button>
+                <p id="upload-form-message" class="text-sm text-center text-green-600 hidden mt-3">Manuscript submitted successfully!</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="header-bg py-8 mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white text-sm">
+            <p>&copy; 2025 SIES College Nerul. All Rights Reserved. | ISSN: 3048-9768 (Online)</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@0.400.0/dist/umd/lucide.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (menuButton && mobileMenu) {
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // Accordion Toggle Function
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                // Optional: Close all other accordions
+                document.querySelectorAll('.accordion-content').forEach(item => {
+                    item.classList.remove('active');
+                });
+                document.querySelectorAll('[id^="icon-guideline-"]').forEach(item => {
+                    item.style.transform = 'rotate(0deg)';
+                });
+                
+                // Open clicked accordion
+                content.classList.add('active');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Modal Functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('invisible', 'opacity-0');
+                const modalContent = modal.querySelector('div');
+                if (modalContent) {
+                    modalContent.classList.remove('scale-95');
+                    modalContent.classList.add('scale-100');
+                }
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        window.openModal = openModal;
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('opacity-0');
+                const modalContent = modal.querySelector('div');
+                if (modalContent) {
+                    modalContent.classList.add('scale-95');
+                    modalContent.classList.remove('scale-100');
+                }
+                
+                setTimeout(() => {
+                    modal.classList.add('invisible');
+                    document.body.style.overflow = '';
+                }, 300);
+            }
+        }
+        window.closeModal = closeModal;
+
+        // Close modal when clicking outside
+        const manuscriptModal = document.getElementById('manuscriptFormModal');
+        if (manuscriptModal) {
+            manuscriptModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal('manuscriptFormModal');
+                }
+            });
+        }
+
+        // Form Submission Handler
+        const uploadForm = document.getElementById('manuscript-upload-form');
+        const uploadFormMessage = document.getElementById('upload-form-message');
+        const manuscriptSubmitBtn = document.getElementById('manuscript-submit-btn');
+
+        if (uploadForm && uploadFormMessage && manuscriptSubmitBtn) {
+            uploadForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                manuscriptSubmitBtn.disabled = true;
+                manuscriptSubmitBtn.innerHTML = '<i data-lucide="loader" class="inline-block w-5 h-5 mr-2 animate-spin"></i> Submitting...';
+                
+                uploadFormMessage.classList.add('hidden');
+                uploadFormMessage.classList.remove('text-green-600', 'text-red-500');
+                
+                try {
+                    const formData = new FormData(uploadForm);
+                    
+                    const response = await fetch('../submit_manuscript.php', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        uploadFormMessage.textContent = result.message || 'Manuscript submitted successfully!';
+                        uploadFormMessage.classList.remove('hidden', 'text-red-500');
+                        uploadFormMessage.classList.add('text-green-600');
+                        
+                        uploadForm.reset();
+                        const fileNameDisplay = document.getElementById('file-name-display');
+                        if (fileNameDisplay) fileNameDisplay.textContent = 'No file selected.';
+                        
+                        setTimeout(() => { 
+                            uploadFormMessage.classList.add('hidden'); 
+                            closeModal('manuscriptFormModal');
+                        }, 3000);
+                        
+                    } else {
+                        uploadFormMessage.textContent = result.message || 'Submission failed. Please try again.';
+                        uploadFormMessage.classList.remove('hidden', 'text-green-600');
+                        uploadFormMessage.classList.add('text-red-500');
+                    }
+                    
+                } catch (error) {
+                    console.error('Submission error:', error);
+                    uploadFormMessage.textContent = 'Network error. Please check your connection and try again.';
+                    uploadFormMessage.classList.remove('hidden', 'text-green-600');
+                    uploadFormMessage.classList.add('text-red-500');
+                }
+                
+                manuscriptSubmitBtn.disabled = false;
+                manuscriptSubmitBtn.innerHTML = 'Submit Manuscript';
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            });
+        }
+        
+        // File selection update
+        const manuscriptFile = document.getElementById('manuscript-file');
+        if (manuscriptFile) {
+            manuscriptFile.addEventListener('change', function() {
+                const fileNameDisplay = document.getElementById('file-name-display');
+                if (fileNameDisplay) {
+                    if (this.files.length > 0) {
+                        fileNameDisplay.textContent = `Selected file: ${this.files[0].name}`;
+                    } else {
+                        fileNameDisplay.textContent = 'No file selected.';
+                    }
+                }
+            });
+        }
+
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>
