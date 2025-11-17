@@ -694,33 +694,33 @@
         </section>
 
         <!-- Archive Statistics -->
-        <section class="section-padding bg-gradient-to-r from-primary to-secondary text-white">
+        <section class="py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl font-bold mb-4">Publication Archive Statistics</h2>
-                <p class="text-accent mb-12 max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold mb-4 text-primary">Publication Archive Statistics</h2>
+                <p class="text-secondary mb-12 max-w-3xl mx-auto">
                     Our growing repository of peer-reviewed research contributions
                 </p>
 
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
-                        <i data-lucide="book" class="w-10 h-10 mx-auto text-accent mb-3"></i>
-                        <p class="text-4xl font-extrabold">1</p>
-                        <p class="text-lg font-semibold">Published Volumes</p>
+                    <div class="bg-gradient-to-br from-primary to-secondary p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <i data-lucide="book" class="w-12 h-12 mx-auto text-accent mb-4"></i>
+                        <p class="text-4xl font-extrabold text-white mb-2">1</p>
+                        <p class="text-lg font-semibold text-white/90">Published Volumes</p>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
-                        <i data-lucide="file-text" class="w-10 h-10 mx-auto text-accent mb-3"></i>
-                        <p class="text-4xl font-extrabold">15+</p>
-                        <p class="text-lg font-semibold">Research Articles</p>
+                    <div class="bg-gradient-to-br from-primary to-secondary p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <i data-lucide="file-text" class="w-12 h-12 mx-auto text-accent mb-4"></i>
+                        <p class="text-4xl font-extrabold text-white mb-2">15+</p>
+                        <p class="text-lg font-semibold text-white/90">Research Articles</p>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
-                        <i data-lucide="users" class="w-10 h-10 mx-auto text-accent mb-3"></i>
-                        <p class="text-4xl font-extrabold">30+</p>
-                        <p class="text-lg font-semibold">Contributing Authors</p>
+                    <div class="bg-gradient-to-br from-primary to-secondary p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <i data-lucide="users" class="w-12 h-12 mx-auto text-accent mb-4"></i>
+                        <p class="text-4xl font-extrabold text-white mb-2">30+</p>
+                        <p class="text-lg font-semibold text-white/90">Contributing Authors</p>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
-                        <i data-lucide="download" class="w-10 h-10 mx-auto text-accent mb-3"></i>
-                        <p class="text-4xl font-extrabold">500+</p>
-                        <p class="text-lg font-semibold">Total Downloads</p>
+                    <div class="bg-gradient-to-br from-primary to-secondary p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <i data-lucide="download" class="w-12 h-12 mx-auto text-accent mb-4"></i>
+                        <p class="text-4xl font-extrabold text-white mb-2">500+</p>
+                        <p class="text-lg font-semibold text-white/90">Total Downloads</p>
                     </div>
                 </div>
             </div>
@@ -812,6 +812,29 @@
             
             <!-- Modal Content (Form) -->
             <form id="manuscript-upload-form" action="../submit_manuscript.php" method="POST" enctype="multipart/form-data" class="p-8 space-y-6 text-gray-700">
+                
+                <!-- Submission Guidelines Summary -->
+                <div class="bg-blue-50 border-l-4 border-primary p-4 rounded-r-lg">
+                    <div class="flex items-start">
+                        <i data-lucide="info" class="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0"></i>
+                        <div>
+                            <h4 class="font-bold text-primary mb-2">Quick Submission Guidelines</h4>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>✓ <strong>Format:</strong> Upload PDF or DOCX format only</li>
+                                <li>✓ <strong>Anonymity:</strong> Remove all author identifying information from the manuscript</li>
+                                <li>✓ <strong>Length:</strong> 3,000-8,000 words (excluding references)</li>
+                                <li>✓ <strong>Abstract:</strong> 150-250 words summarizing your research</li>
+                                <li>✓ <strong>Formatting:</strong> Times New Roman, 12pt, double-spaced</li>
+                            </ul>
+                            <p class="text-xs text-gray-600 mt-3">
+                                <a href="../guidelines/guidelines.html" target="_blank" class="text-accent hover:underline font-semibold">
+                                    📖 Read full submission guidelines here
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
                 <p class="text-lg font-semibold text-secondary">Please provide your details and attach the anonymized manuscript PDF.</p>
 
                 <!-- Personal Details -->
