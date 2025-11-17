@@ -393,10 +393,110 @@
 
 
     <!-- Footer -->
-    <footer class="header-bg py-8 mt-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white text-sm">
-            <p>&copy; 2025 SIES College Nerul. All Rights Reserved. | ISSN: 3048-9768 (Online)</p>
-           <!--  <p class="mt-2 text-accent">Designed By Bishal Saini | Vishal32saini@gmail.com</p> -->
+    <footer class="header-bg text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 py-12">
+                
+                <!-- About Section -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-accent">About SIES Journal</h3>
+                    <p class="text-gray-300 text-sm mb-4">
+                        SIES Journal of Multidisciplinary Research and Innovation is a peer-reviewed academic journal dedicated to publishing high-quality research across various disciplines.
+                    </p>
+                    <div class="text-sm text-gray-300">
+                        <p><strong>ISSN:</strong> 3048-9768 (Online)</p>
+                        <p class="mt-1"><strong>Publisher:</strong> SIES College Nerul</p>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-accent">Quick Links</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="../index.html" class="text-gray-300 hover:text-accent transition duration-300">Home</a></li>
+                        <li><a href="../about-us/about.html" class="text-gray-300 hover:text-accent transition duration-300">About Us</a></li>
+                        <li><a href="../journals/journals.html" class="text-gray-300 hover:text-accent transition duration-300">Current Issue</a></li>
+                        <li><a href="../editorial-board/editorial.html" class="text-gray-300 hover:text-accent transition duration-300">Editorial Board</a></li>
+                        <li><a href="../announcements/announcements.html" class="text-gray-300 hover:text-accent transition duration-300">Announcements</a></li>
+                        <li><a href="../faq/faq.html" class="text-gray-300 hover:text-accent transition duration-300">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <!-- For Authors -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-accent">For Authors</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="../guidelines/guidelines.html" class="text-gray-300 hover:text-accent transition duration-300">Submission Guidelines</a></li>
+                        <li><a href="../guidelines/guidelines.html#detailed-guidelines" class="text-gray-300 hover:text-accent transition duration-300">Manuscript Preparation</a></li>
+                        <li><a href="../guidelines/guidelines.html#detailed-guidelines" class="text-gray-300 hover:text-accent transition duration-300">Peer Review Process</a></li>
+                        <li><a href="../guidelines/guidelines.html#detailed-guidelines" class="text-gray-300 hover:text-accent transition duration-300">Ethical Guidelines</a></li>
+                        <li><button onclick="openModal('manuscriptFormModal')" class="text-gray-300 hover:text-accent transition duration-300 text-left">Submit Manuscript</button></li>
+                        <li><a href="../contact/contact.html" class="text-gray-300 hover:text-accent transition duration-300">Author Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-accent">Contact Us</h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li class="flex items-start">
+                            <i data-lucide="map-pin" class="w-5 h-5 mr-2 flex-shrink-0 mt-0.5"></i>
+                            <span>SIES College of Arts, Science and Commerce, Nerul, Navi Mumbai, Maharashtra, India</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="mail" class="w-5 h-5 mr-2 flex-shrink-0"></i>
+                            <a href="mailto:journal@sies.edu.in" class="hover:text-accent transition duration-300">journal@sies.edu.in</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="phone" class="w-5 h-5 mr-2 flex-shrink-0"></i>
+                            <a href="tel:+912227708040" class="hover:text-accent transition duration-300">+91 22 2770 8040</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="globe" class="w-5 h-5 mr-2 flex-shrink-0"></i>
+                            <a href="https://siesascn.edu.in" target="_blank" class="hover:text-accent transition duration-300">www.siesascn.edu.in</a>
+                        </li>
+                    </ul>
+
+                    <!-- Social Media -->
+                    <div class="mt-4">
+                        <h4 class="font-semibold mb-2 text-sm">Follow Us</h4>
+                        <div class="flex space-x-3">
+                            <a href="#" class="bg-white bg-opacity-10 hover:bg-opacity-20 p-2 rounded-full transition duration-300" aria-label="Facebook">
+                                <i data-lucide="facebook" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#" class="bg-white bg-opacity-10 hover:bg-opacity-20 p-2 rounded-full transition duration-300" aria-label="Twitter">
+                                <i data-lucide="twitter" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#" class="bg-white bg-opacity-10 hover:bg-opacity-20 p-2 rounded-full transition duration-300" aria-label="LinkedIn">
+                                <i data-lucide="linkedin" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#" class="bg-white bg-opacity-10 hover:bg-opacity-20 p-2 rounded-full transition duration-300" aria-label="Instagram">
+                                <i data-lucide="instagram" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Footer Bar -->
+            <div class="border-t border-white border-opacity-20 py-6">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <div class="text-sm text-gray-300 text-center md:text-left">
+                        <p>&copy; 2025 SIES College of Arts, Science and Commerce, Nerul. All Rights Reserved.</p>
+                    </div>
+                    <div class="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
+                        <a href="#" class="text-gray-300 hover:text-accent transition duration-300">Privacy Policy</a>
+                        <span class="text-gray-500">|</span>
+                        <a href="#" class="text-gray-300 hover:text-accent transition duration-300">Terms of Use</a>
+                        <span class="text-gray-500">|</span>
+                       <!--  <a href="#" class="text-gray-300 hover:text-accent transition duration-300">Accessibility</a>
+                        <span class="text-gray-500">|</span> -->
+                        <a href="../contact/contact.html" class="text-gray-300 hover:text-accent transition duration-300">Contact</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
