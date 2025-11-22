@@ -3,7 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - SIES Journal of Multidisciplinary Research and Innovation</title>
+    <title>About SIES College - Publisher of SIES Journal | Navi Mumbai</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="About SIES (Nerul) College of Arts, Science & Commerce - Autonomous institution in Navi Mumbai publishing SIES Journal. Learn about our research facilities, leadership, and academic excellence.">
+    <meta name="keywords" content="SIES college, SIES Nerul, Navi Mumbai college, autonomous college, SIES institution, research college, Dr. Koel Roychoudhury, college leadership, NAAC A grade, university Mumbai, arts college, science college, commerce college, academic institution, research facilities, SIES campus, higher education, journal publisher, academic excellence, college infrastructure">
+    <meta name="author" content="SIES College of Arts, Science and Commerce, Nerul">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="About SIES College - Autonomous Institution Navi Mumbai">
+    <meta property="og:description" content="Learn about SIES (Nerul) College of Arts, Science & Commerce, the institution behind SIES Journal of Multidisciplinary Research.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.siesascn.edu.in/journal/about-us/about.html">
+    <meta property="og:image" content="https://siesascn.edu.in/home_banners/SIES-1.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.siesascn.edu.in/journal/about-us/about.html">
+    
     <link rel="icon" href="../assets/favicon.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -85,6 +102,36 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background-color: #0284c7;
         }
+
+        /* Dropdown Menu Styles */
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-top: 0.5rem;
+            z-index: 1000;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: var(--secondary-color, #003366);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .dropdown-menu a:hover {
+            background-color: var(--primary-color, #3A7EBD);
+            color: white;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -108,7 +155,22 @@
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex space-x-6 items-center">
                     <a href="../index.html" class="text-white hover:text-accent transition duration-300">Home</a>
-                    <a href="../about-us/about.html" class="text-golden font-semibold">About</a>
+                    
+                    <!-- About Dropdown -->
+                    <div class="relative group">
+                        <button class="text-yellow-400 font-semibold transition duration-300 flex items-center">
+                            About
+                            <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <a href="about.html" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition duration-200 rounded-t-md">About College</a>
+                            <a href="about-journal.html" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition duration-200">About Journal</a>
+                            <a href="editorial-note.html" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition duration-200 rounded-b-md">Editorial Note</a>
+                        </div>
+                    </div>
+                    
                     <a href="../journals/journals.html" class="text-white hover:text-accent transition duration-300">Journals</a>
                     <a href="../editorial-board/editorial.html" class="text-white hover:text-accent transition duration-300">Editorial Board</a> 
                     <a href="../announcements/announcements.html" class="text-white hover:text-accent transition duration-300">Announcements</a>
@@ -132,7 +194,22 @@
         <div id="mobile-menu" class="hidden md:hidden absolute w-full header-bg shadow-xl">
             <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
                 <a href="../index.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Home</a>
-                <a href="../about-us/about.html" class="text-golden w-full text-center py-2 rounded-md">About</a>
+                
+                <!-- About Dropdown Mobile -->
+                <div class="w-full">
+                    <button onclick="toggleMobileDropdown('about-dropdown')" class="text-yellow-400 font-semibold w-full text-center py-2 rounded-md transition duration-300 flex items-center justify-center">
+                        About
+                        <svg id="about-dropdown-icon" class="w-4 h-4 ml-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="about-dropdown" class="hidden w-full bg-white bg-opacity-10 rounded-md mt-1">
+                        <a href="about.html" class="block text-white text-center py-2 px-4 hover:bg-white hover:bg-opacity-20 transition duration-200">About College</a>
+                        <a href="about-journal.html" class="block text-white text-center py-2 px-4 hover:bg-white hover:bg-opacity-20 transition duration-200">About Journal</a>
+                        <a href="editorial-note.html" class="block text-white text-center py-2 px-4 hover:bg-white hover:bg-opacity-20 transition duration-200">Editorial Note</a>
+                    </div>
+                </div>
+                
                 <a href="../journals/journals.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Journals</a>
                 <a href="../editorial-board/editorial.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Editorial Board</a> 
                 <a href="../announcements/announcements.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Announcements</a>
@@ -207,8 +284,14 @@
                                     Leadership
                                 </h4>
                                 <div class="flex items-center space-x-6">
-                                    <div class="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white flex-shrink-0">
-                                        <i data-lucide="user" class="w-10 h-10"></i>
+                                    <div class="w-20 h-20 rounded-full overflow-hidden flex-shrink-0 bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                                        <img 
+                                            src="https://siesascn.edu.in/images/faculty/1751117478%20KRC.png" 
+                                            alt="Dr. Koel Roychoudhury" 
+                                            class="w-full h-full object-cover"
+                                            loading="lazy"
+                                            onerror="this.onerror=null; this.src='https://placehold.co/80x80/003366/ffffff?text=Profile';"
+                                        />
                                     </div>
                                     <div>
                                         <h5 class="font-bold text-secondary text-xl mb-1">Dr. Koel Roychoudhury</h5>
@@ -216,7 +299,7 @@
                                         <p class="text-gray-600">Leading the institution towards academic excellence and innovation in higher education</p>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
 
                         <!-- Right Column: Details & Contact -->
@@ -234,7 +317,7 @@
                                     </li>
                                     <li class="flex items-center">
                                         <i data-lucide="check-circle" class="w-5 h-5 mr-3 text-accent flex-shrink-0"></i>
-                                      NAAC Accredited Institution – Grade “A”
+                                      NAAC Reaccredited Institution – Grade “A”
                                     </li>
                                     <li class="flex items-center">
                                         <i data-lucide="check-circle" class="w-5 h-5 mr-3 text-accent flex-shrink-0"></i>
@@ -348,7 +431,7 @@
                 <h3 class="text-2xl font-bold flex items-center">
                     <i data-lucide="file-up" class="w-6 h-6 mr-3"></i> Manuscript Submission Form
                 </h3>
-                <button onclick="closeModal('manuscriptFormModal')" class="text-white hover:text-primary transition" aria-label="Close Modal">
+                <button onclick="closeModal('manuscriptFormModal')" class="text-white hover:text-accent transition" aria-label="Close Modal">
                     <i data-lucide="x" class="w-7 h-7"></i>
                 </button>
             </div>
@@ -363,22 +446,22 @@
                         <div>
                             <h4 class="font-bold text-primary mb-2">Quick Submission Guidelines</h4>
                             <ul class="text-sm text-gray-700 space-y-1">
-                                <li>✓ <strong>Format:</strong> Upload PDF or DOCX format only</li>
-                                <li>✓ <strong>Anonymity:</strong> Remove all author identifying information from the manuscript</li>
-                                <li>✓ <strong>Length:</strong> 3,000-8,000 words (excluding references)</li>
-                                <li>✓ <strong>Abstract:</strong> 150-250 words summarizing your research</li>
-                                <li>✓ <strong>Formatting:</strong> Times New Roman, 12pt, double-spaced</li>
+                                <li>✓ <strong>Abstract:</strong> 250-300 words with 3-4 keywords + 50 words bio-note</li>
+                                <li>✓ <strong>Format:</strong> MS Word (.docx), Times New Roman, Font 12 (Latest APA style)</li>
+                                <li>✓ <strong>Length:</strong> 3,000-5,000 words (8-10 pages)</li>
+                                <li>✓ <strong>Originality:</strong> Must be original, unpublished, no simultaneous submissions</li>
+                                <li>✓ <strong>Images:</strong> High resolution only, copyright required</li>
+                                <li>✓ <strong>Fee:</strong> INR 500/- processing fee after abstract selection</li>
                             </ul>
                             <p class="text-xs text-gray-600 mt-3">
-                                <a href="../guidelines/guidelines.html" target="_blank" class="text-accent hover:underline font-semibold">
-                                    📖 Read full submission guidelines here
-                                </a>
+                                <strong>Submission Process:</strong> Submit abstract to jmri.siesascn@sies.edu.in. After acceptance (within 15 days), pay INR 500/-, then submit full paper. 
+                                <a href="../guidelines/guidelines.html" target="_blank" class="text-accent hover:underline font-semibold">📖 Full guidelines</a>
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <p class="text-lg font-semibold text-secondary">Please provide your details and attach the anonymized manuscript PDF.</p>
+                <p class="text-lg font-semibold text-secondary">Please provide your details and attach the manuscript file.</p>
 
                 <!-- Personal Details -->
                 <div class="grid sm:grid-cols-2 gap-4">
@@ -393,16 +476,16 @@
                     <input type="text" id="title-input" name="manuscript_title" placeholder="Title of Manuscript" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
                     <div id="title-suggestion-output" class="text-sm"></div>
                 </div>
-                <textarea name="abstract" placeholder="Brief Abstract (150-250 words)" rows="3" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required></textarea>
+                <textarea name="abstract" placeholder="Brief Abstract (Maximum 300 words)" rows="3" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required></textarea>
 
                 <!-- File Upload -->
-                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Upload Manuscript (PDF/DOCX)</h4>
+                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Upload Manuscript (DOCX only)</h4>
                 <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                     <label for="manuscript-file" class="cursor-pointer text-accent hover:text-primary font-semibold">
                            <i data-lucide="upload-cloud" class="w-8 h-8 mx-auto mb-2"></i>
-                        Click to select file (PDF or DOCX)
+                        Click to select file (DOCX - Microsoft Word)
                     </label>
-                    <input type="file" name="manuscript_file" id="manuscript-file" accept=".pdf,.docx" class="hidden" required>
+                    <input type="file" name="manuscript_file" id="manuscript-file" accept=".docx" class="hidden" required>
                     <p id="file-name-display" class="text-sm text-gray-500 mt-2">No file selected.</p>
                 </div>
 
@@ -428,7 +511,7 @@
                         SIES Journal of Multidisciplinary Research and Innovation is a peer-reviewed academic journal dedicated to publishing high-quality research across various disciplines.
                     </p>
                     <div class="text-sm text-gray-300">
-                        <p><strong>ISSN:</strong> 3048-9768 (Online)</p>
+                        <p><strong>ISSN:</strong> Coming Soon</p>
                         <p class="mt-1"><strong>Publisher:</strong> SIES College Nerul</p>
                     </div>
                 </div>
@@ -469,7 +552,7 @@
                         </li>
                         <li class="flex items-center">
                             <i data-lucide="mail" class="w-5 h-5 mr-2 flex-shrink-0"></i>
-                            <a href="mailto:journal@sies.edu.in" class="hover:text-accent transition duration-300">journal@sies.edu.in</a>
+                            <a href="mailto:jmri.siesascn@sies.edu.in" class="hover:text-accent transition duration-300">jmri.siesascn@sies.edu.in</a>
                         </li>
                         <li class="flex items-center">
                             <i data-lucide="phone" class="w-5 h-5 mr-2 flex-shrink-0"></i>
@@ -554,6 +637,17 @@
                 mobileMenu.classList.toggle('hidden');
             });
         }
+        
+        // Mobile Dropdown Toggle
+        function toggleMobileDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            const icon = document.getElementById(dropdownId + '-icon');
+            if (dropdown && icon) {
+                dropdown.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            }
+        }
+        window.toggleMobileDropdown = toggleMobileDropdown;
 
         // Form handling
         document.addEventListener('DOMContentLoaded', function() {

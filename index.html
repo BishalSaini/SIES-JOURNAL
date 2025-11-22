@@ -3,7 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIES Journal of Multidisciplinary Research and Innovation</title> 
+    <title>SIES Journal of Multidisciplinary Research and Innovation | Peer-Reviewed Academic Journal</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="SIES Journal of Multidisciplinary Research and Innovation - A peer-reviewed, double-blind academic journal publishing high-quality research across arts, sciences, commerce, and humanities. Submit your research today.">
+    <meta name="keywords" content="SIES journal, multidisciplinary research, academic journal, peer-reviewed journal, research publication, academic research, SIES college journal, Navi Mumbai research, scholarly articles, double-blind review, research paper submission, science journal, arts journal, commerce journal, humanities research, innovation journal, open access journal, academic publication, university research, research community, scientific journal, interdisciplinary research, academic excellence, scholarly publication">
+    <meta name="author" content="SIES College of Arts, Science and Commerce, Nerul">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="SIES Journal of Multidisciplinary Research and Innovation">
+    <meta property="og:description" content="Peer-reviewed academic journal publishing multidisciplinary research across arts, sciences, commerce, and humanities.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.siesascn.edu.in/journal/">
+    <meta property="og:image" content="https://siesascn.edu.in/images/sies_ascn_logo.jpg">
+    <meta property="og:site_name" content="SIES Journal">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SIES Journal of Multidisciplinary Research and Innovation">
+    <meta name="twitter:description" content="Peer-reviewed academic journal for multidisciplinary research.">
+    <meta name="twitter:image" content="https://siesascn.edu.in/images/sies_ascn_logo.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.siesascn.edu.in/journal/">
+    
     <link rel="icon" href="assets/favicon.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -315,7 +341,22 @@
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex space-x-6 items-center">
                     <a href="#hero" class="text-white hover:text-accent transition duration-300">Home</a>
-                    <a href="about-us/about.html" class="text-white hover:text-accent transition duration-300">About</a>
+                    
+                    <!-- About Dropdown -->
+                    <div class="relative group">
+                        <button class="text-white hover:text-accent transition duration-300 flex items-center">
+                            About
+                            <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <a href="about-us/about.html" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition duration-200 rounded-t-md">About College</a>
+                            <a href="about-us/about-journal.html" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition duration-200">About Journal</a>
+                            <a href="about-us/editorial-note.html" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition duration-200 rounded-b-md">Editorial Note</a>
+                        </div>
+                    </div>
+                    
                     <a href="journals/journals.html" class="text-white hover:text-accent transition duration-300">Journals</a>
                     <a href="editorial-board/editorial.html" class="text-white hover:text-accent transition duration-300">Editorial Board</a>
                     <a href="announcements/announcements.html" class="text-white hover:text-accent transition duration-300">Announcements</a>
@@ -338,7 +379,22 @@
         <div id="mobile-menu" class="hidden md:hidden absolute w-full header-bg shadow-xl">
             <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
                 <a href="#hero" class="text-white w-full text-center py-2 rounded-md transition duration-300">Home</a>
-                <a href="about-us/about.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">About</a>
+                
+                <!-- About Dropdown Mobile -->
+                <div class="w-full">
+                    <button onclick="toggleMobileDropdown('about-dropdown')" class="text-white w-full text-center py-2 rounded-md transition duration-300 flex items-center justify-center">
+                        About
+                        <svg id="about-dropdown-icon" class="w-4 h-4 ml-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="about-dropdown" class="hidden w-full bg-white bg-opacity-10 rounded-md mt-1">
+                        <a href="about-us/about.html" class="block text-white text-center py-2 px-4 hover:bg-white hover:bg-opacity-20 transition duration-200">About College</a>
+                        <a href="about-us/about-journal.html" class="block text-white text-center py-2 px-4 hover:bg-white hover:bg-opacity-20 transition duration-200">About Journal</a>
+                        <a href="about-us/editorial-note.html" class="block text-white text-center py-2 px-4 hover:bg-white hover:bg-opacity-20 transition duration-200">Editorial Note</a>
+                    </div>
+                </div>
+                
                 <a href="journals/journals.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Journals</a>
                 <a href="editorial-board/editorial.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Editorial Board</a>
                 <a href="announcements/announcements.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Announcements</a>
@@ -363,7 +419,7 @@
                 
                 <!-- COLUMN 1: Journal Information -->
                 <div class="md:w-3/5 text-center md:text-left w-full">
-                    <p class="text-lg sm:text-xl font-bold text-accent2 mb-2">Volume 1, December 2025</p>
+                    <p class="text-lg sm:text-xl font-bold text-accent2 mb-2">Volume 1, Issue 1</p>
                     <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-white break-words">
                         SIES Journal of <span class="text-accent">Multidisciplinary</span> Research & Innovation
                     </h1>
@@ -372,7 +428,7 @@
                     </p>
                     <div class="space-y-3 mb-8 text-white/80">
                         <p class="flex items-center justify-center md:justify-start text-lg font-medium">
-                            <i data-lucide="barcode" class="w-5 h-5 mr-3 text-accent"></i> ISSN: 3048-9768 (Online)
+                            <i data-lucide="barcode" class="w-5 h-5 mr-3 text-accent"></i> ISSN: Coming Soon
                         </p>
                         <p class="flex items-center justify-center md:justify-start text-lg font-medium">
                             <i data-lucide="clock" class="w-5 h-5 mr-3 text-accent"></i> Frequency: Annual
@@ -402,29 +458,61 @@
                             </div>
                             
                             <!-- Mock Journal Cover -->
-                            <div class="w-full mx-auto rounded-xl shadow-xl overflow-hidden mb-5 bg-gradient-to-br from-secondary to-primary h-64 flex flex-col justify-center items-center text-white relative group cursor-pointer">
-                                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
-                                <div class="text-center p-6 relative z-10 group-hover:scale-105 transition-transform duration-300">
-                                    <i data-lucide="file-text" class="w-16 h-16 mx-auto mb-3 group-hover:animate-bounce"></i>
+                            <!-- COMING SOON VERSION - To enable when journal is published, replace this section with the PUBLISHED VERSION below -->
+                            <div class="w-full mx-auto rounded-xl shadow-xl overflow-hidden mb-5 bg-gradient-to-br from-secondary to-primary h-64 flex flex-col justify-center items-center text-white relative group cursor-pointer opacity-60">
+                                <div class="absolute inset-0 bg-black/40"></div>
+                                <!-- Coming Soon Badge Overlay -->
+                                <div class="absolute top-4 right-4 z-20">
+                                    <span class="bg-yellow-500 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">COMING SOON</span>
+                                </div>
+                                <div class="text-center p-6 relative z-10">
+                                    <i data-lucide="file-text" class="w-16 h-16 mx-auto mb-3"></i>
                                     <p class="text-3xl font-extrabold mb-2">VOLUME 1</p>
-                                    <p class="text-lg font-bold opacity-90">Issue 1 • December 2025</p>
+                                    <p class="text-lg font-bold opacity-90">Issue 1 </p>
                                     <div class="mt-3 flex items-center justify-center space-x-2 text-sm">
                                         <span class="bg-white/20 px-2 py-1 rounded">Multi-disciplinary Research & Innovation</span>
                                     </div>
                                 </div>
                             </div>
                             
+                            <!-- PUBLISHED VERSION - Uncomment this when journal is ready -->
+                            <!-- <div class="w-full mx-auto rounded-xl shadow-xl overflow-hidden mb-5 bg-gradient-to-br from-secondary to-primary h-64 flex flex-col justify-center items-center text-white relative group cursor-pointer">
+                                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
+                                <div class="text-center p-6 relative z-10 group-hover:scale-105 transition-transform duration-300">
+                                    <i data-lucide="file-text" class="w-16 h-16 mx-auto mb-3 group-hover:animate-bounce"></i>
+                                    <p class="text-3xl font-extrabold mb-2">VOLUME 1</p>
+                                    <p class="text-lg font-bold opacity-90">Issue 1</p>
+                                    <div class="mt-3 flex items-center justify-center space-x-2 text-sm">
+                                        <span class="bg-white/20 px-2 py-1 rounded">Multi-disciplinary Research & Innovation</span>
+                                    </div>
+                                </div>
+                            </div> -->
+                            
+                            <!-- COMING SOON VERSION - Description -->
                             <p class="text-center text-md text-gray-600 mb-6">
-                                🎓 Access peer-reviewed articles from our inaugural interdisciplinary issue featuring cutting-edge research.
+                                📚 The inaugural volume is currently under peer review and will be available soon.
                             </p>
+                            
+                            <!-- PUBLISHED VERSION - Description (Uncomment when ready) -->
+                            <!-- <p class="text-center text-md text-gray-600 mb-6">
+                                🎓 Access peer-reviewed articles from our inaugural interdisciplinary issue featuring cutting-edge research.
+                            </p> -->
                             
                             <!-- Download Button -->
                             <div class="block w-full text-center group">
-                                <button onclick="openModal('studentDetailsModal')" class="w-full bg-gradient-to-r from-secondary to-primary text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] group-hover:from-primary group-hover:to-secondary">
-                                    <i data-lucide="download" class="inline-block w-5 h-5 mr-2 group-hover:animate-bounce"></i> 
-                                    Download PDF
-                                    <span class="block text-sm font-normal opacity-80"></span>
+                                <!-- COMING SOON VERSION - Disabled Button -->
+                                <button disabled class="w-full bg-gradient-to-r from-secondary to-primary text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl cursor-not-allowed opacity-60">
+                                    <i data-lucide="clock" class="inline-block w-5 h-5 mr-2"></i> 
+                                    Not Available Yet
+                                    <span class="block text-sm font-normal opacity-80 mt-1"></span>
                                 </button>
+                                
+                                <!-- PUBLISHED VERSION - Active Download Button (Uncomment when ready) -->
+                                <!-- <button onclick="openDownloadModal('journal', 'volume-1', 'SIES Journal of Multidisciplinary Research - Volume 1')" class="w-full bg-gradient-to-r from-secondary to-primary text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] group-hover:from-primary group-hover:to-secondary">
+                                    <i data-lucide="download" class="inline-block w-5 h-5 mr-2 group-hover:animate-bounce"></i> 
+                                    Download Journal PDF
+                                    <span class="block text-sm font-normal opacity-80">Free Access to Volume 1</span>
+                                </button> -->
                             </div>
 
                         </div>
@@ -433,86 +521,30 @@
             </div>
         </section>
 
-        <!-- About & Journal Details -->
-        <section id="about" class="section-padding bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl font-bold text-center mb-4 text-secondary">About the SIES Journal of Multidisciplinary Research</h2>
-                <p class="text-center text-gray-500 mb-12 max-w-3xl mx-auto">
-                    The SIES JMRI is a peer-reviewed, double-blind, multi-disciplinary annual online research journal (ISSN: 3048-9768 Online). It aims to bring interdisciplinary perspectives in social sciences to reflect on varied paradigms, perspectives, comprehensions, and contemplations.
-                </p>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Mission & Scope Card -->
-                    <div class="p-6 rounded-xl shadow-lg border-t-4 border-accent bg-gray-50 transform hover:translate-y-[-5px] transition duration-300">
-                        <i data-lucide="target" class="text-accent w-8 h-8 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-3 text-secondary">Mission & Quality Focus</h3>
-                        <p class="text-gray-600 mb-4">
-                            The journal continues the institution's legacy of fostering a research culture. We focus on promoting quality research globally, ensuring sustainable development. Our robust peer-review process ensures world-class articles that enrich the humanities.
-                        </p>
-                        
-                    </div>
-                    <!-- Journal Particulars Card -->
-                    <div class="p-6 rounded-xl shadow-lg border-t-4 border-accent bg-gray-50 transform hover:translate-y-[-5px] transition duration-300">
-                        <i data-lucide="info" class="text-accent w-8 h-8 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-3 text-secondary">Journal Particulars</h3>
-                        <ul class="text-gray-600 space-y-2">
-                            <li><span class="font-semibold text-secondary">Title:</span> SIES Journal of Multidisciplinary Research & Innovation</li>
-                            <li><span class="font-semibold text-secondary">Frequency:</span> Annual</li>
-                            <li><span class="font-semibold text-secondary">Starting Year:</span> 2025</li>
-                            <li><span class="font-semibold text-secondary">Subject:</span> Multidisciplinary</li>
-                            <li><span class="font-semibold text-secondary">Language:</span> English</li>
-                            <li><span class="font-semibold text-secondary">Format:</span> Online</li>
-                        </ul>
-                    </div>
-                    <!-- Publisher & Key Contact Card -->
-                    <div class="p-6 rounded-xl shadow-lg border-t-4 border-accent bg-gray-50 transform hover:translate-y-[-5px] transition duration-300">
-                        <i data-lucide="building" class="text-accent w-8 h-8 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-3 text-secondary">Publisher & Editorial</h3>
-                        <ul class="text-gray-600 space-y-2">
-                            <li><span class="font-semibold text-secondary">Chief Editor:</span>Dr. Koel Roychoudhury</li>
-                            <li><span class="font-semibold text-secondary">Publisher:</span> SIES College of Arts, Science & Commerce (Autonomous)</li>
-                            <li><span class="font-semibold text-secondary">Copyright:</span> SIES College of Arts, Science & Commerce (Autonomous)</li>
-                            <li><span class="font-semibold text-secondary">Website:</span> <a href="http://www.siesascn.edu.in" target="_blank" class="text-accent hover:underline">www.siesascn.edu.in</a></li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- CTA for College Details  -->
-                <div class="text-center mt-12 pt-6 border-t border-gray-200">
-                    <a href="about-us/about.html" class="bg-primary text-white px-8 py-3 rounded-full font-bold shadow-xl transition duration-300 transform hover:scale-105">
-                        <i data-lucide="graduation-cap" class="inline-block w-5 h-5 mr-2"></i> View SIES College Details
-                    </a> 
-                   <!--  <br>
-                    <p class="text-sm text-gray-500 mt-3">All college details, accreditation, and institutional contact information are available in the dedicated modal.</p> -->
-                </div>
-
-            </div>
-        </section>
-
         <!-- Why Publish With Us Section -->
-        <section class="section-padding bg-primary text-white">
+        <section class="section-padding bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl font-bold text-center mb-4">Why Publish With SIES Journal?</h2>
-                <p class="text-center  mb-12 max-w-3xl mx-auto">Commitment to quality, rigorous review, and global exposure for your research.</p>
+                <h2 class="text-4xl font-bold text-center mb-4 text-secondary">Why Publish With SIES Journal?</h2>
+                <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">Commitment to quality, rigorous review, and global exposure for your research.</p>
                 
                 <div class="grid md:grid-cols-3 gap-8">
                     <!-- Benefit 1 -->
-                    <div class="p-6 rounded-xl border-2 border-accent2 bg-primary/90 hover:bg-primary/70 transition duration-300">
-                        <i data-lucide="shield-check" class="text-accent w-8 h-8 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-3">Rigorous Double-Blind Review</h3>
-                        <p class="text-gray-200">Our commitment to integrity ensures fair, high-quality, and constructive feedback from peer reviewers.</p>
+                    <div class="p-8 rounded-xl bg-blue-50 border-2 border-primary shadow-lg hover:shadow-2xl hover:scale-105 transition duration-300">
+                        <i data-lucide="shield-check" class="text-primary w-12 h-12 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3 text-secondary">Rigorous Double-Blind Review</h3>
+                        <p class="text-gray-700">Our commitment to integrity ensures fair, high-quality, and constructive feedback from peer reviewers.</p>
                     </div>
                     <!-- Benefit 2 -->
-                    <div class="p-6 rounded-xl border-2 border-accent2 bg-primary/90 hover:bg-primary/70 transition duration-300">
-                        <i data-lucide="star" class="text-accent w-8 h-8 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-3">Multidisciplinary Impact</h3>
-                        <p class="text-gray-200">Reach a diverse global audience across various social science disciplines, maximizing your research visibility.</p>
+                    <div class="p-8 rounded-xl bg-blue-50 border-2 border-primary shadow-lg hover:shadow-2xl hover:scale-105 transition duration-300">
+                        <i data-lucide="star" class="text-primary w-12 h-12 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3 text-secondary">Multidisciplinary Impact</h3>
+                        <p class="text-gray-700">Reach a diverse global audience across various social science disciplines, maximizing your research visibility.</p>
                     </div>
                     <!-- Benefit 3 -->
-                    <div class="p-6 rounded-xl border-2 border-accent2 bg-primary/90 hover:bg-primary/70 transition duration-300">
-                        <i data-lucide="trending-up" class="text-accent w-8 h-8 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-3">Indexed and ISSN Certified</h3>
-                        <p class="text-gray-200">The journal is ISSN certified (3048-9768), ensuring your publication contributes meaningfully to your academic career.</p>
+                    <div class="p-8 rounded-xl bg-blue-50 border-2 border-primary shadow-lg hover:shadow-2xl hover:scale-105 transition duration-300">
+                        <i data-lucide="globe" class="text-primary w-12 h-12 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3 text-secondary">Open Access & Wide Visibility</h3>
+                        <p class="text-gray-700">Your research will be freely accessible online, ensuring maximum reach and impact among the global academic community and researchers worldwide.</p>
                     </div>
                 </div>
                 <div class="text-center mt-12">
@@ -528,41 +560,44 @@
         <section id="publications" class="section-padding bg-gray-50">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="text-4xl font-bold mb-4 text-secondary">Our Journal Publications</h2>
-                <p class="text-center text-gray-500 mb-8 max-w-3xl mx-auto">Access our growing collection of peer-reviewed research across multiple disciplines</p>
+                <p class="text-center text-gray-500 mb-8 max-w-3xl mx-auto">Inaugural volume currently under peer review - coming soon</p>
 
                 <!-- Journal Card -->
                 <div class="max-w-2xl mx-auto mb-12">
-                    <!-- Current Journal -->
-                    <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-accent hover:shadow-xl transition duration-300">
+                    <!-- Upcoming Journal -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-yellow-500 hover:shadow-xl transition duration-300 relative">
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold">COMING SOON</span>
+                        </div>
                         <div class="flex items-center justify-center mb-4">
-                            <i data-lucide="book-open" class="w-12 h-12 text-accent"></i>
+                            <i data-lucide="clock" class="w-12 h-12 text-yellow-500"></i>
                         </div>
                         <h3 class="text-xl font-bold text-secondary mb-3">SIES Journal of Multidisciplinary Research</h3>
-                        <p class="text-gray-600 mb-4">Volume 1 published with 15+ peer-reviewed articles across humanities, social sciences, and management studies.</p>
+                        <p class="text-gray-600 mb-4">Volume 1 is currently under peer review and will be published soon with 15+ research articles.</p>
                         <div class="flex items-center justify-center space-x-4 text-sm text-gray-500 mb-4">
                             <span class="flex items-center">
                                 <i data-lucide="calendar" class="w-4 h-4 mr-1"></i>
-                                Dec 2025
+                                Coming Soon
                             </span>
                             <span class="flex items-center">
                                 <i data-lucide="file-text" class="w-4 h-4 mr-1"></i>
                                 15+ Articles
                             </span>
                         </div>
-                        <span class="inline-block bg-accent text-white px-3 py-1 rounded-full text-xs font-bold">
-                            ISSN: 3048-9768
+                        <span class="inline-block bg-gray-300 text-gray-600 px-3 py-1 rounded-full text-xs font-bold">
+                            ISSN: Coming Soon
                         </span>
                     </div>
                 </div>
 
                 <div class="bg-gradient-to-r from-primary to-secondary text-white p-8 rounded-2xl">
-                    <h3 class="text-2xl font-bold mb-4">Explore All Journal Volumes & Issues</h3>
+                    <h3 class="text-2xl font-bold mb-4">Stay Updated on Journal Release</h3>
                     <p class="text-accent2 mb-6 max-w-2xl mx-auto">
-                        Visit our dedicated journals page to browse, download, and access the complete archive of published research across all SIES journal publications.
+                        Visit our journals page for the latest updates on publication timeline and submission guidelines for upcoming volumes.
                     </p>
                     <a href="journals/journals.html" class="inline-block bg-accent text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl  transition duration-300 transform hover:scale-105">
                         <i data-lucide="external-link" class="inline-block w-5 h-5 mr-2"></i>
-                        View All Journals & Volumes
+                        View Journal Details
                     </a>
                 </div>
             </div>
@@ -612,29 +647,29 @@
 
                 <div class="space-y-6 max-w-4xl mx-auto">
                     
-                    <!-- Announcement 1 - Call for Papers Volume 2 -->
+                    <!-- Announcement 1 - Call for Papers Volume 1 -->
                     <div class="flex flex-col sm:flex-row bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500 hover:shadow-xl transition duration-300">
                         <div class="sm:w-1/4 flex-shrink-0 text-center sm:border-r sm:pr-4 mb-4 sm:mb-0">
-                            <p class="text-3xl font-bold text-red-500">01</p>
-                            <p class="text-lg font-medium text-gray-600">Jan 2026</p>
+                            <p class="text-3xl font-bold text-red-500">OPEN</p>
+                            <p class="text-lg font-medium text-gray-600">Now</p>
                         </div>
                         <div class="sm:pl-6">
-                            <h3 class="text-xl font-bold text-secondary mb-1">Call for Papers - Volume 2</h3>
-                            <p class="text-gray-600">We are pleased to announce the call for papers for the second volume of SIES Journal of Multidisciplinary Research and Innovation. <span class="font-semibold">Submission deadline: August 31, 2026.</span></p>
-                            <a href="announcements.html#current-calls" class="text-sm font-semibold text-red-500 mt-2 inline-block hover:underline">View Guidelines</a>
+                            <h3 class="text-xl font-bold text-secondary mb-1">Call for Papers - Volume 1</h3>
+                            <p class="text-gray-600">We invite original research submissions for the inaugural volume of SIES Journal of Multidisciplinary Research and Innovation. Submit your abstracts to be part of our first publication.</p>
+                            <a href="guidelines/guidelines.html" class="text-sm font-semibold text-red-500 mt-2 inline-block hover:underline">View Submission Guidelines</a>
                         </div>
                     </div>
 
-                    <!-- Announcement 2 - Volume 1 Published -->
-                    <div class="flex flex-col sm:flex-row bg-white p-6 rounded-xl shadow-lg border-l-4 border-accent hover:shadow-xl transition duration-300">
+                    <!-- Announcement 2 - Journal Launch -->
+                    <div class="flex flex-col sm:flex-row bg-white p-6 rounded-xl shadow-lg border-l-4 border-yellow-500 hover:shadow-xl transition duration-300">
                         <div class="sm:w-1/4 flex-shrink-0 text-center sm:border-r sm:pr-4 mb-4 sm:mb-0">
-                            <p class="text-3xl font-bold text-accent">15</p>
-                            <p class="text-lg font-medium text-gray-600">Dec 2025</p>
+                            <p class="text-3xl font-bold text-yellow-500">NEW</p>
+                            <p class="text-lg font-medium text-gray-600">2025</p>
                         </div>
                         <div class="sm:pl-6">
-                            <h3 class="text-xl font-bold text-secondary mb-1">Volume 1 Successfully Published!</h3>
-                            <p class="text-gray-600">The inaugural volume of SIES Journal of Multidisciplinary Research and Innovation has been successfully published with 15 peer-reviewed articles across humanities, social sciences, and management studies.</p>
-                            <a href="announcements.html#recent-publications" class="text-sm font-semibold text-accent mt-2 inline-block hover:underline">Download Volume 1</a>
+                            <h3 class="text-xl font-bold text-secondary mb-1">Inaugural Journal Launch</h3>
+                            <p class="text-gray-600">SIES College is proud to announce the launch of our new multidisciplinary research journal. Volume 1 is currently under peer review and will be published soon.</p>
+                            <a href="about-us/about.html" class="text-sm font-semibold text-yellow-600 mt-2 inline-block hover:underline">Learn More</a>
                         </div>
                     </div>
 
@@ -724,7 +759,7 @@
                         SIES Journal of Multidisciplinary Research and Innovation is a peer-reviewed academic journal dedicated to publishing high-quality research across various disciplines.
                     </p>
                     <div class="text-sm text-gray-300">
-                        <p><strong>ISSN:</strong> 3048-9768 (Online)</p>
+                        <p><strong>ISSN:</strong> Coming Soon</p>
                         <p class="mt-1"><strong>Publisher:</strong> SIES College Nerul</p>
                     </div>
                 </div>
@@ -765,7 +800,7 @@
                         </li>
                         <li class="flex items-center">
                             <i data-lucide="mail" class="w-5 h-5 mr-2 flex-shrink-0"></i>
-                            <a href="mailto:journal@sies.edu.in" class="hover:text-accent transition duration-300">journal@sies.edu.in</a>
+                            <a href="mailto:jmri.siesascn@sies.edu.in" class="hover:text-accent transition duration-300">jmri.siesascn@sies.edu.in</a>
                         </li>
                         <li class="flex items-center">
                             <i data-lucide="phone" class="w-5 h-5 mr-2 flex-shrink-0"></i>
@@ -843,22 +878,22 @@
                         <div>
                             <h4 class="font-bold text-primary mb-2">Quick Submission Guidelines</h4>
                             <ul class="text-sm text-gray-700 space-y-1">
-                                <li>✓ <strong>Format:</strong> Upload PDF or DOCX format only</li>
-                                <li>✓ <strong>Anonymity:</strong> Remove all author identifying information from the manuscript</li>
-                                <li>✓ <strong>Length:</strong> 3,000-8,000 words (excluding references)</li>
-                                <li>✓ <strong>Abstract:</strong> 150-250 words summarizing your research</li>
-                                <li>✓ <strong>Formatting:</strong> Times New Roman, 12pt, double-spaced</li>
+                                <li>✓ <strong>Abstract:</strong> 250-300 words with 3-4 keywords + 50 words bio-note</li>
+                                <li>✓ <strong>Format:</strong> MS Word (.docx), Times New Roman, Font 12 (Latest APA style)</li>
+                                <li>✓ <strong>Length:</strong> 3,000-5,000 words (8-10 pages)</li>
+                                <li>✓ <strong>Originality:</strong> Must be original, unpublished, no simultaneous submissions</li>
+                                <li>✓ <strong>Images:</strong> High resolution only, copyright required</li>
+                                <li>✓ <strong>Fee:</strong> INR 500/- processing fee after abstract selection</li>
                             </ul>
                             <p class="text-xs text-gray-600 mt-3">
-                                <a href="guidelines/guidelines.html" target="_blank" class="text-accent hover:underline font-semibold">
-                                    📖 Read full submission guidelines here
-                                </a>
+                                <strong>Submission Process:</strong> Submit abstract to sies@ascn.edu.in. After acceptance (within 15 days), pay INR 500/-, then submit full paper. 
+                                <a href="../guidelines/guidelines.html" target="_blank" class="text-accent hover:underline font-semibold">📖 Full guidelines</a>
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <p class="text-lg font-semibold text-secondary">Please provide your details and attach the anonymized manuscript PDF.</p>
+                <p class="text-lg font-semibold text-secondary">Please provide your details and attach the manuscript file.</p>
 
                 <!-- Personal Details -->
                 <div class="grid sm:grid-cols-2 gap-4">
@@ -874,16 +909,16 @@
 
                     <div id="title-suggestion-output" class="text-sm"></div>
                 </div>
-                <textarea name="abstract" placeholder="Brief Abstract (150-250 words)" rows="3" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required></textarea>
+                <textarea name="abstract" placeholder="Brief Abstract (Maximum 300 words)" rows="3" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required></textarea>
 
                 <!-- File Upload -->
-                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Upload Manuscript (PDF/DOCX)</h4>
+                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Upload Manuscript (DOCX only)</h4>
                 <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                     <label for="manuscript-file" class="cursor-pointer text-primary hover:text-primary font-semibold">
                            <i data-lucide="upload-cloud" class="w-8 h-8 mx-auto mb-2"></i>
-                        Click to select file (PDF or DOCX)
+                        Click to select file (DOCX - Microsoft Word)
                     </label>
-                    <input type="file" name="manuscript_file" id="manuscript-file" accept=".pdf,.docx" class="hidden" required>
+                    <input type="file" name="manuscript_file" id="manuscript-file" accept=".docx" class="hidden" required>
                     <p id="file-name-display" class="text-sm text-gray-500 mt-2">No file selected.</p>
                 </div>
 
@@ -1134,6 +1169,17 @@
                 });
             });
         }
+        
+        // --- Mobile Dropdown Toggle ---
+        function toggleMobileDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            const icon = document.getElementById(dropdownId + '-icon');
+            if (dropdown && icon) {
+                dropdown.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            }
+        }
+        window.toggleMobileDropdown = toggleMobileDropdown;
 
         // --- Smooth Scroll Function for Hero Section ---
         function scrollToSection(sectionId) {

@@ -3,7 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - SIES Journal of Multidisciplinary Research and Innovation</title>
+    <title>Contact Us - SIES Journal Editorial Team | Manuscript Submissions & Inquiries</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Contact SIES Journal editorial team for manuscript submissions, peer review inquiries, and collaboration opportunities. Located in Nerul, Navi Mumbai. Email: jmri.siesascn@sies.edu.in | Phone: +91 22 2770 8371">
+    <meta name="keywords" content="contact journal, editorial contact, manuscript submission contact, journal inquiry, editor email, SIES contact, journal office, editorial team contact, submission support, peer review contact, author support, journal assistance, collaboration inquiry, research contact, academic contact, Navi Mumbai journal, SIES email, journal phone, editorial office, contact details, research submission">
+    <meta name="author" content="SIES College of Arts, Science and Commerce, Nerul">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Contact SIES Journal - Editorial Team & Support">
+    <meta property="og:description" content="Get in touch with SIES Journal for manuscript submissions, inquiries, and collaboration opportunities.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.siesascn.edu.in/journal/contact/contact.html">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.siesascn.edu.in/journal/contact/contact.html">
+    
+    <!-- Local Business Schema (Optional for future enhancement) -->
+    <meta name="geo.region" content="IN-MH">
+    <meta name="geo.placename" content="Navi Mumbai">
+    <meta name="geo.position" content="19.0330;73.0297">
+    
     <link rel="icon" href="../assets/favicon.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -105,7 +126,20 @@
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex space-x-6 items-center">
                     <a href="../index.html" class="text-white hover:text-accent transition duration-300">Home</a>
-                    <a href="../about-us/about.html" class="text-white hover:text-accent transition duration-300">About</a>
+                    <!-- About Dropdown -->
+                    <div class="relative group">
+                        <button class="text-white hover:text-accent transition duration-300 flex items-center">
+                            About
+                            <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <a href="../about-us/about.html" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition duration-200 rounded-t-md">About College</a>
+                            <a href="../about-us/about-journal.html" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition duration-200">About Journal</a>
+                            <a href="../about-us/editorial-note.html" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition duration-200 rounded-b-md">Editorial Note</a>
+                        </div>
+                    </div>
                     <a href="../journals/journals.html" class="text-white hover:text-accent transition duration-300">Journals</a>
                     <a href="../editorial-board/editorial.html" class="text-white hover:text-accent transition duration-300">Editorial Board</a> 
                     <a href="../announcements/announcements.html" class="text-white hover:text-accent transition duration-300">Announcements</a>
@@ -129,7 +163,20 @@
         <div id="mobile-menu" class="hidden md:hidden absolute w-full header-bg shadow-xl">
             <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
                 <a href="../index.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Home</a>
-                <a href="../about-us/about.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">About</a>
+                <!-- About Dropdown Mobile -->
+                <div class="w-full">
+                    <button onclick="toggleMobileDropdown('about-dropdown')" class="text-white w-full text-center py-2 rounded-md transition duration-300 flex items-center justify-center">
+                        About
+                        <svg id="about-dropdown-icon" class="w-4 h-4 ml-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="about-dropdown" class="hidden w-full bg-white bg-opacity-10 rounded-md mt-1">
+                        <a href="../about-us/about.html" class="block text-white text-center py-2 px-4 hover:bg-white hover:bg-opacity-20 transition duration-200">About College</a>
+                        <a href="../about-us/about-journal.html" class="block text-white text-center py-2 px-4 hover:bg-white hover:bg-opacity-20 transition duration-200">About Journal</a>
+                        <a href="../about-us/editorial-note.html" class="block text-white text-center py-2 px-4 hover:bg-white hover:bg-opacity-20 transition duration-200">Editorial Note</a>
+                    </div>
+                </div>
                 <a href="../journals/journals.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Journals</a>
                 <a href="../editorial-board/editorial.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Editorial Board</a> 
                 <a href="../announcements/announcements.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Announcements</a>
@@ -180,6 +227,8 @@
                                 <p class="flex items-start">
                                     <i data-lucide="map-pin" class="w-5 h-5 mr-3 text-accent mt-1 flex-shrink-0"></i>
                                     <span>
+                                        <strong>To: Editor</strong><br>
+                                        <strong>SIES Journal of Multidisciplinary Research and Innovation</strong><br>
                                         <strong>SIES (Nerul) College of Arts, Science & Commerce (Autonomous)</strong><br>
                                         Plot No. 1-C, Sector 5, Nerul,<br>
                                         Navi Mumbai - 400706,<br>
@@ -192,7 +241,7 @@
                                 </p>
                                 <p class="flex items-center">
                                     <i data-lucide="mail" class="w-5 h-5 mr-3 text-accent"></i>
-                                    <span><strong>Email:</strong> sies@ascn.edu.in</span>
+                                    <span><strong>Email:</strong> jmri.siesascn@sies.edu.in</span>
                                 </p>
                                 <p class="flex items-center">
                                     <i data-lucide="globe" class="w-5 h-5 mr-3 text-accent"></i>
@@ -451,7 +500,7 @@
                 <h3 class="text-2xl font-bold flex items-center">
                     <i data-lucide="file-up" class="w-6 h-6 mr-3"></i> Manuscript Submission Form
                 </h3>
-                <button onclick="closeModal('manuscriptFormModal')" class="text-white hover:text-primary transition" aria-label="Close Modal">
+                <button onclick="closeModal('manuscriptFormModal')" class="text-white hover:text-accent transition" aria-label="Close Modal">
                     <i data-lucide="x" class="w-7 h-7"></i>
                 </button>
             </div>
@@ -465,23 +514,23 @@
                         <i data-lucide="info" class="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0"></i>
                         <div>
                             <h4 class="font-bold text-primary mb-2">Quick Submission Guidelines</h4>
-                            <ul class="text-sm text-gray-700 space-y-1">
-                                <li>✓ <strong>Format:</strong> Upload PDF or DOCX format only</li>
-                                <li>✓ <strong>Anonymity:</strong> Remove all author identifying information from the manuscript</li>
-                                <li>✓ <strong>Length:</strong> 3,000-8,000 words (excluding references)</li>
-                                <li>✓ <strong>Abstract:</strong> 150-250 words summarizing your research</li>
-                                <li>✓ <strong>Formatting:</strong> Times New Roman, 12pt, double-spaced</li>
+                               <ul class="text-sm text-gray-700 space-y-1">
+                                <li>✓ <strong>Abstract:</strong> 250-300 words with 3-4 keywords + 50 words bio-note</li>
+                                <li>✓ <strong>Format:</strong> MS Word (.docx), Times New Roman, Font 12 (Latest APA style)</li>
+                                <li>✓ <strong>Length:</strong> 3,000-5,000 words (8-10 pages)</li>
+                                <li>✓ <strong>Originality:</strong> Must be original, unpublished, no simultaneous submissions</li>
+                                <li>✓ <strong>Images:</strong> High resolution only, copyright required</li>
+                                <li>✓ <strong>Fee:</strong> INR 500/- processing fee after abstract selection</li>
                             </ul>
                             <p class="text-xs text-gray-600 mt-3">
-                                <a href="../guidelines/guidelines.html" target="_blank" class="text-accent hover:underline font-semibold">
-                                    📖 Read full submission guidelines here
-                                </a>
+                                <strong>Submission Process:</strong> Submit abstract to jmri.siesascn@sies.edu.in. After acceptance (within 15 days), pay INR 500/-, then submit full paper. 
+                                <a href="../guidelines/guidelines.html" target="_blank" class="text-accent hover:underline font-semibold">📖 Full guidelines</a>
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <p class="text-lg font-semibold text-secondary">Please provide your details and attach the anonymized manuscript PDF.</p>
+                <p class="text-lg font-semibold text-secondary">Please provide your details and attach the manuscript file.</p>
 
                 <!-- Personal Details -->
                 <div class="grid sm:grid-cols-2 gap-4">
@@ -496,16 +545,16 @@
                     <input type="text" id="title-input" name="manuscript_title" placeholder="Title of Manuscript" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
                     <div id="title-suggestion-output" class="text-sm"></div>
                 </div>
-                <textarea name="abstract" placeholder="Brief Abstract (150-250 words)" rows="3" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required></textarea>
+                <textarea name="abstract" placeholder="Brief Abstract (Maximum 300 words)" rows="3" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required></textarea>
 
                 <!-- File Upload -->
-                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Upload Manuscript (PDF/DOCX)</h4>
+                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Upload Manuscript (DOCX only)</h4>
                 <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                     <label for="manuscript-file" class="cursor-pointer text-accent hover:text-primary font-semibold">
                            <i data-lucide="upload-cloud" class="w-8 h-8 mx-auto mb-2"></i>
-                        Click to select file (PDF or DOCX)
+                        Click to select file (DOCX - Microsoft Word)
                     </label>
-                    <input type="file" name="manuscript_file" id="manuscript-file" accept=".pdf,.docx" class="hidden" required>
+                    <input type="file" name="manuscript_file" id="manuscript-file" accept=".docx" class="hidden" required>
                     <p id="file-name-display" class="text-sm text-gray-500 mt-2">No file selected.</p>
                 </div>
 
@@ -531,7 +580,7 @@
                         SIES Journal of Multidisciplinary Research and Innovation is a peer-reviewed academic journal dedicated to publishing high-quality research across various disciplines.
                     </p>
                     <div class="text-sm text-gray-300">
-                        <p><strong>ISSN:</strong> 3048-9768 (Online)</p>
+                        <p><strong>ISSN:</strong> Coming Soon</p>
                         <p class="mt-1"><strong>Publisher:</strong> SIES College Nerul</p>
                     </div>
                 </div>
@@ -572,7 +621,7 @@
                         </li>
                         <li class="flex items-center">
                             <i data-lucide="mail" class="w-5 h-5 mr-2 flex-shrink-0"></i>
-                            <a href="mailto:journal@sies.edu.in" class="hover:text-accent transition duration-300">journal@sies.edu.in</a>
+                            <a href="mailto:jmri.siesascn@sies.edu.in" class="hover:text-accent transition duration-300">jmri.siesascn@sies.edu.in</a>
                         </li>
                         <li class="flex items-center">
                             <i data-lucide="phone" class="w-5 h-5 mr-2 flex-shrink-0"></i>
@@ -628,6 +677,17 @@
 
     <script src="https://unpkg.com/lucide@0.400.0/dist/umd/lucide.js"></script>
     <script>
+        // Mobile Dropdown Toggle
+        function toggleMobileDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            const icon = document.getElementById(dropdownId + '-icon');
+            if (dropdown && icon) {
+                dropdown.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            }
+        }
+        window.toggleMobileDropdown = toggleMobileDropdown;
+
         // Modal Functions
         function openModal(modalId) {
             const modal = document.getElementById(modalId);

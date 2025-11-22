@@ -3,7 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ - SIES Journal of Multidisciplinary Research and Innovation</title>
+    <title>FAQ - Frequently Asked Questions | SIES Journal Submission & Publication</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Frequently asked questions about SIES Journal submission process, peer review, publication fees, formatting, copyright, and publication timeline. Get answers to common author queries.">
+    <meta name="keywords" content="journal FAQ, frequently asked questions, submission questions, publication queries, peer review FAQ, journal questions, author FAQ, submission help, publication process, manuscript FAQ, review process questions, formatting questions, submission fee, publication charges, copyright FAQ, open access FAQ, journal help, author queries, submission support, research questions, publishing FAQ">
+    <meta name="author" content="SIES College of Arts, Science and Commerce, Nerul">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="FAQ - SIES Journal Help & Support">
+    <meta property="og:description" content="Find answers to common questions about submission, peer review, and publication in SIES Journal.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.siesascn.edu.in/journal/faq/faq.html">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.siesascn.edu.in/journal/faq/faq.html">
+    
     <link rel="icon" href="../assets/favicon.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -120,7 +136,20 @@
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex space-x-6 items-center">
                     <a href="../index.html" class="text-white hover:text-accent transition duration-300">Home</a>
-                    <a href="../about-us/about.html" class="text-white hover:text-accent transition duration-300">About</a>
+                    <!-- About Dropdown -->
+                    <div class="relative group">
+                        <button class="text-white hover:text-accent transition duration-300 flex items-center">
+                            About
+                            <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <a href="../about-us/about.html" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition duration-200 rounded-t-md">About College</a>
+                            <a href="../about-us/about-journal.html" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition duration-200">About Journal</a>
+                            <a href="../about-us/editorial-note.html" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition duration-200 rounded-b-md">Editorial Note</a>
+                        </div>
+                    </div>
                     <a href="../journals/journals.html" class="text-white hover:text-accent transition duration-300">Journals</a>
                     <a href="../editorial-board/editorial.html" class="text-white hover:text-accent transition duration-300">Editorial Board</a> 
                      <a href="../announcements/announcements.html" class="text-white hover:text-accent transition duration-300">Announcements</a>
@@ -143,7 +172,20 @@
         <div id="mobile-menu" class="hidden md:hidden absolute w-full header-bg shadow-xl">
             <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
                 <a href="../index.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Home</a>
-                <a href="../about-us/about.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">About</a>
+                <!-- About Dropdown Mobile -->
+                <div class="w-full">
+                    <button onclick="toggleMobileDropdown('about-dropdown')" class="text-white w-full text-center py-2 rounded-md transition duration-300 flex items-center justify-center">
+                        About
+                        <svg id="about-dropdown-icon" class="w-4 h-4 ml-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="about-dropdown" class="hidden w-full bg-white bg-opacity-10 rounded-md mt-1">
+                        <a href="../about-us/about.html" class="block text-white text-center py-2 px-4 hover:bg-white hover:bg-opacity-20 transition duration-200">About College</a>
+                        <a href="../about-us/about-journal.html" class="block text-white text-center py-2 px-4 hover:bg-white hover:bg-opacity-20 transition duration-200">About Journal</a>
+                        <a href="../about-us/editorial-note.html" class="block text-white text-center py-2 px-4 hover:bg-white hover:bg-opacity-20 transition duration-200">Editorial Note</a>
+                    </div>
+                </div>
                 <a href="../journals/journals.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Journals</a>
                 <a href="../editorial-board/editorial.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Editorial Board</a> 
                  <a href="../announcements/announcements.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Announcements</a>
@@ -190,12 +232,12 @@
                     <!-- FAQ Item 1 -->
                     <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition duration-300">
                         <button class="w-full text-left p-4 flex justify-between items-center text-lg font-semibold text-secondary hover:bg-gray-50 transition duration-300" onclick="toggleAccordion('faq-1')">
-                            Is the journal peer-reviewed and indexed?
+                            Is the journal peer-reviewed?
                             <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" id="icon-faq-1"></i>
                         </button>
                         <div id="faq-1" class="accordion-content">
                             <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
-                                Yes, the SIES Journal of Multidisciplinary Research and Innovation is a double-blind peer-reviewed, multi-disciplinary journal. It is also ISSN certified (3048-9768 Online) and follows rigorous academic standards for publication.
+                                Yes, the SIES Journal of Multidisciplinary Research and Innovation is a <strong>double-blind peer-reviewed</strong> multi-disciplinary journal. ISSN certification is currently being processed and will be assigned upon the journal's official launch.
                             </div>
                         </div>
                     </div>
@@ -208,7 +250,7 @@
                         </button>
                         <div id="faq-2" class="accordion-content">
                             <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
-                                All manuscripts must strictly follow the guidelines of the <strong>APA 7th Edition</strong> style for citations, references, and formatting. Please ensure your manuscript adheres to these standards before submission.
+                                All manuscripts must strictly follow the <strong>latest APA style</strong> for citations, references, and formatting. Ensure your manuscript adheres to APA guidelines before submission.
                             </div>
                         </div>
                     </div>
@@ -221,7 +263,7 @@
                         </button>
                         <div id="faq-3" class="accordion-content">
                             <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
-                                The double-blind peer-review process typically takes between <strong>8 to 10 weeks</strong> from the date of submission. Authors are notified promptly of the decision along with reviewer comments and feedback.
+                                The abstract review process takes <strong>within 15 days</strong> from submission. Once your abstract is accepted and you submit the full paper after paying the processing fee, the complete double-blind peer review follows. Authors are notified of decisions along with reviewer comments and feedback.
                             </div>
                         </div>
                     </div>
@@ -234,7 +276,7 @@
                         </button>
                         <div id="faq-4" class="accordion-content">
                             <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
-                                We accept manuscripts in <strong>PDF</strong> and <strong>Microsoft Word (.docx)</strong> formats. Please ensure your manuscript is anonymized for the double-blind review process and follows the journal's formatting guidelines.
+                                We accept manuscripts <strong>only in Microsoft Word (.docx)</strong> format. Please ensure your manuscript is anonymized for the double-blind review process and follows the journal's formatting guidelines using Times New Roman, Font 12, and APA style.
                             </div>
                         </div>
                     </div>
@@ -247,7 +289,7 @@
                         </button>
                         <div id="faq-5" class="accordion-content">
                             <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
-                                Research articles should be between <strong>3,000-8,000 words</strong> including references and appendices. Review articles may extend up to <strong>10,000 words</strong>. The abstract should be 150-250 words.
+                                Full manuscripts should be <strong>3,000-5,000 words</strong> (10-15 pages) including references. The abstract should be <strong>250-300 words</strong> with 3-4 keywords and a 50-word bio-note.
                             </div>
                         </div>
                     </div>
@@ -260,7 +302,7 @@
                         </button>
                         <div id="faq-6" class="accordion-content">
                             <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
-                                Currently, a <strong>publication fee</strong> applies for accepted articles. The Article Processing Charge (APC) covers open-access publication, DOI assignment, and online hosting. For the current fee amount, waiver policies, and payment instructions, please see <a href="../guidelines/guidelines.html" class="text-accent hover:underline">Submission Guidelines</a> or contact <a href="mailto:journal@sies.edu.in" class="text-accent hover:underline">journal@sies.edu.in</a>.
+                                Yes, there is a processing fee of <strong>INR 500/-</strong> which is payable <strong>only after your abstract is accepted</strong>. This fee must be paid before submitting the full manuscript. For payment details and instructions, please see the <a href="../guidelines/guidelines.html" class="text-accent hover:underline">Submission Guidelines</a> or contact <a href="mailto:jmri.siesascn@sies.edu.in" class="text-accent hover:underline">jmri.siesascn@sies.edu.in</a>.
                             </div>
                         </div>
                     </div>
@@ -287,6 +329,75 @@
                         <div id="faq-8" class="accordion-content">
                             <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
                                 Yes, we welcome submissions from <strong>researchers worldwide</strong>. The journal has an international scope and encourages submissions from scholars across different countries and cultural contexts.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 9 - Submission Process -->
+                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                        <button class="w-full text-left p-4 flex justify-between items-center text-lg font-semibold text-secondary hover:bg-gray-50 transition duration-300" onclick="toggleAccordion('faq-9')">
+                            What is the submission process?
+                            <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" id="icon-faq-9"></i>
+                        </button>
+                        <div id="faq-9" class="accordion-content">
+                            <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
+                                <strong>Step 1:</strong> Submit your abstract (250-300 words) with 3-4 keywords and 50-word bio-note to <a href="mailto:jmri.siesascn@sies.edu.in" class="text-accent hover:underline">jmri.siesascn@sies.edu.in</a>.<br>
+                                <strong>Step 2:</strong> Receive acceptance decision within 15 days.<br>
+                                <strong>Step 3:</strong> Pay the processing fee of INR 500/- after abstract acceptance.<br>
+                                <strong>Step 4:</strong> Submit your full manuscript (3,000-5,000 words) in MS Word format (.docx).<br>
+                                <strong>Step 5:</strong> Undergo double-blind peer review and await publication decision.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 10 - Formatting Requirements -->
+                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                        <button class="w-full text-left p-4 flex justify-between items-center text-lg font-semibold text-secondary hover:bg-gray-50 transition duration-300" onclick="toggleAccordion('faq-10')">
+                            What are the formatting requirements?
+                            <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" id="icon-faq-10"></i>
+                        </button>
+                        <div id="faq-10" class="accordion-content">
+                            <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
+                                Manuscripts must be submitted in <strong>MS Word (.docx)</strong> format using <strong>Times New Roman, Font 12</strong>, following the <strong>latest APA style</strong>. Include proper headings, in-text citations, and a complete reference list. Images should be high resolution with proper copyright permissions.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 11 - When is the journal published -->
+                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                        <button class="w-full text-left p-4 flex justify-between items-center text-lg font-semibold text-secondary hover:bg-gray-50 transition duration-300" onclick="toggleAccordion('faq-11')">
+                            When will Volume 1 be published?
+                            <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" id="icon-faq-11"></i>
+                        </button>
+                        <div id="faq-11" class="accordion-content">
+                            <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
+                                Volume 1 of the SIES Journal of Multidisciplinary Research and Innovation is currently under peer review and will be published soon. We are accepting submissions for Volume 1. Stay tuned to our <a href="../announcements/announcements.html" class="text-accent hover:underline">Announcements</a> page for updates on the publication date.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 12 - Originality Requirements -->
+                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                        <button class="w-full text-left p-4 flex justify-between items-center text-lg font-semibold text-secondary hover:bg-gray-50 transition duration-300" onclick="toggleAccordion('faq-12')">
+                            What are the originality requirements?
+                            <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" id="icon-faq-12"></i>
+                        </button>
+                        <div id="faq-12" class="accordion-content">
+                            <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
+                                All submissions must be <strong>original, unpublished work</strong> that is not under consideration elsewhere. Manuscripts should not have been previously published in any form (print or online). Simultaneous submissions to other journals are not permitted. Plagiarism checks are conducted, and proper attribution of sources is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 13 - Plagiarism Policy -->
+                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                        <button class="w-full text-left p-4 flex justify-between items-center text-lg font-semibold text-secondary hover:bg-gray-50 transition duration-300" onclick="toggleAccordion('faq-13')">
+                            What is the plagiarism policy?
+                            <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" id="icon-faq-13"></i>
+                        </button>
+                        <div id="faq-13" class="accordion-content">
+                            <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
+                                <strong>Plagiarism must not exceed 10%.</strong> All manuscripts submitted to SIES Journal undergo plagiarism detection using standard software. Any manuscript exceeding the 10% plagiarism threshold will be <strong>immediately rejected</strong>. We expect authors to properly cite all sources and maintain academic integrity. Self-plagiarism (reusing your own previously published work without citation) is also considered plagiarism.
                             </div>
                         </div>
                     </div>
@@ -325,7 +436,7 @@
                 <h3 class="text-2xl font-bold flex items-center">
                     <i data-lucide="file-up" class="w-6 h-6 mr-3"></i> Manuscript Submission Form
                 </h3>
-                <button onclick="closeModal('manuscriptFormModal')" class="text-white hover:text-primary transition" aria-label="Close Modal">
+                <button onclick="closeModal('manuscriptFormModal')" class="text-white hover:text-accent transition" aria-label="Close Modal">
                     <i data-lucide="x" class="w-7 h-7"></i>
                 </button>
             </div>
@@ -340,22 +451,22 @@
                         <div>
                             <h4 class="font-bold text-primary mb-2">Quick Submission Guidelines</h4>
                             <ul class="text-sm text-gray-700 space-y-1">
-                                <li>✓ <strong>Format:</strong> Upload PDF or DOCX format only</li>
-                                <li>✓ <strong>Anonymity:</strong> Remove all author identifying information from the manuscript</li>
-                                <li>✓ <strong>Length:</strong> 3,000-8,000 words (excluding references)</li>
-                                <li>✓ <strong>Abstract:</strong> 150-250 words summarizing your research</li>
-                                <li>✓ <strong>Formatting:</strong> Times New Roman, 12pt, double-spaced</li>
+                                <li>✓ <strong>Abstract:</strong> 250-300 words with 3-4 keywords + 50 words bio-note</li>
+                                <li>✓ <strong>Format:</strong> MS Word (.docx), Times New Roman, Font 12 (Latest APA style)</li>
+                                <li>✓ <strong>Length:</strong> 3,000-5,000 words (8-10 pages)</li>
+                                <li>✓ <strong>Originality:</strong> Must be original, unpublished, no simultaneous submissions</li>
+                                <li>✓ <strong>Images:</strong> High resolution only, copyright required</li>
+                                <li>✓ <strong>Fee:</strong> INR 500/- processing fee after abstract selection</li>
                             </ul>
                             <p class="text-xs text-gray-600 mt-3">
-                                <a href="../guidelines/guidelines.html" target="_blank" class="text-accent hover:underline font-semibold">
-                                    📖 Read full submission guidelines here
-                                </a>
+                                <strong>Submission Process:</strong> Submit abstract to jmri.siesascn@sies.edu.in. After acceptance (within 15 days), pay INR 500/-, then submit full paper. 
+                                <a href="../guidelines/guidelines.html" target="_blank" class="text-accent hover:underline font-semibold">📖 Full guidelines</a>
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <p class="text-lg font-semibold text-secondary">Please provide your details and attach the anonymized manuscript PDF.</p>
+                <p class="text-lg font-semibold text-secondary">Please provide your details and attach the manuscript file.</p>
 
                 <!-- Personal Details -->
                 <div class="grid sm:grid-cols-2 gap-4">
@@ -370,16 +481,16 @@
                     <input type="text" id="title-input" name="manuscript_title" placeholder="Title of Manuscript" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
                     <div id="title-suggestion-output" class="text-sm"></div>
                 </div>
-                <textarea name="abstract" placeholder="Brief Abstract (150-250 words)" rows="3" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required></textarea>
+                <textarea name="abstract" placeholder="Brief Abstract (Maximum 300 words)" rows="3" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required></textarea>
 
                 <!-- File Upload -->
-                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Upload Manuscript (PDF/DOCX)</h4>
+                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Upload Manuscript (DOCX only)</h4>
                 <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                     <label for="manuscript-file" class="cursor-pointer text-accent hover:text-primary font-semibold">
                            <i data-lucide="upload-cloud" class="w-8 h-8 mx-auto mb-2"></i>
-                        Click to select file (PDF or DOCX)
+                        Click to select file (DOCX - Microsoft Word)
                     </label>
-                    <input type="file" name="manuscript_file" id="manuscript-file" accept=".pdf,.docx" class="hidden" required>
+                    <input type="file" name="manuscript_file" id="manuscript-file" accept=".docx" class="hidden" required>
                     <p id="file-name-display" class="text-sm text-gray-500 mt-2">No file selected.</p>
                 </div>
 
@@ -405,7 +516,7 @@
                         SIES Journal of Multidisciplinary Research and Innovation is a peer-reviewed academic journal dedicated to publishing high-quality research across various disciplines.
                     </p>
                     <div class="text-sm text-gray-300">
-                        <p><strong>ISSN:</strong> 3048-9768 (Online)</p>
+                        <p><strong>ISSN:</strong> Coming Soon</p>
                         <p class="mt-1"><strong>Publisher:</strong> SIES College Nerul</p>
                     </div>
                 </div>
@@ -446,7 +557,7 @@
                         </li>
                         <li class="flex items-center">
                             <i data-lucide="mail" class="w-5 h-5 mr-2 flex-shrink-0"></i>
-                            <a href="mailto:journal@sies.edu.in" class="hover:text-accent transition duration-300">journal@sies.edu.in</a>
+                            <a href="mailto:jmri.siesascn@sies.edu.in" class="hover:text-accent transition duration-300">jmri.siesascn@sies.edu.in</a>
                         </li>
                         <li class="flex items-center">
                             <i data-lucide="phone" class="w-5 h-5 mr-2 flex-shrink-0"></i>
@@ -502,6 +613,17 @@
 
     <script src="https://unpkg.com/lucide@0.400.0/dist/umd/lucide.js"></script>
     <script>
+        // Mobile Dropdown Toggle
+        function toggleMobileDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            const icon = document.getElementById(dropdownId + '-icon');
+            if (dropdown && icon) {
+                dropdown.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            }
+        }
+        window.toggleMobileDropdown = toggleMobileDropdown;
+
         // Mobile Menu Toggle
         const menuButton = document.getElementById('menu-button');
         const mobileMenu = document.getElementById('mobile-menu');

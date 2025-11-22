@@ -3,7 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Journal Volumes & Issues - SIES Journal of Multidisciplinary Research and Innovation</title> 
+    <title>Journal Volumes & Issues - SIES Multidisciplinary Research | Free Access</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Browse and download all volumes of SIES Journal of Multidisciplinary Research and Innovation. Free access to peer-reviewed research articles across multiple disciplines. Volume 1 coming soon.">
+    <meta name="keywords" content="journal volumes, research articles, published papers, academic volumes, journal issues, free access journal, open access, download research, journal archive, scientific publications, research database, journal PDFs, SIES publications, volume 1, research papers download, academic articles, peer-reviewed papers, multidisciplinary volumes, journal repository, scholarly articles, research collection">
+    <meta name="author" content="SIES College of Arts, Science and Commerce, Nerul">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Journal Volumes & Issues - SIES Multidisciplinary Research">
+    <meta property="og:description" content="Access all published volumes and research articles from SIES Journal. Free download available.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.siesascn.edu.in/journal/journals/journals.html">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.siesascn.edu.in/journal/journals/journals.html">
+    
     <link rel="icon" href="../assets/favicon.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -125,7 +141,20 @@
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex space-x-6 items-center">
                     <a href="../index.html" class="text-white hover:text-accent transition duration-300">Home</a>
-                    <a href="../about-us/about.html" class="text-white hover:text-accent transition duration-300">About</a>
+                    <!-- About Dropdown -->
+                    <div class="relative group">
+                        <button class="text-white hover:text-accent transition duration-300 flex items-center">
+                            About
+                            <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <a href="../about-us/about.html" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition duration-200 rounded-t-md">About College</a>
+                            <a href="../about-us/about-journal.html" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition duration-200">About Journal</a>
+                            <a href="../about-us/editorial-note.html" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition duration-200 rounded-b-md">Editorial Note</a>
+                        </div>
+                    </div>
                     <a href="../journals/journals.html" class="text-golden font-semibold">Journals</a>
                     <a href="../editorial-board/editorial.html" class="text-white hover:text-accent transition duration-300">Editorial Board</a>  
                     <a href="../announcements/announcements.html" class="text-white hover:text-accent transition duration-300">Announcements</a>
@@ -149,7 +178,20 @@
         <div id="mobile-menu" class="hidden md:hidden absolute w-full header-bg shadow-xl">
             <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
                 <a href="../index.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Home</a>
-                <a href="../about-us/about.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">About</a>
+                <!-- About Dropdown Mobile -->
+                <div class="w-full">
+                    <button onclick="toggleMobileDropdown('about-dropdown')" class="text-white w-full text-center py-2 rounded-md transition duration-300 flex items-center justify-center">
+                        About
+                        <svg id="about-dropdown-icon" class="w-4 h-4 ml-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="about-dropdown" class="hidden w-full bg-white bg-opacity-10 rounded-md mt-1">
+                        <a href="../about-us/about.html" class="block text-white text-center py-2 px-4 hover:bg-white hover:bg-opacity-20 transition duration-200">About College</a>
+                        <a href="../about-us/about-journal.html" class="block text-white text-center py-2 px-4 hover:bg-white hover:bg-opacity-20 transition duration-200">About Journal</a>
+                        <a href="../about-us/editorial-note.html" class="block text-white text-center py-2 px-4 hover:bg-white hover:bg-opacity-20 transition duration-200">Editorial Note</a>
+                    </div>
+                </div>
                 <a href="../journals/journals.html" class="text-golden font-semibold w-full text-center py-2 rounded-md">Journals</a>
                 <a href="../editorial-board/editorial.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Editorial Board</a> 
                 <a href="../announcements/announcements.html" class="text-white w-full text-center py-2 rounded-md transition duration-300">Announcements</a>
@@ -202,7 +244,7 @@
                         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                             <div class="mb-4 lg:mb-0">
                                 <h2 class="text-3xl font-bold mb-2">SIES Journal of Multidisciplinary Research & Innovation</h2>
-                                <p class="text-accent text-lg font-semibold">ISSN: 3048-9768 (Online) | Frequency: Annual | Started: 2025</p>
+                                <p class="text-accent text-lg font-semibold">ISSN: Coming Soon | Frequency: Annual <!-- | Started: 2025 --></p>
                                 <p class="text-white/90 mt-2">A peer-reviewed double-blind multidisciplinary journal focusing on interdisciplinary research across humanities, social sciences, and management studies.</p>
                             </div>
                             <div class="flex-shrink-0">
@@ -222,50 +264,49 @@
                         </h3>
                         
                         <div class="grid gap-6">
-                            <!-- Volume 1 - 2025 -->
+                            <!-- Volume 1 - 2025 - Coming Soon -->
                             <div class="volume-card p-6 rounded-xl">
                                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
                                     <div class="mb-4 sm:mb-0">
                                         <div class="flex items-center mb-2">
-                                            <div class="bg-accent text-white px-3 py-1 rounded-full text-sm font-bold mr-3">
-                                                LATEST
+                                            <div class="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">
+                                                COMING SOON
                                             </div>
                                             <h4 class="text-xl font-bold text-secondary">Volume 1, Issue 1</h4>
                                         </div>
                                         <p class="text-gray-600 mb-2">
-                                            <strong>Publication Date:</strong> December 2025 | 
-                                            <strong>Articles:</strong> 15 | 
-                                            <strong>Pages:</strong> 180
+                                            <strong>Expected Publication:</strong> January 2026  
+                                          <!--   <strong>Estimated Articles:</strong> 15+ |  -->
+                                           <!--  <strong>Pages:</strong> 180+ -->
                                         </p>
                                         <p class="text-gray-700">
                                             <strong>Theme:</strong> Inaugural Issue - Multidisciplinary Research & Innovation
                                         </p>
-                                        <p class="text-sm text-gray-600 mt-2">
-                                            Features peer-reviewed articles across humanities, social sciences, management studies, and interdisciplinary research methodologies.
-                                        </p>
+                                        <div class="mt-4 bg-blue-50 border-l-4 border-primary p-3 rounded">
+                                            <p class="text-sm text-primary font-semibold flex items-center">
+                                                <i data-lucide="info" class="w-4 h-4 mr-2"></i>
+                                                The inaugural volume is currently under peer review and will be published soon.
+                                            </p>
+                                        </div>
                                     </div>
                                     <div class="flex flex-col space-y-3 sm:ml-6">
-                                        <button onclick="openDownloadModal('journal', 'volume-1', 'SIES Journal of Multidisciplinary Research - Volume 1')" class="bg-accent text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover-accent transition duration-300 flex items-center justify-center">
-                                            <i data-lucide="download" class="w-5 h-5 mr-2"></i>
-                                            Download PDF
+                                        <button disabled class="bg-gray-300 text-gray-600 px-6 py-3 rounded-lg font-semibold cursor-not-allowed flex items-center justify-center opacity-60">
+                                            <i data-lucide="clock" class="w-5 h-5 mr-2"></i>
+                                            Not Available Yet
                                         </button>
-<!--                                         <button class="bg-gray-100 text-secondary px-6 py-2 rounded-lg font-medium hover:bg-gray-200 transition duration-300 flex items-center justify-center">
-                                            <i data-lucide="eye" class="w-4 h-4 mr-2"></i>
-                                            View Online
-                                        </button> -->
                                     </div>
                                 </div>
 
-                                <!-- Articles in this Volume -->
-                                <div class="border-t border-gray-200 pt-6">
+                               
+                                <!-- <div class="border-t border-gray-200 pt-6">
                                     <h5 class="text-lg font-bold text-secondary mb-4 flex items-center">
                                         <i data-lucide="file-text" class="w-5 h-5 mr-2 text-accent"></i>
                                         Articles in this Issue
                                     </h5>
                                     
-                                    <!-- Article Grid -->
+                                  
                                     <div class="grid gap-4">
-                                        <!-- Article 1 -->
+                                      
                                         <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
                                             <div class="flex flex-col lg:flex-row lg:justify-between">
                                                 <div class="flex-1">
@@ -292,7 +333,7 @@
                                             </div>
                                         </div>
 
-                                        <!-- Article 2 -->
+                                     
                                         <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
                                             <div class="flex flex-col lg:flex-row lg:justify-between">
                                                 <div class="flex-1">
@@ -319,7 +360,7 @@
                                             </div>
                                         </div>
 
-                                        <!-- Article 3 -->
+                                      
                                         <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
                                             <div class="flex flex-col lg:flex-row lg:justify-between">
                                                 <div class="flex-1">
@@ -346,9 +387,9 @@
                                             </div>
                                         </div>
 
-                                        <!-- Articles 4-15 (Remaining Articles) -->
+                                       
                                         <div class="grid gap-4 mt-4">
-                                            <!-- Article 4 -->
+                                           
                                             <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
                                                 <div class="flex flex-col lg:flex-row lg:justify-between">
                                                     <div class="flex-1">
@@ -375,7 +416,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Article 5 -->
+                                       
                                             <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
                                                 <div class="flex flex-col lg:flex-row lg:justify-between">
                                                     <div class="flex-1">
@@ -402,9 +443,9 @@
                                                 </div>
                                             </div>
 
-                                        <!-- Hidden Articles Container (Articles 6-15) -->
+                                
                                         <div id="more-articles-container" class="hidden">
-                                            <!-- Article 6 -->
+                                         
                                             <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
                                                 <div class="flex flex-col lg:flex-row lg:justify-between">
                                                     <div class="flex-1">
@@ -431,7 +472,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Article 7 -->
+                                    
                                             <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
                                                 <div class="flex flex-col lg:flex-row lg:justify-between">
                                                     <div class="flex-1">
@@ -458,7 +499,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Article 8 -->
+                                        
                                             <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
                                                 <div class="flex flex-col lg:flex-row lg:justify-between">
                                                     <div class="flex-1">
@@ -485,7 +526,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Article 9 -->
+                                   
                                             <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
                                                 <div class="flex flex-col lg:flex-row lg:justify-between">
                                                     <div class="flex-1">
@@ -512,7 +553,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Article 10 -->
+                                       
                                             <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
                                                 <div class="flex flex-col lg:flex-row lg:justify-between">
                                                     <div class="flex-1">
@@ -539,7 +580,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Article 11 -->
+                                      
                                             <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
                                                 <div class="flex flex-col lg:flex-row lg:justify-between">
                                                     <div class="flex-1">
@@ -566,7 +607,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Article 12 -->
+                                    
                                             <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
                                                 <div class="flex flex-col lg:flex-row lg:justify-between">
                                                     <div class="flex-1">
@@ -593,7 +634,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Article 13 -->
+                                         
                                             <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
                                                 <div class="flex flex-col lg:flex-row lg:justify-between">
                                                     <div class="flex-1">
@@ -620,7 +661,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Article 14 -->
+                                       
                                             <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
                                                 <div class="flex flex-col lg:flex-row lg:justify-between">
                                                     <div class="flex-1">
@@ -647,7 +688,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Article 15 -->
+                                         
                                             <div class="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition duration-300 border border-gray-200">
                                                 <div class="flex flex-col lg:flex-row lg:justify-between">
                                                     <div class="flex-1">
@@ -674,9 +715,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- End of Hidden Articles Container -->
+                                        
 
-                                        <!-- View More/Less Button (appears after all articles) -->
+                                       
                                         <div class="text-center mt-6 mb-4">
                                             <button id="view-more-articles" class="bg-gradient-to-r from-primary to-secondary text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition duration-300 flex items-center justify-center mx-auto">
                                                 <i data-lucide="chevron-down" class="w-5 h-5 mr-2"></i>
@@ -684,7 +725,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -694,7 +735,7 @@
         </section>
 
         <!-- Archive Statistics -->
-        <section class="py-16 bg-white">
+       <!--  <section class="py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="text-3xl font-bold mb-4 text-primary">Publication Archive Statistics</h2>
                 <p class="text-secondary mb-12 max-w-3xl mx-auto">
@@ -724,7 +765,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
     </main>
 
    
@@ -805,7 +846,7 @@
                 <h3 class="text-2xl font-bold flex items-center">
                     <i data-lucide="file-up" class="w-6 h-6 mr-3"></i> Manuscript Submission Form
                 </h3>
-                <button onclick="closeModal('manuscriptFormModal')" class="text-white hover:text-primary transition" aria-label="Close Modal">
+                <button onclick="closeModal('manuscriptFormModal')" class="text-white hover:text-accent transition" aria-label="Close Modal">
                     <i data-lucide="x" class="w-7 h-7"></i>
                 </button>
             </div>
@@ -820,22 +861,22 @@
                         <div>
                             <h4 class="font-bold text-primary mb-2">Quick Submission Guidelines</h4>
                             <ul class="text-sm text-gray-700 space-y-1">
-                                <li>✓ <strong>Format:</strong> Upload PDF or DOCX format only</li>
-                                <li>✓ <strong>Anonymity:</strong> Remove all author identifying information from the manuscript</li>
-                                <li>✓ <strong>Length:</strong> 3,000-8,000 words (excluding references)</li>
-                                <li>✓ <strong>Abstract:</strong> 150-250 words summarizing your research</li>
-                                <li>✓ <strong>Formatting:</strong> Times New Roman, 12pt, double-spaced</li>
+                                <li>✓ <strong>Abstract:</strong> 250-300 words with 3-4 keywords + 50 words bio-note</li>
+                                <li>✓ <strong>Format:</strong> MS Word (.docx), Times New Roman, Font 12 (Latest APA style)</li>
+                                <li>✓ <strong>Length:</strong> 3,000-5,000 words (8-10 pages)</li>
+                                <li>✓ <strong>Originality:</strong> Must be original, unpublished, no simultaneous submissions</li>
+                                <li>✓ <strong>Images:</strong> High resolution only, copyright required</li>
+                                <li>✓ <strong>Fee:</strong> INR 500/- processing fee after abstract selection</li>
                             </ul>
                             <p class="text-xs text-gray-600 mt-3">
-                                <a href="../guidelines/guidelines.html" target="_blank" class="text-accent hover:underline font-semibold">
-                                    📖 Read full submission guidelines here
-                                </a>
+                                <strong>Submission Process:</strong> Submit abstract to jmri.siesascn@sies.edu.in. After acceptance (within 15 days), pay INR 500/-, then submit full paper. 
+                                <a href="../guidelines/guidelines.html" target="_blank" class="text-accent hover:underline font-semibold">📖 Full guidelines</a>
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <p class="text-lg font-semibold text-secondary">Please provide your details and attach the anonymized manuscript PDF.</p>
+                <p class="text-lg font-semibold text-secondary">Please provide your details and attach the manuscript file.</p>
 
                 <!-- Personal Details -->
                 <div class="grid sm:grid-cols-2 gap-4">
@@ -850,16 +891,16 @@
                     <input type="text" id="title-input" name="manuscript_title" placeholder="Title of Manuscript" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required>
                     <div id="title-suggestion-output" class="text-sm"></div>
                 </div>
-                <textarea name="abstract" placeholder="Brief Abstract (150-250 words)" rows="3" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required></textarea>
+                <textarea name="abstract" placeholder="Brief Abstract (Maximum 300 words)" rows="3" class="w-full p-3 border border-gray-300 rounded-md focus:ring-accent focus:border-accent" required></textarea>
 
                 <!-- File Upload -->
-                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Upload Manuscript (PDF/DOCX)</h4>
+                <h4 class="text-xl font-bold text-secondary pt-4 border-t border-gray-200">Upload Manuscript (DOCX only)</h4>
                 <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                     <label for="manuscript-file" class="cursor-pointer text-accent hover:text-primary font-semibold">
                            <i data-lucide="upload-cloud" class="w-8 h-8 mx-auto mb-2"></i>
-                        Click to select file (PDF or DOCX)
+                        Click to select file (DOCX - Microsoft Word)
                     </label>
-                    <input type="file" name="manuscript_file" id="manuscript-file" accept=".pdf,.docx" class="hidden" required>
+                    <input type="file" name="manuscript_file" id="manuscript-file" accept=".docx" class="hidden" required>
                     <p id="file-name-display" class="text-sm text-gray-500 mt-2">No file selected.</p>
                 </div>
 
@@ -885,7 +926,7 @@
                         SIES Journal of Multidisciplinary Research and Innovation is a peer-reviewed academic journal dedicated to publishing high-quality research across various disciplines.
                     </p>
                     <div class="text-sm text-gray-300">
-                        <p><strong>ISSN:</strong> 3048-9768 (Online)</p>
+                        <p><strong>ISSN:</strong> Coming Soon</p>
                         <p class="mt-1"><strong>Publisher:</strong> SIES College Nerul</p>
                     </div>
                 </div>
@@ -926,7 +967,7 @@
                         </li>
                         <li class="flex items-center">
                             <i data-lucide="mail" class="w-5 h-5 mr-2 flex-shrink-0"></i>
-                            <a href="mailto:journal@sies.edu.in" class="hover:text-accent transition duration-300">journal@sies.edu.in</a>
+                            <a href="mailto:jmri.siesascn@sies.edu.in" class="hover:text-accent transition duration-300">jmri.siesascn@sies.edu.in</a>
                         </li>
                         <li class="flex items-center">
                             <i data-lucide="phone" class="w-5 h-5 mr-2 flex-shrink-0"></i>
@@ -1185,6 +1226,17 @@
         // Initialize Lucide Icons safely
         document.addEventListener('DOMContentLoaded', function() {
             safeCreateIcons();
+
+            // Mobile Dropdown Toggle
+            function toggleMobileDropdown(dropdownId) {
+                const dropdown = document.getElementById(dropdownId);
+                const icon = document.getElementById(dropdownId + '-icon');
+                if (dropdown && icon) {
+                    dropdown.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                }
+            }
+            window.toggleMobileDropdown = toggleMobileDropdown;
 
             // Student Details Form Handling
             const studentForm = document.getElementById('student-details-form');
