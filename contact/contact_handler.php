@@ -38,9 +38,9 @@ try {
     if (strlen($message) < 10) {
         throw new Exception("Message must be at least 10 characters long");
     }
-    
+
     // Database connection
-    $conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+    $conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT);
     
     if ($conn->connect_error) {
         throw new Exception("Database connection failed: " . $conn->connect_error);
