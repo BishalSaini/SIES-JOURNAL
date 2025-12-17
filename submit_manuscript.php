@@ -67,7 +67,7 @@ $upload_path = $upload_dir . $new_file_name;
 
 // Connect to database early
 try {
-    $conn = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
+    $conn = new PDO("mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     // Set timeout to 5 seconds
     $conn->setAttribute(PDO::ATTR_TIMEOUT, 5);

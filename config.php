@@ -10,6 +10,7 @@ define('ADMIN_EMAIL', 'vishal32saini@gmail.com');
 define('ADMIN_NAME', 'SIES Journal Admin');
 
 define('DB_HOST', 'localhost');
+define('DB_PORT', 3307);
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', ''); 
 define('DB_NAME', 'sies-journal2');
