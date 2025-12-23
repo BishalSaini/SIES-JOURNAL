@@ -202,6 +202,143 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background-color: #0284c7;
         }
+
+        /* Modern Animation Styles */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .7; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .editorial-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .editorial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(58, 126, 189, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .editorial-card:hover::before {
+            left: 100%;
+        }
+
+        .editorial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .chief-editor-card {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .chief-editor-card:hover {
+            animation-play-state: paused;
+        }
+
+        .section-header {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+            border-radius: 2px;
+        }
+
+        .icon-float {
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #3A7EBD, #CC7722);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-shimmer {
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.9) 0%,
+                rgba(255, 255, 255, 1) 50%,
+                rgba(255, 255, 255, 0.9) 100%
+            );
+        }
+
+        .process-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .process-card:hover {
+            transform: scale(1.05);
+        }
+
+        .process-card:hover .icon-float {
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        /* Staggered animation delay */
+        .editorial-card:nth-child(1) { transition-delay: 0.1s; }
+        .editorial-card:nth-child(2) { transition-delay: 0.2s; }
+        .editorial-card:nth-child(3) { transition-delay: 0.3s; }
+        .editorial-card:nth-child(4) { transition-delay: 0.4s; }
+        .editorial-card:nth-child(5) { transition-delay: 0.5s; }
+
+        .hero-title {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -313,111 +450,129 @@
         </section>
 
         <!-- Editorial Board Section -->
-        <section class="section-padding bg-white">
+        <section class="section-padding bg-gradient-to-b from-white to-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <!-- Chief Editor Section -->
-                <div class="mb-12 text-center">
-                    <h3 class="text-3xl font-bold text-secondary">Chief Editor</h3>
-                    <p class="text-gray-600 mt-3 text-lg">Leading our editorial vision and academic excellence</p>
+                <div class="mb-16 text-center animate-on-scroll">
+                    <h3 class="section-header text-4xl font-extrabold text-secondary mb-4">Chief Editor</h3>
+                    <p class="text-gray-600 mt-8 text-lg max-w-2xl mx-auto">Leading our editorial vision and academic excellence</p>
                 </div>
 
                 <!-- Editorial Board Grid -->
-                <div class="editorial-grid">
+                <div class="editorial-grid animate-on-scroll">
 
                     <!-- CHIEF EDITOR -->
-                    <div class="chief-editor-card editorial-card text-center p-8 bg-gradient-to-br from-primary to-secondary text-white rounded-xl shadow-2xl border-4 border-accent hover:shadow-2xl hover:scale-[1.02] transition duration-300">
-                        <div class="w-28 h-28 mx-auto rounded-full bg-white/20 mb-5 flex items-center justify-center overflow-hidden border-4 border-accent relative">
-                            <img
-                                src="https://siesascn.edu.in/images/faculty/1751117478%20KRC.png"
-                                alt="Dr. Koel Roychoudhury"
-                                class="w-full h-full object-cover"
-                                loading="lazy"
-                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                            />
-                            <div class="avatar-fallback hidden w-full h-full items-center justify-center">
-                                <i data-lucide="user" class="w-16 h-16 text-white"></i>
+                    <div class="chief-editor-card editorial-card text-center p-10 bg-gradient-to-br from-primary via-secondary to-primary text-white rounded-2xl shadow-2xl border-4 border-accent relative overflow-hidden">
+                        <!-- Decorative corner -->
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-accent opacity-20 rounded-bl-full"></div>
+                        <div class="absolute bottom-0 left-0 w-32 h-32 bg-accent opacity-20 rounded-tr-full"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="w-32 h-32 mx-auto rounded-full bg-white/20 mb-6 flex items-center justify-center overflow-hidden border-4 border-accent relative shadow-xl">
+                                <img
+                                    src="https://siesascn.edu.in/images/faculty/1751117478%20KRC.png"
+                                    alt="Dr. Koel Roychoudhury"
+                                    class="w-full h-full object-cover"
+                                    loading="lazy"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                />
+                                <div class="avatar-fallback hidden w-full h-full items-center justify-center bg-accent/30">
+                                    <i data-lucide="user" class="w-16 h-16 text-white icon-float"></i>
+                                </div>
                             </div>
+                            <h3 class="text-3xl font-bold mb-4">Dr. Koel Roychoudhury</h3>
+                            <p class="text-blue-100 text-base leading-relaxed px-4">Principal, SIES (Nerul) College of Arts, Science and Commerce (Autonomous)</p>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3">Dr. Koel Roychoudhury</h3>
-                        <p class="text-gray-200 text-sm">Principal, SIES (Nerul) College of Arts, Science and Commerce (Autonomous)</p>
                     </div>
                 </div>
 
                 <!-- Editorial Board Section -->
-                <div class="mt-20 mb-12 text-center">
-                    <h3 class="text-3xl font-bold text-secondary">Editorial Board</h3>
-                    <p class="text-gray-600 mt-3 text-lg">Distinguished scholars contributing to peer review and editorial excellence</p>
+                <div class="mt-24 mb-16 text-center animate-on-scroll">
+                    <h3 class="section-header text-4xl font-extrabold text-secondary mb-4">Editorial Board</h3>
+                    <p class="text-gray-600 mt-8 text-lg max-w-2xl mx-auto">Distinguished scholars contributing to peer review and editorial excellence</p>
                 </div>
 
-<div class="editorial-grid-balanced">
+                <div class="editorial-grid-balanced">
                     
                     <!-- Member 1: M Sashikumar -->
-                    <div class="editorial-card text-center p-6 bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:shadow-xl hover:border-accent transition duration-300">
-                        <div class="w-24 h-24 mx-auto rounded-full bg-primary/10 mb-4 flex items-center justify-center overflow-hidden border-2 border-primary/20">
-                            <i data-lucide="user" class="w-12 h-12 text-primary"></i>
+                    <div class="editorial-card animate-on-scroll text-center p-8 card-shimmer rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl hover:border-accent relative overflow-hidden">
+                        <!-- Left Accent Bar -->
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-accent"></div>
+                        <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-primary/10 to-accent/10 mb-5 flex items-center justify-center overflow-hidden border-3 border-primary/20 shadow-md relative z-10">
+                            <i data-lucide="user" class="w-14 h-14 text-primary icon-float"></i>
                         </div>
-                        <p class="text-xs font-bold text-accent mb-2 uppercase tracking-wide">Information & Technology</p>
-                        <h3 class="text-lg font-bold text-secondary mb-1">M Sashikumar</h3>
+                        <p class="text-xs font-bold text-accent mb-3 uppercase tracking-wider">Information & Technology</p>
+                        <h3 class="text-xl font-bold text-secondary mb-2">M Sashikumar</h3>
                         <p class="text-accent font-semibold text-sm mb-2">Former Executive</p>
-                        <p class="text-gray-600 text-xs">Centre for Development of Advanced Computing (CDAC)</p>
+                        <p class="text-gray-600 text-sm">Centre for Development of Advanced Computing (CDAC)</p>
                     </div>
 
                     <!-- Member 2: Prof. (Dr.) Bhawna Sharma -->
-                    <div class="editorial-card text-center p-6 bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:shadow-xl hover:border-accent transition duration-300">
-                        <div class="w-24 h-24 mx-auto rounded-full bg-primary/10 mb-4 flex items-center justify-center overflow-hidden border-2 border-primary/20">
-                            <i data-lucide="user" class="w-12 h-12 text-primary"></i>
+                    <div class="editorial-card animate-on-scroll text-center p-8 card-shimmer rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl hover:border-accent relative overflow-hidden">
+                        <!-- Left Accent Bar -->
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-accent"></div>
+                        <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-primary/10 to-accent/10 mb-5 flex items-center justify-center overflow-hidden border-3 border-primary/20 shadow-md relative z-10">
+                            <i data-lucide="user" class="w-14 h-14 text-primary icon-float"></i>
                         </div>
-                        <p class="text-xs font-bold text-accent mb-2 uppercase tracking-wide">Commerce & Finance</p>
-                        <h3 class="text-lg font-bold text-secondary mb-1">Prof. (Dr.) Bhawna Sharma</h3>
+                        <p class="text-xs font-bold text-accent mb-3 uppercase tracking-wider">Commerce & Finance</p>
+                        <h3 class="text-xl font-bold text-secondary mb-2">Prof. (Dr.) Bhawna Sharma</h3>
                         <p class="text-accent font-semibold text-sm mb-2">Professor</p>
-                        <p class="text-gray-600 text-xs">Amity University</p>
+                        <p class="text-gray-600 text-sm">Amity University</p>
                     </div>
 
                     <!-- Member 3: Dr. Nirupama Warriar -->
-                    <div class="editorial-card text-center p-6 bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:shadow-xl hover:border-accent transition duration-300">
-                        <div class="w-24 h-24 mx-auto rounded-full bg-primary/10 mb-4 flex items-center justify-center overflow-hidden border-2 border-primary/20">
-                            <i data-lucide="user" class="w-12 h-12 text-primary"></i>
+                    <div class="editorial-card animate-on-scroll text-center p-8 card-shimmer rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl hover:border-accent relative overflow-hidden">
+                        <!-- Left Accent Bar -->
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-accent"></div>
+                        <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-primary/10 to-accent/10 mb-5 flex items-center justify-center overflow-hidden border-3 border-primary/20 shadow-md relative z-10">
+                            <i data-lucide="user" class="w-14 h-14 text-primary icon-float"></i>
                         </div>
-                        <p class="text-xs font-bold text-accent mb-2 uppercase tracking-wide">Library & Science</p>
-                        <h3 class="text-lg font-bold text-secondary mb-1">Dr. Nirupama Warriar</h3>
+                        <p class="text-xs font-bold text-accent mb-3 uppercase tracking-wider">Library & Science</p>
+                        <h3 class="text-xl font-bold text-secondary mb-2">Dr. Nirupama Warriar</h3>
                         <p class="text-accent font-semibold text-sm mb-2">Professor</p>
-                        <p class="text-gray-600 text-xs">Library & Information Science</p>
+                        <p class="text-gray-600 text-sm">Library & Information Science</p>
                     </div>
 
                     <!-- Member 4: Prof. (Dr.) Seema Mishra -->
-                    <div class="editorial-card text-center p-6 bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:shadow-xl hover:border-accent transition duration-300">
-                        <div class="w-24 h-24 mx-auto rounded-full bg-primary/10 mb-4 flex items-center justify-center overflow-hidden border-2 border-primary/20">
-                            <i data-lucide="user" class="w-12 h-12 text-primary"></i>
+                    <div class="editorial-card animate-on-scroll text-center p-8 card-shimmer rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl hover:border-accent relative overflow-hidden">
+                        <!-- Left Accent Bar -->
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-accent"></div>
+                        <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-primary/10 to-accent/10 mb-5 flex items-center justify-center overflow-hidden border-3 border-primary/20 shadow-md relative z-10">
+                            <i data-lucide="user" class="w-14 h-14 text-primary icon-float"></i>
                         </div>
-                        <p class="text-xs font-bold text-accent mb-2 uppercase tracking-wide">Environmental Science</p>
-                        <h3 class="text-lg font-bold text-secondary mb-1">Prof. (Dr.) Seema Mishra</h3>
+                        <p class="text-xs font-bold text-accent mb-3 uppercase tracking-wider">Environmental Science</p>
+                        <h3 class="text-xl font-bold text-secondary mb-2">Prof. (Dr.) Seema Mishra</h3>
                         <p class="text-accent font-semibold text-sm mb-2">Professor</p>
-                        <p class="text-gray-600 text-xs">G D Goenka University</p>
+                        <p class="text-gray-600 text-sm">G D Goenka University</p>
                     </div>
 
                     <!-- Member 5: Dr. Kapil R Chandoriya -->
-                    <div class="editorial-card text-center p-6 bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:shadow-xl hover:border-accent transition duration-300">
-                        <div class="w-24 h-24 mx-auto rounded-full bg-primary/10 mb-4 flex items-center justify-center overflow-hidden border-2 border-primary/20">
-                            <i data-lucide="user" class="w-12 h-12 text-primary"></i>
+                    <div class="editorial-card animate-on-scroll text-center p-8 card-shimmer rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl hover:border-accent relative overflow-hidden">
+                        <!-- Left Accent Bar -->
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-accent"></div>
+                        <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-primary/10 to-accent/10 mb-5 flex items-center justify-center overflow-hidden border-3 border-primary/20 shadow-md relative z-10">
+                            <i data-lucide="user" class="w-14 h-14 text-primary icon-float"></i>
                         </div>
-                        <p class="text-xs font-bold text-accent mb-2 uppercase tracking-wide">Journalism & Communication</p>
-                        <h3 class="text-lg font-bold text-secondary mb-1">Dr. Kapil R Chandoriya</h3>
+                        <p class="text-xs font-bold text-accent mb-3 uppercase tracking-wider">Journalism & Communication</p>
+                        <h3 class="text-xl font-bold text-secondary mb-2">Dr. Kapil R Chandoriya</h3>
                         <p class="text-accent font-semibold text-sm mb-2">Campus Director</p>
-                        <p class="text-gray-600 text-xs">Makhanlal Chaturvedi National University of Journalism & Communication</p>
+                        <p class="text-gray-600 text-sm">Makhanlal Chaturvedi National University of Journalism & Communication</p>
                     </div>
                 </div>
 
                 <!-- Associate Editors Section -->
-                <div class="mt-20 mb-12 text-center">
-                    <h3 class="text-3xl font-bold text-secondary">Associate Editors</h3>
-                    <p class="text-gray-600 mt-3 text-lg">Supporting editorial leadership and maintaining academic standards</p>
+                <div class="mt-24 mb-16 text-center animate-on-scroll">
+                    <h3 class="section-header text-4xl font-extrabold text-secondary mb-4">Associate Editors</h3>
+                    <p class="text-gray-600 mt-8 text-lg max-w-2xl mx-auto">Supporting editorial leadership and maintaining academic standards</p>
                 </div>
 
                 <div class="editorial-grid-centered">
     <!-- Associate Editor 1: Dr. Anu Thomas -->
-    <div class="editorial-card text-center p-6 bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:shadow-xl hover:border-accent transition duration-300">
-        <div class="w-24 h-24 mx-auto rounded-full bg-primary/10 mb-4 flex items-center justify-center overflow-hidden border-2 border-primary/20">
+    <div class="editorial-card animate-on-scroll text-center p-8 card-shimmer rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl hover:border-accent relative overflow-hidden">
+        <!-- Left Accent Bar -->
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-accent"></div>
+        <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-primary/10 to-accent/10 mb-5 flex items-center justify-center overflow-hidden border-3 border-primary/20 shadow-md relative z-10">
             <img
                 src="https://siesascn.edu.in/images/faculty/anu-thomas.jpg"
                 alt="Dr. Anu Thomas"
@@ -425,18 +580,20 @@
                 loading="lazy"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
             />
-            <div class="avatar-fallback hidden w-full h-full items-center justify-center">
-                <i data-lucide="user" class="w-12 h-12 text-primary"></i>
+            <div class="avatar-fallback hidden w-full h-full items-center justify-center bg-primary/10">
+                <i data-lucide="user" class="w-14 h-14 text-primary icon-float"></i>
             </div>
         </div>
-        <p class="text-xs font-bold text-accent mb-2 uppercase tracking-wide">Department of Information Technology</p>
-        <h3 class="text-lg font-bold text-secondary mb-1">Dr. Anu Thomas</h3>
+        <p class="text-xs font-bold text-accent mb-3 uppercase tracking-wider">Department of Information Technology</p>
+        <h3 class="text-xl font-bold text-secondary mb-2">Dr. Anu Thomas</h3>
         <p class="text-gray-600 text-sm"></p>
     </div>
 
     <!-- Associate Editor 2: Dr. Priyanka Mohan -->
-    <div class="editorial-card text-center p-6 bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:shadow-xl hover:border-accent transition duration-300">
-        <div class="w-24 h-24 mx-auto rounded-full bg-primary/10 mb-4 flex items-center justify-center overflow-hidden border-2 border-primary/20">
+    <div class="editorial-card animate-on-scroll text-center p-8 card-shimmer rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl hover:border-accent relative overflow-hidden">
+        <!-- Left Accent Bar -->
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-accent"></div>
+        <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-primary/10 to-accent/10 mb-5 flex items-center justify-center overflow-hidden border-3 border-primary/20 shadow-md relative z-10">
             <img
                 src="https://siesascn.edu.in/images/faculty/1751121940%20PM.jpg"
                 alt="Dr. Priyanka Mohan"
@@ -444,26 +601,28 @@
                 loading="lazy"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
             />
-            <div class="avatar-fallback hidden w-full h-full items-center justify-center">
-                <i data-lucide="user" class="w-12 h-12 text-primary"></i>
+            <div class="avatar-fallback hidden w-full h-full items-center justify-center bg-primary/10">
+                <i data-lucide="user" class="w-14 h-14 text-primary icon-float"></i>
             </div>
         </div>
-        <p class="text-xs font-bold text-accent mb-2 uppercase tracking-wide">Department of Accountancy</p>
-        <h3 class="text-lg font-bold text-secondary mb-1">Dr. Priyanka Mohan</h3>
+        <p class="text-xs font-bold text-accent mb-3 uppercase tracking-wider">Department of Accountancy</p>
+        <h3 class="text-xl font-bold text-secondary mb-2">Dr. Priyanka Mohan</h3>
         <p class="text-gray-600 text-sm"></p>
     </div>
                 </div>
 
                 <!-- Assistant Editors Section -->
-                <div class="mt-20 mb-12 text-center">
-                    <h3 class="text-3xl font-bold text-secondary">Assistant Editors</h3>
-                    <p class="text-gray-600 mt-3 text-lg">Supporting the editorial process and ensuring publication quality</p>
+                <div class="mt-24 mb-16 text-center animate-on-scroll">
+                    <h3 class="section-header text-4xl font-extrabold text-secondary mb-4">Assistant Editors</h3>
+                    <p class="text-gray-600 mt-8 text-lg max-w-2xl mx-auto">Supporting the editorial process and ensuring publication quality</p>
                 </div>
 
                 <div class="editorial-grid-balanced">
     <!-- Assistant Editor 1: Dr. Neera Kumar -->
-    <div class="editorial-card text-center p-6 bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:shadow-xl hover:border-accent transition duration-300">
-        <div class="w-24 h-24 mx-auto rounded-full bg-primary/10 mb-4 flex items-center justify-center overflow-hidden border-2 border-primary/20">
+    <div class="editorial-card animate-on-scroll text-center p-8 card-shimmer rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl hover:border-accent relative overflow-hidden">
+        <!-- Left Accent Bar -->
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-accent"></div>
+        <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-primary/10 to-accent/10 mb-5 flex items-center justify-center overflow-hidden border-3 border-primary/20 shadow-md relative z-10">
             <img
                 src="https://siesascn.edu.in/images/faculty/1751267251%20NK.JPG"
                 alt="Dr. Neera Kumar"
@@ -471,36 +630,42 @@
                 loading="lazy"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
             />
-            <div class="avatar-fallback hidden w-full h-full items-center justify-center">
-                <i data-lucide="user" class="w-12 h-12 text-primary"></i>
+            <div class="avatar-fallback hidden w-full h-full items-center justify-center bg-primary/10">
+                <i data-lucide="user" class="w-14 h-14 text-primary icon-float"></i>
             </div>
         </div>
-        <p class="text-xs font-bold text-accent mb-2 uppercase tracking-wide">Department of Economics</p>
-        <h3 class="text-lg font-bold text-secondary mb-1">Dr. Neera Kumar</h3>
+        <p class="text-xs font-bold text-accent mb-3 uppercase tracking-wider">Department of Economics</p>
+        <h3 class="text-xl font-bold text-secondary mb-2">Dr. Neera Kumar</h3>
         <p class="text-gray-600 text-sm"></p>
     </div> 
 
       <!-- Assistant Editor 2: Dr. Jyoti Koliyan -->
-    <div class="editorial-card text-center p-6 bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:shadow-xl hover:border-accent transition duration-300">
-        <div class="w-24 h-24 mx-auto rounded-full bg-primary/10 mb-4 flex items-center justify-center overflow-hidden border-2 border-primary/20"> 
-               <img
+    <div class="editorial-card animate-on-scroll text-center p-8 card-shimmer rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl hover:border-accent relative overflow-hidden">
+        <!-- Left Accent Bar -->
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-accent"></div>
+        <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-primary/10 to-accent/10 mb-5 flex items-center justify-center overflow-hidden border-3 border-primary/20 shadow-md relative z-10"> 
+            <img
                 src="https://siesascn.edu.in/images/faculty/jyoti-das.jpg"
                 alt="Dr. Jyoti Jatinder Das"
                 class="w-full h-full object-cover"
                 loading="lazy"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
             />
-            <i data-lucide="user" class="w-12 h-12 text-primary"></i>
+            <div class="avatar-fallback hidden w-full h-full items-center justify-center bg-primary/10">
+                <i data-lucide="user" class="w-14 h-14 text-primary icon-float"></i>
+            </div>
         </div>
-        <p class="text-xs font-bold text-accent mb-2 uppercase tracking-wide">Department of Environmental Science</p>
-        <h3 class="text-lg font-bold text-secondary mb-1">Jyoti Jatinder Das</h3>
+        <p class="text-xs font-bold text-accent mb-3 uppercase tracking-wider">Department of Environmental Science</p>
+        <h3 class="text-xl font-bold text-secondary mb-2">Jyoti Jatinder Das</h3>
         <p class="text-gray-600 text-sm"></p>
     </div> 
 
 
     <!-- Assistant Editor 3: Dr. Snehal Patil -->
-    <div class="editorial-card text-center p-6 bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:shadow-xl hover:border-accent transition duration-300">
-        <div class="w-24 h-24 mx-auto rounded-full bg-primary/10 mb-4 flex items-center justify-center overflow-hidden border-2 border-primary/20">
+    <div class="editorial-card animate-on-scroll text-center p-8 card-shimmer rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl hover:border-accent relative overflow-hidden">
+        <!-- Left Accent Bar -->
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-accent"></div>
+        <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-primary/10 to-accent/10 mb-5 flex items-center justify-center overflow-hidden border-3 border-primary/20 shadow-md relative z-10">
             <img
                 src="https://siesascn.edu.in/images/faculty/1751953856%20SP.jpg"
                 alt="Dr. Snehal Patil"
@@ -508,18 +673,20 @@
                 loading="lazy"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
             />
-            <div class="avatar-fallback hidden w-full h-full items-center justify-center">
-                <i data-lucide="user" class="w-12 h-12 text-primary"></i>
+            <div class="avatar-fallback hidden w-full h-full items-center justify-center bg-primary/10">
+                <i data-lucide="user" class="w-14 h-14 text-primary icon-float"></i>
             </div>
         </div>
-        <p class="text-xs font-bold text-accent mb-2 uppercase tracking-wide">Department of Accountancy</p>
-        <h3 class="text-lg font-bold text-secondary mb-1">Dr. Snehal Patil</h3>
+        <p class="text-xs font-bold text-accent mb-3 uppercase tracking-wider">Department of Accountancy</p>
+        <h3 class="text-xl font-bold text-secondary mb-2">Dr. Snehal Patil</h3>
         <p class="text-gray-600 text-sm"></p>
     </div>
 
     <!-- Assistant Editor 4: Dr. Divya Nair -->
-    <div class="editorial-card text-center p-6 bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:shadow-xl hover:border-accent transition duration-300">
-        <div class="w-24 h-24 mx-auto rounded-full bg-primary/10 mb-4 flex items-center justify-center overflow-hidden border-2 border-primary/20">
+    <div class="editorial-card animate-on-scroll text-center p-8 card-shimmer rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl hover:border-accent relative overflow-hidden">
+        <!-- Left Accent Bar -->
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-accent"></div>
+        <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-primary/10 to-accent/10 mb-5 flex items-center justify-center overflow-hidden border-3 border-primary/20 shadow-md relative z-10">
             <img
                 src="https://siesascn.edu.in/images/faculty/1751122179%20DN.jpg"
                 alt="Dr. Divya Nair"
@@ -527,19 +694,21 @@
                 loading="lazy"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
             />
-            <div class="avatar-fallback hidden w-full h-full items-center justify-center">
-                <i data-lucide="user" class="w-12 h-12 text-primary"></i>
+            <div class="avatar-fallback hidden w-full h-full items-center justify-center bg-primary/10">
+                <i data-lucide="user" class="w-14 h-14 text-primary icon-float"></i>
             </div>
         </div>
-        <p class="text-xs font-bold text-accent mb-2 uppercase tracking-wide">Department of Multimedia & Mass Communication</p>
-        <h3 class="text-lg font-bold text-secondary mb-1">Dr. Divya Nair</h3>
+        <p class="text-xs font-bold text-accent mb-3 uppercase tracking-wider">Department of Multimedia & Mass Communication</p>
+        <h3 class="text-xl font-bold text-secondary mb-2">Dr. Divya Nair</h3>
         <p class="text-gray-600 text-sm"></p>
     </div> 
 
 
             <!-- Assistant Editor 5: Dr. Nutan Sawant -->
-    <div class="editorial-card text-center p-6 bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:shadow-xl hover:border-accent transition duration-300">
-        <div class="w-24 h-24 mx-auto rounded-full bg-primary/10 mb-4 flex items-center justify-center overflow-hidden border-2 border-primary/20">
+    <div class="editorial-card animate-on-scroll text-center p-8 card-shimmer rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl hover:border-accent relative overflow-hidden">
+        <!-- Left Accent Bar -->
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-accent"></div>
+        <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-primary/10 to-accent/10 mb-5 flex items-center justify-center overflow-hidden border-3 border-primary/20 shadow-md relative z-10">
             <img
                 src="https://siesascn.edu.in/images/faculty/1751122527%20NS.jpg"
                 alt="Dr. Nutan Sawant"
@@ -547,12 +716,12 @@
                 loading="lazy"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
             />
-            <div class="avatar-fallback hidden w-full h-full items-center justify-center">
-                <i data-lucide="user" class="w-12 h-12 text-primary"></i>
+            <div class="avatar-fallback hidden w-full h-full items-center justify-center bg-primary/10">
+                <i data-lucide="user" class="w-14 h-14 text-primary icon-float"></i>
             </div>
         </div>
-        <p class="text-xs font-bold text-accent mb-2 uppercase tracking-wide">Department of Information Technology</p>
-        <h3 class="text-lg font-bold text-secondary mb-1">Dr. Nutan Sawant</h3>
+        <p class="text-xs font-bold text-accent mb-3 uppercase tracking-wider">Department of Information Technology</p>
+        <h3 class="text-xl font-bold text-secondary mb-2">Dr. Nutan Sawant</h3>
         <p class="text-gray-600 text-sm"></p>
     </div>
 </div>
