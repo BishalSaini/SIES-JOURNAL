@@ -20,7 +20,7 @@ try {
     $debug_log = "Debug: POST data received: " . json_encode($_POST) . "\n";
     file_put_contents('debug.log', $debug_log, FILE_APPEND);
 
-    $conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT);
+    $conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
     
     if ($conn->connect_error) {
         throw new Exception("Connection failed: " . $conn->connect_error);

@@ -67,12 +67,12 @@ $upload_path = $upload_dir . $new_file_name;
 
 // Connect to database early
 try {
-    $conn = new PDO("mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
+    $conn = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     // Set timeout to 5 seconds
     $conn->setAttribute(PDO::ATTR_TIMEOUT, 5);
 } catch(PDOException $e) {
-    echo json_encode(['success' => false, 'message' => 'Database connection failed']);
+    echo json_encode(['success' => false, 'message' => 'Database connection failed: ' . $e->getMessage()]);
     exit;
 }
 
@@ -218,7 +218,7 @@ function sendAdminNotification($author_name, $author_email, $affiliation, $manus
                     </tr>
                     <tr>
                         <th>Submission Date</th>
-                        <td>" . date('Y-m-d H:i:s') . "</td>
+                        <td>" . date('F j, Y \a\t g:i A') . "</td>
                     </tr>
                 </table>
                 
@@ -247,7 +247,7 @@ Manuscript Details:
 - Manuscript Title: " . $manuscript_title . "
 - File Name: " . $file_name . "
 - File Size: " . number_format($file_size / 1024, 2) . " KB
-- Submission Date: " . date('Y-m-d H:i:s') . "
+- Submission Date: " . date('F j, Y \a\t g:i A') . "
 
 Abstract:
 " . $abstract . "
@@ -315,7 +315,7 @@ function sendAuthorConfirmation($author_name, $author_email, $manuscript_title, 
                     <h4>Submission Details:</h4>
                     <p><strong>Submission ID:</strong> #" . $submission_id . "</p>
                     <p><strong>Manuscript Title:</strong> " . htmlspecialchars($manuscript_title) . "</p>
-                    <p><strong>Submission Date:</strong> " . date('Y-m-d H:i:s') . "</p>
+                    <p><strong>Submission Date:</strong> " . date('F j, Y \a\t g:i A') . "</p>
                     <p><strong>Status:</strong> Under Review</p>
                 </div>
                 
@@ -350,7 +350,7 @@ Thank you for submitting your manuscript to SIES Journal. We have successfully r
 Submission Details:
 - Submission ID: #" . $submission_id . "
 - Manuscript Title: " . $manuscript_title . "
-- Submission Date: " . date('Y-m-d H:i:s') . "
+- Submission Date: " . date('F j, Y \a\t g:i A') . "
 - Status: Under Review
 
 What happens next?

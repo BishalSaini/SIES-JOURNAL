@@ -40,7 +40,7 @@ try {
     }
 
     // Database connection
-    $conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT);
+    $conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
     
     if ($conn->connect_error) {
         throw new Exception("Database connection failed: " . $conn->connect_error);

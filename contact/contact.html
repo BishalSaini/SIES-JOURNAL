@@ -732,25 +732,72 @@
             }
 
             if (uploadForm) {
-                uploadForm.addEventListener('submit', function(e) {
+                uploadForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
                     
-                    if (messageEl) {
-                        messageEl.textContent = 'Submission simulated successfully!';
-                        messageEl.classList.remove('hidden');
+                    const submitBtn = document.getElementById('manuscript-submit-btn');
+                    
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.innerHTML = 'Submitting...';
                     }
                     
-                    setTimeout(() => {
-                        closeModal('manuscriptFormModal');
-                        uploadForm.reset();
-                        if (fileNameDisplay) {
-                            fileNameDisplay.textContent = 'No file selected.';
-                            fileNameDisplay.classList.remove('text-green-600');
+                    if (messageEl) {
+                        messageEl.classList.add('hidden');
+                        messageEl.classList.remove('text-green-600', 'text-red-500');
+                    }
+                    
+                    try {
+                        const formData = new FormData(uploadForm);
+                        
+                        let submitPath = '../submit_manuscript.php';
+                        
+                        const response = await fetch(submitPath, {
+                            method: 'POST',
+                            body: formData
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (result.success) {
+                            if (messageEl) {
+                                messageEl.textContent = result.message || 'Manuscript submitted successfully!';
+                                messageEl.classList.remove('hidden', 'text-red-500');
+                                messageEl.classList.add('text-green-600');
+                            }
+                            
+                            uploadForm.reset();
+                            if (fileNameDisplay) {
+                                fileNameDisplay.textContent = 'No file selected.';
+                                fileNameDisplay.classList.remove('text-green-600');
+                            }
+                            
+                            setTimeout(() => { 
+                                if (messageEl) messageEl.classList.add('hidden'); 
+                                closeModal('manuscriptFormModal');
+                            }, 3000);
+                            
+                        } else {
+                            if (messageEl) {
+                                messageEl.textContent = result.message || 'Submission failed. Please try again.';
+                                messageEl.classList.remove('hidden', 'text-green-600');
+                                messageEl.classList.add('text-red-500');
+                            }
                         }
+                        
+                    } catch (error) {
+                        console.error('Submission error:', error);
                         if (messageEl) {
-                            messageEl.classList.add('hidden');
+                            messageEl.textContent = 'Network error. Please check your connection and try again.';
+                            messageEl.classList.remove('hidden', 'text-green-600');
+                            messageEl.classList.add('text-red-500');
                         }
-                    }, 2000);
+                    }
+                    
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = 'Submit Manuscript';
+                    }
                 });
             }
 
