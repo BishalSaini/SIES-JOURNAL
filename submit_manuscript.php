@@ -71,6 +71,8 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     // Set timeout to 5 seconds
     $conn->setAttribute(PDO::ATTR_TIMEOUT, 5);
+    // Set MySQL timezone to Asia/Kolkata
+    $conn->exec("SET time_zone = '+05:30'");
 } catch(PDOException $e) {
     echo json_encode(['success' => false, 'message' => 'Database connection failed: ' . $e->getMessage()]);
     exit;
