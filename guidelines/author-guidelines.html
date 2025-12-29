@@ -8,9 +8,9 @@
 
         <!-- SEO Meta Tags -->
         <meta name="description"
-            content="Comprehensive author guidelines for SIES Journal. Learn about manuscript formatting, page layout, referencing style (Harvard), figures, tables, and submission procedures.">
+            content="Comprehensive author guidelines for SIES Journal. Learn about manuscript formatting, page layout, referencing style (APA), figures, tables, and submission procedures.">
         <meta name="keywords"
-            content="author guidelines, manuscript format, Harvard referencing, page layout, Times New Roman, citation format, abstract guidelines, keywords, submission checklist, research article format, book citation, figure caption, table formatting, paragraph formatting, ethical statement, SIES journal submission">
+            content="author guidelines, manuscript format, APA referencing, page layout, Times New Roman, citation format, abstract guidelines, keywords, submission checklist, research article format, book citation, figure caption, table formatting, paragraph formatting, ethical statement, SIES journal submission">
         <meta name="author" content="SIES College of Arts, Science and Commerce, Nerul">
         <meta name="robots" content="index, follow">
 
@@ -561,9 +561,9 @@
                         <h2><i data-lucide="quote" class="inline-block w-6 h-6 mr-2 text-accent"></i> Referencing Style
                         </h2>
 
-                        <p>Use <strong>Harvard style</strong> for all references. References should be arranged in
-                            <strong>alphabetical bibliography</strong> format with standard <strong>author–date in-text
-                                citations</strong>.</p>
+                        <p>Use the <strong>latest APA (7th Edition) style</strong> for all references. References should be
+                            arranged in <strong>alphabetical bibliography</strong> format with standard
+                            <strong>author–date in-text citations</strong>.</p>
 
                         <h3>Citation Format Examples</h3>
 
@@ -1137,7 +1137,7 @@
                 <div class="border-t border-white border-opacity-20 py-6">
                     <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                         <div class="text-sm text-gray-300 text-center md:text-left">
-                            <p>&copy; 2025 SIES College of Arts, Science and Commerce, Nerul. All Rights Reserved.</p>
+                            <p>&copy; <span id="currentYear"></span> SIES College of Arts, Science and Commerce, Nerul. All Rights Reserved.</p>
                         </div>
                         <div class="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
                             <a href="#" class="text-gray-300 hover:text-accent transition duration-300">Privacy
@@ -1304,6 +1304,9 @@
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
             }
+
+            // Auto-update copyright year
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
         </script>
     </body>
 

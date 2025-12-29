@@ -250,9 +250,9 @@
                         <div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-500 hover:shadow-lg transition duration-300">
                             <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-4">
                                 <div>
-                                    <h3 class="text-2xl font-bold text-secondary mb-2">Call for Papers - Volume 1 (2025)</h3>
+                                    <h3 class="text-2xl font-bold text-secondary mb-2">Call for Papers - Volume 1 (2026)</h3>
                                     <div class="flex items-center space-x-4 text-sm text-gray-600">
-                                        <span class="flex items-center"><i data-lucide="calendar" class="w-4 h-4 mr-1"></i> Deadline: December 31, 2025</span>
+                                        <span class="flex items-center"><i data-lucide="calendar" class="w-4 h-4 mr-1"></i> Deadline: January 15, 2026</span>
                                         <span class="flex items-center"><i data-lucide="user" class="w-4 h-4 mr-1"></i> Open to All Researchers</span>
                                     </div>
                                 </div>
@@ -269,9 +269,9 @@
                                 <h4 class="font-bold text-secondary mb-2">Key Information:</h4>
                                 <ul class="text-gray-700 space-y-1">
                                     <li>• <strong>Submission Opens:</strong> Now Open</li>
-                                    <li>• <strong>Submission Deadline:</strong> December 31, 2025</li>
+                                    <li>• <strong>Submission Deadline:</strong> January 15, 2026</li>
                                     <li>• <strong>Review Process:</strong> Blind peer review (within 5 days for abstract)</li>
-                                    <li>• <strong>Publication Date:</strong> 2025</li>
+                                    <li>• <strong>Publication Date:</strong> 2026</li>
                                     <li>• <strong>Publication Fees:</strong> Contact for details</li>
                                 </ul>
                             </div>
@@ -302,7 +302,7 @@
                                 <div>
                                     <h3 class="text-2xl font-bold text-secondary mb-2">SIES JMRI Journal Officially Launched</h3>
                                     <div class="flex items-center space-x-4 text-sm text-gray-600">
-                                        <span class="flex items-center"><i data-lucide="calendar" class="w-4 h-4 mr-1"></i> September 10, 2025</span>
+                                        <span class="flex items-center"><i data-lucide="calendar" class="w-4 h-4 mr-1"></i> January, 2026</span>
                                         <span class="flex items-center"><i data-lucide="award" class="w-4 h-4 mr-1"></i> ISSN Certified</span>
                                     </div>
                                 </div>
@@ -342,7 +342,7 @@
                                 <div>
                                     <h3 class="text-2xl font-bold text-secondary mb-2">Official Journal Website Launched</h3>
                                     <div class="flex items-center space-x-4 text-sm text-gray-600">
-                                        <span class="flex items-center"><i data-lucide="calendar" class="w-4 h-4 mr-1"></i> July 20, 2025</span>
+                                        <span class="flex items-center"><i data-lucide="calendar" class="w-4 h-4 mr-1"></i> January, 2026</span>
                                         <span class="flex items-center"><i data-lucide="globe" class="w-4 h-4 mr-1"></i> Online Platform</span>
                                     </div>
                                 </div>
@@ -536,7 +536,7 @@
             <div class="border-t border-white border-opacity-20 py-6">
                 <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                     <div class="text-sm text-gray-300 text-center md:text-left">
-                        <p>&copy; 2025 SIES College of Arts, Science and Commerce, Nerul. All Rights Reserved.</p>
+                        <p>&copy; <span id="currentYear"></span> SIES College of Arts, Science and Commerce, Nerul. All Rights Reserved.</p>
                     </div>
                     <div class="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
                         <a href="#" class="text-gray-300 hover:text-accent transition duration-300">Privacy Policy</a>
@@ -675,6 +675,9 @@
                 }
             });
         });
+
+        // Auto-update copyright year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
     <script src="../assets/js/manuscript-submission.js"></script>
 </body>

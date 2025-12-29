@@ -690,7 +690,7 @@
                                     <li>Publication in upcoming issue</li>
                                 </ul>
                                 
-                                <h4 class="font-bold text-lg text-secondary mt-6">Indexing & Publication Details</h4>
+<!--                                 <h4 class="font-bold text-lg text-secondary mt-6">Indexing & Publication Details</h4>
                                 <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-primary p-4 rounded">
                                     <p class="font-semibold text-primary mb-2">All accepted papers that comply with standards will be published in:</p>
                                     <ul class="list-disc pl-6 space-y-2 text-gray-700">
@@ -700,15 +700,15 @@
                                         <li>Web of Science indexed journals (with additional charges)</li>
                                     </ul>
                                     <p class="text-sm text-gray-600 mt-3 italic">Note: Indexing in premium databases requires additional fees. Contact editorial office for details.</p>
-                                </div>
+                                </div> -->
                                 
                                 <h4 class="font-bold text-lg text-secondary mt-6">Post-Publication</h4>
                                 <ul class="list-disc pl-6 space-y-2">
                                     <li>Article published online with ISSN</li>
-                                    <li>Authors receive publication certificate</li>
+                                   <!--  <li>Authors receive publication certificate</li> -->
                                     <li>Papers indexed in relevant databases</li>
                                     <li>Open access for broader dissemination</li>
-                                    <li>Option for premium indexing services</li>
+                                    <!-- <li>Option for premium indexing services</li> -->
                                 </ul>
                             </div>
                         </div>
@@ -950,7 +950,7 @@
             <div class="border-t border-white border-opacity-20 py-6">
                 <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                     <div class="text-sm text-gray-300 text-center md:text-left">
-                        <p>&copy; 2025 SIES College of Arts, Science and Commerce, Nerul. All Rights Reserved.</p>
+                        <p>&copy; <span id="currentYear"></span> SIES College of Arts, Science and Commerce, Nerul. All Rights Reserved.</p>
                     </div>
                     <div class="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
                         <a href="#" class="text-gray-300 hover:text-accent transition duration-300">Privacy Policy</a>
@@ -1140,6 +1140,9 @@
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
+
+        // Auto-update copyright year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>

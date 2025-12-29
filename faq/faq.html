@@ -293,7 +293,7 @@
                         </button>
                         <div id="faq-5" class="accordion-content">
                             <div class="p-4 pt-0 text-gray-600 border-t border-gray-100">
-                                Full manuscripts should be <strong>3,000-5,000 words</strong> (10-15 pages) including references. The abstract should be <strong>250-300 words</strong> with 3-4 keywords and a 50-word bio-note.
+                                Full manuscripts should be <strong>3,000-5,000 words</strong> (8-10 pages) including references. The abstract should be <strong>250-300 words</strong> with 3-4 keywords and a 50-word bio-note.
                             </div>
                         </div>
                     </div>
@@ -599,7 +599,7 @@
             <div class="border-t border-white border-opacity-20 py-6">
                 <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                     <div class="text-sm text-gray-300 text-center md:text-left">
-                        <p>&copy; 2025 SIES College of Arts, Science and Commerce, Nerul. All Rights Reserved.</p>
+                        <p>&copy; <span id="currentYear"></span> SIES College of Arts, Science and Commerce, Nerul. All Rights Reserved.</p>
                     </div>
                     <div class="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
                         <a href="#" class="text-gray-300 hover:text-accent transition duration-300">Privacy Policy</a>
@@ -765,6 +765,9 @@
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
+
+        // Auto-update copyright year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
     <script src="../assets/js/manuscript-submission.js"></script>
 </body>
